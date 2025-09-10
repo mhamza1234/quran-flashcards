@@ -6,26 +6,3396 @@
     "ayats": [
       {
         "ayah_id": "67:1",
-        "arabic": "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ",
-        "bangla": "বরকতময় তিনি যাঁর হাতে সাম্রাজ্য",
+        "arabic": "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+        "bangla": "বরকতময় তিনি—যাঁর হাতে সব কর্তৃত্ব; তিনি সবকিছুর উপর সর্বশক্তিমান।",
         "words": [
           {
             "word_id": "67:1:1",
             "arabic_word": "تَبَارَكَ",
             "bangla_meaning": "বরকতময়",
             "root": "ب-ر-ك",
-            "rootMeaning": "(বরকত/প্রাচুর্য)",
+            "rootMeaning": "(বরকত/কল্যাণ/বৃদ্ধি)",
             "derivationMethod": "فعل ماضٍ",
             "quranicDerivations": [
               {
-                "arabic": "بَرَكَةٌ",
-                "meaning": "বরকত",
-                "exampleArabic": "وَلَوْ أَنَّ أَهْلَ الْقُرَى آمَنُوا ... لَفَتَحْنَا عَلَيْهِم بَرَكَاتٍ",
-                "exampleBangla": "জনপদের লোক ঈমান ও তাকওয়া অবলম্বন করলে আমরা বরকতের দুয়ার খুলে দিতাম",
+                "arabic": "مُبَارَكٌ",
+                "meaning": "বরকতময়",
+                "exampleArabic": "كِتَابٌ أَنزَلْنَاهُ مُبَارَكٌ",
+                "exampleBangla": "এটি এক বরকতময় কিতাব—আমি নাযিল করেছি।",
                 "occurrences": [
                   {
-                    "ayah_id": "7:96",
-                    "surface": "بَرَكَاتٍ"
+                    "ayah_id": "6:92",
+                    "surface": "مُبَارَكٌ"
+                  }
+                ]
+              },
+              {
+                "arabic": "بَرَكَاتٌ",
+                "meaning": "বরকতসমূহ",
+                "exampleArabic": "رَحْمَتُ اللَّهِ وَبَرَكَاتُهُ عَلَيْكُمْ",
+                "exampleBangla": "আল্লাহর রহমত ও বরকত তোমাদের উপর।",
+                "occurrences": [
+                  {
+                    "ayah_id": "11:73",
+                    "surface": "بَرَكَاتُهُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:1:2",
+            "arabic_word": "الَّذِي",
+            "bangla_meaning": "যিনি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "اسم موصول",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:1:3",
+            "arabic_word": "بِيَدِهِ",
+            "bangla_meaning": "তার হাতে",
+            "root": "ي-د-ي",
+            "rootMeaning": "(হাত/ক্ষমতা/অধিকার)",
+            "derivationMethod": "اسم+جار ومجرور",
+            "quranicDerivations": [
+              {
+                "arabic": "يَدُ اللَّهِ",
+                "meaning": "আল্লাহর হাত (ক্ষমতা)",
+                "exampleArabic": "يَدُ اللَّهِ فَوْقَ أَيْدِيهِمْ",
+                "exampleBangla": "আল্লাহর ‘হাত’ তাদের হাতের উপর।",
+                "occurrences": [
+                  {
+                    "ayah_id": "48:10",
+                    "surface": "يَدُ"
+                  }
+                ]
+              },
+              {
+                "arabic": "أَيْدِي",
+                "meaning": "হাতসমূহ",
+                "exampleArabic": "بِأَيْدِيهِمْ",
+                "exampleBangla": "তাদের হাত দ্বারা।",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:79",
+                    "surface": "أَيْدِيهِمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:1:4",
+            "arabic_word": "الْمُلْكُ",
+            "bangla_meaning": "রাজত্ব/কর্তৃত্ব",
+            "root": "م-ل-ك",
+            "rootMeaning": "(রাজত্ব/মালিকানা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "مَلِك",
+                "meaning": "রাজা/মালিক",
+                "exampleArabic": "مَالِكِ يَوْمِ الدِّينِ",
+                "exampleBangla": "বিচার দিবসের মালিক।",
+                "occurrences": [
+                  {
+                    "ayah_id": "1:4",
+                    "surface": "مَٰلِكِ"
+                  }
+                ]
+              },
+              {
+                "arabic": "مُلْك",
+                "meaning": "রাজত্ব",
+                "exampleArabic": "قُلِ اللَّهُمَّ مَالِكَ الْمُلْكِ",
+                "exampleBangla": "বলুন, ‘হে আল্লাহ, রাজত্বের মালিক!’",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:26",
+                    "surface": "ٱلْمُلْكِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:1:5",
+            "arabic_word": "وَهُوَ",
+            "bangla_meaning": "এবং তিনি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "ضمير/عطف",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:1:6",
+            "arabic_word": "عَلَىٰ",
+            "bangla_meaning": "উপর",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "حرف جر",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:1:7",
+            "arabic_word": "كُلِّ",
+            "bangla_meaning": "সমস্ত",
+            "root": "ك-ل-ل",
+            "rootMeaning": "(সব/সমস্ত)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:1:8",
+            "arabic_word": "شَيْءٍ",
+            "bangla_meaning": "বস্তু/জিনিস",
+            "root": "ش-ي-ء",
+            "rootMeaning": "(বস্তু/কিছু)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "شَيْء",
+                "meaning": "কোনো বস্তু",
+                "exampleArabic": "وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا",
+                "exampleBangla": "কোনো কিছুর ব্যাপারে বলো না: ‘আমি কালই তা করব’।",
+                "occurrences": [
+                  {
+                    "ayah_id": "18:23",
+                    "surface": "شَيْئًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:1:9",
+            "arabic_word": "قَدِيرٌ",
+            "bangla_meaning": "সর্বশক্তিমান",
+            "root": "ق-د-ر",
+            "rootMeaning": "(ক্ষমতা/পরিমাপ)",
+            "derivationMethod": "اسم صفة",
+            "quranicDerivations": [
+              {
+                "arabic": "قَدَّرَ",
+                "meaning": "নির্ধারণ করলেন",
+                "exampleArabic": "وَقَدَّرَ فِيهَا أَقْوَاتَهَا",
+                "exampleBangla": "আর তাতে জীবিকার ব্যবস্থা নির্ধারণ করলেন।",
+                "occurrences": [
+                  {
+                    "ayah_id": "41:10",
+                    "surface": "وَقَدَّرَ"
+                  }
+                ]
+              },
+              {
+                "arabic": "بِمِقْدَارٍ",
+                "meaning": "পরিমাণ/পরিমিত",
+                "exampleArabic": "عِندَهُ مِقْدَارُ كُلِّ شَيْءٍ",
+                "exampleBangla": "তাঁর নিকট প্রত্যেক বস্তুর পরিমাণ নির্ধারিত।",
+                "occurrences": [
+                  {
+                    "ayah_id": "13:8",
+                    "surface": "بِمِقْدَارٍ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:2",
+        "arabic": "الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا وَهُوَ الْعَزِيزُ الْغَفُورُ",
+        "bangla": "যিনি মৃত্যু ও জীবন সৃষ্টি করেছেন—কে কর্মে উত্তম তা পরীক্ষা করার জন্য; তিনি পরাক্রমশালী, পরম ক্ষমাশীল।",
+        "words": [
+          {
+            "word_id": "67:2:1",
+            "arabic_word": "الَّذِي",
+            "bangla_meaning": "যিনি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "اسم موصول",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:2:2",
+            "arabic_word": "خَلَقَ",
+            "bangla_meaning": "তিনি সৃষ্টি করলেন",
+            "root": "خ-ل-ق",
+            "rootMeaning": "(সৃষ্টি/গঠন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "خَلَقْنَا",
+                "meaning": "আমরা সৃষ্টি করেছি",
+                "exampleArabic": "وَلَقَدْ خَلَقْنَا الْإِنسَانَ",
+                "exampleBangla": "আমি অবশ্যই মানুষকে সৃষ্টি করেছি।",
+                "occurrences": [
+                  {
+                    "ayah_id": "23:12",
+                    "surface": "خَلَقْنَا"
+                  }
+                ]
+              },
+              {
+                "arabic": "خَالِق",
+                "meaning": "স্রষ্টা",
+                "exampleArabic": "أَفَمَن يَخْلُقُ كَمَن لَا يَخْلُقُ",
+                "exampleBangla": "যিনি সৃষ্টি করেন, তিনি কি তার সমান যে সৃষ্টি করে না?",
+                "occurrences": [
+                  {
+                    "ayah_id": "16:17",
+                    "surface": "يَخْلُقُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:3",
+            "arabic_word": "الْمَوْتَ",
+            "bangla_meaning": "মৃত্যু",
+            "root": "م-و-ت",
+            "rootMeaning": "(মৃত্যু/নাশ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "يُمِيتُ",
+                "meaning": "তিনি মৃত্যু ঘটান",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "23:80",
+                    "surface": "يُمِيتُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:4",
+            "arabic_word": "وَالْحَيَاةَ",
+            "bangla_meaning": "এবং জীবন",
+            "root": "ح-ي-ي",
+            "rootMeaning": "(জীবন/জাগরণ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "يُحْيِي",
+                "meaning": "জীবন দান করেন",
+                "exampleArabic": "وَيُحْيِي الْأَرْضَ بَعْدَ مَوْتِهَا",
+                "exampleBangla": "তিনি মরণের পর ভূমিকে জীবিত করেন।",
+                "occurrences": [
+                  {
+                    "ayah_id": "30:19",
+                    "surface": "يُحْيِ"
+                  }
+                ]
+              },
+              {
+                "arabic": "ٱلْحَيَوٰةُ",
+                "meaning": "জীবন",
+                "exampleArabic": "وَمَا هَٰذِهِ الْحَيَاةُ الدُّنْيَا إِلَّا لَهْوٌ وَلَعِبٌ",
+                "exampleBangla": "দুনিয়ার জীবন তো কেবল খেল-তামাশা।",
+                "occurrences": [
+                  {
+                    "ayah_id": "29:64",
+                    "surface": "ٱلْحَيَوٰةُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:5",
+            "arabic_word": "لِيَبْلُوَكُمْ",
+            "bangla_meaning": "যাতে পরীক্ষা করেন",
+            "root": "ب-ل-و",
+            "rootMeaning": "(পরীক্ষা/বালা)",
+            "derivationMethod": "فعل مضارع+لام التعليل",
+            "quranicDerivations": [
+              {
+                "arabic": "لَنَبْلُوَنَّكُمْ",
+                "meaning": "আমি অবশ্যই পরীক্ষা করবো",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:155",
+                    "surface": "لَنَبْلُوَنَّكُمْ"
+                  }
+                ]
+              },
+              {
+                "arabic": "ٱبْتِلَاء",
+                "meaning": "পরীক্ষা",
+                "exampleArabic": "إِنَّ ذَٰلِكَ لَهُوَ الْبَلَاءُ الْمُبِينُ",
+                "exampleBangla": "নিশ্চয় এটি এক সুস্পষ্ট পরীক্ষা।",
+                "occurrences": [
+                  {
+                    "ayah_id": "37:106",
+                    "surface": "لَبَلَاءٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:6",
+            "arabic_word": "أَيُّكُمْ",
+            "bangla_meaning": "তোমাদের মধ্যে কে",
+            "root": "أ-ي-ي",
+            "rootMeaning": "(কে/যে)",
+            "derivationMethod": "اسم استفهام/موصول",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:2:7",
+            "arabic_word": "أَحْسَنُ",
+            "bangla_meaning": "অতি উত্তম",
+            "root": "ح-س-ن",
+            "rootMeaning": "(সৌন্দর্য/ভাল)",
+            "derivationMethod": "اسم تفضيل",
+            "quranicDerivations": [
+              {
+                "arabic": "حَسَنَة",
+                "meaning": "সৎকর্ম",
+                "exampleArabic": "مَن جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا",
+                "exampleBangla": "যে সৎকর্ম নিয়ে আসবে, তার জন্য দশগুণ।",
+                "occurrences": [
+                  {
+                    "ayah_id": "6:160",
+                    "surface": "ٱلْحَسَنَةِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:8",
+            "arabic_word": "عَمَلًا",
+            "bangla_meaning": "কর্ম",
+            "root": "ع-م-ل",
+            "rootMeaning": "(কাজ/কর্ম)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "عَمِلُوا",
+                "meaning": "তারা কাজ করেছে",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "18:30",
+                    "surface": "عَمِلُوا"
+                  }
+                ]
+              },
+              {
+                "arabic": "يَعْمَلْ",
+                "meaning": "সে কাজ করে",
+                "exampleArabic": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ",
+                "exampleBangla": "যে অণুপরিমাণ সৎকর্ম করে, তা সে দেখবে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "99:7",
+                    "surface": "يَعْمَلْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:9",
+            "arabic_word": "وَهُوَ",
+            "bangla_meaning": "এবং তিনি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "ضمير/عطف",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:2:10",
+            "arabic_word": "الْعَزِيزُ",
+            "bangla_meaning": "পরাক্রমশালী",
+            "root": "ع-ز-ز",
+            "rootMeaning": "(শক্তি/পরাক্রম)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "عَزِيزٌ",
+                "meaning": "শক্তিশালী/সম্মানিত",
+                "exampleArabic": "عَزِيزٌ عَلَيْهِ مَا عَنِتُّمْ",
+                "exampleBangla": "তোমাদের কষ্ট তাঁর কাছে কঠিন।",
+                "occurrences": [
+                  {
+                    "ayah_id": "9:128",
+                    "surface": "عَزِيزٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:2:11",
+            "arabic_word": "الْغَفُورُ",
+            "bangla_meaning": "ক্ষমাশীল",
+            "root": "غ-ف-ر",
+            "rootMeaning": "(আবরণ/ক্ষমা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱسْتَغْفِرْ",
+                "meaning": "মাফ চাও",
+                "exampleArabic": "فَاسْتَغْفِرُوهُ ثُمَّ تُوبُوا إِلَيْهِ",
+                "exampleBangla": "তাহলে তাঁর কাছে ক্ষমা চাও এবং তওবা করো।",
+                "occurrences": [
+                  {
+                    "ayah_id": "11:3",
+                    "surface": "فَٱسْتَغْفِرُوهُ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:3",
+        "arabic": "الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا مَا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ فَارْجِعِ الْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ",
+        "bangla": "যিনি সাত আকাশ স্তরে স্তরে সৃষ্টি করেছেন। রহমানের সৃষ্টিতে তুমি কোনো ত্রুটি দেখবে না; দৃষ্টি ফিরাও—কোনো ফাটল কি দেখো?",
+        "words": [
+          {
+            "word_id": "67:3:1",
+            "arabic_word": "الَّذِي",
+            "bangla_meaning": "যিনি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "اسم موصول",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:3:2",
+            "arabic_word": "خَلَقَ",
+            "bangla_meaning": "তিনি সৃষ্টি করলেন",
+            "root": "خ-ل-ق",
+            "rootMeaning": "(সৃষ্টি)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "خَلَقْنَا",
+                "meaning": "আমরা সৃষ্টি করেছি",
+                "exampleArabic": "وَلَقَدْ خَلَقْنَا الْإِنسَانَ",
+                "exampleBangla": "আমি অবশ্যই মানুষকে সৃষ্টি করেছি।",
+                "occurrences": [
+                  {
+                    "ayah_id": "23:12",
+                    "surface": "خَلَقْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:3",
+            "arabic_word": "سَبْعَ",
+            "bangla_meaning": "সাত",
+            "root": "س-ب-ع",
+            "rootMeaning": "(সাত)",
+            "derivationMethod": "اسم عدد",
+            "quranicDerivations": [
+              {
+                "arabic": "سَبْعِ",
+                "meaning": "সাতটি",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:261",
+                    "surface": "سَبْعِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:4",
+            "arabic_word": "سَمَاوَاتٍ",
+            "bangla_meaning": "আসমানসমূহ",
+            "root": "س-م-و",
+            "rootMeaning": "(উচ্চ/আকাশ)",
+            "derivationMethod": "اسم جمع",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱلسَّمَاءِ",
+                "meaning": "আকাশ",
+                "exampleArabic": "وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ",
+                "exampleBangla": "তাঁর আরশ আসমান ও জমিনকে পরিবেষ্টন করে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:255",
+                    "surface": "ٱلسَّمَاءِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:5",
+            "arabic_word": "طِبَاقًا",
+            "bangla_meaning": "স্তরে স্তরে",
+            "root": "ط-ب-ق",
+            "rootMeaning": "(স্তর/পর্যায়)",
+            "derivationMethod": "اسم حال",
+            "quranicDerivations": [
+              {
+                "arabic": "طَبَقًا",
+                "meaning": "স্তর",
+                "exampleArabic": "لَتَرْكَبُنَّ طَبَقًا عَن طَبَقٍ",
+                "exampleBangla": "তোমরা স্তর থেকে স্তরে উঠবে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "84:19",
+                    "surface": "طَبَقًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:6",
+            "arabic_word": "تَرَىٰ",
+            "bangla_meaning": "তুমি দেখো",
+            "root": "ر-أ-ي",
+            "rootMeaning": "(দেখা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "رَأَى",
+                "meaning": "সে দেখল",
+                "exampleArabic": "لَقَدْ رَأَىٰ مِنْ آيَاتِ رَبِّهِ الْكُبْرَىٰ",
+                "exampleBangla": "সে দেখেছে তার প্রভুর মহা নিদর্শনসমূহ।",
+                "occurrences": [
+                  {
+                    "ayah_id": "53:18",
+                    "surface": "رَأَى"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:7",
+            "arabic_word": "فِي",
+            "bangla_meaning": "মধ্যে",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "حرف جر",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:3:8",
+            "arabic_word": "خَلْقِ",
+            "bangla_meaning": "সৃষ্টি",
+            "root": "خ-ل-ق",
+            "rootMeaning": "(সৃষ্টি)",
+            "derivationMethod": "مصدر",
+            "quranicDerivations": [
+              {
+                "arabic": "خُلُق",
+                "meaning": "চরিত্র/স্বভাব",
+                "exampleArabic": "وَإِنَّكَ لَعَلى خُلُقٍ عَظِيمٍ",
+                "exampleBangla": "নিশ্চয়ই তুমি এক মহান চরিত্রের অধিকারী।",
+                "occurrences": [
+                  {
+                    "ayah_id": "68:4",
+                    "surface": "خُلُقٍ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:9",
+            "arabic_word": "الرَّحْمَٰنِ",
+            "bangla_meaning": "পরম দয়াবান",
+            "root": "ر-ح-م",
+            "rootMeaning": "(দয়া)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "رَحْمَة",
+                "meaning": "দয়া/করুণা",
+                "exampleArabic": "إِنَّ رَحْمَتَ اللَّهِ قَرِيبٌ مِّنَ الْمُحْسِنِينَ",
+                "exampleBangla": "নিশ্চয় আল্লাহর রহমত সৎকর্মশীলদের নিকটে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:56",
+                    "surface": "رَحْمَتِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:10",
+            "arabic_word": "تَفَاوُتٍ",
+            "bangla_meaning": "অসামঞ্জস্য",
+            "root": "ف-و-ت",
+            "rootMeaning": "(ভিন্নতা/বিচ্যুতি)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "فُوت",
+                "meaning": "পালানো/উদ্ধার",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "50:36",
+                    "surface": "مَّا لَهُم مِّن مَّحِيصٍ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:11",
+            "arabic_word": "فَارْجِعِ",
+            "bangla_meaning": "তুমি ফিরাও",
+            "root": "ر-ج-ع",
+            "rootMeaning": "(ফিরে যাও/ফেরত)",
+            "derivationMethod": "فعل أمر",
+            "quranicDerivations": [
+              {
+                "arabic": "تُرْجَعُونَ",
+                "meaning": "তোমরা ফিরিয়ে নেয়া হবে",
+                "exampleArabic": "ثُمَّ إِلَيْهِ تُرْجَعُونَ",
+                "exampleBangla": "অতঃপর তাঁর কাছেই তোমরা ফিরে যাবে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:28",
+                    "surface": "تُرْجَعُونَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:12",
+            "arabic_word": "الْبَصَرَ",
+            "bangla_meaning": "দৃষ্টি",
+            "root": "ب-ص-ر",
+            "rootMeaning": "(দৃশ্য/দেখা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "بَصِيرٌ",
+                "meaning": "সম্যক দ্রষ্টা",
+                "exampleArabic": "إِنَّهُ بِعِبَادِهِ خَبِيرٌ بَصِيرٌ",
+                "exampleBangla": "নিশ্চয় তিনি তাঁর বান্দাদের সম্পর্কে সবিশেষ অবহিত, দ্রষ্টা।",
+                "occurrences": [
+                  {
+                    "ayah_id": "42:27",
+                    "surface": "بَصِيرٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:3:13",
+            "arabic_word": "هَلْ",
+            "bangla_meaning": "কি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "حرف استفهام",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:3:14",
+            "arabic_word": "تَرَىٰ",
+            "bangla_meaning": "তুমি দেখো",
+            "root": "ر-أ-ي",
+            "rootMeaning": "(দেখা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:3:15",
+            "arabic_word": "مِن",
+            "bangla_meaning": "থেকে",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "حرف جر",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:3:16",
+            "arabic_word": "فُطُورٍ",
+            "bangla_meaning": "ফাটল/ত্রুটি",
+            "root": "ف-ط-ر",
+            "rootMeaning": "(ফাটা/উদ্‌ঘাটন)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "فَاطِر",
+                "meaning": "স্রষ্টা/উদ্‌ঘাটক",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "6:79",
+                    "surface": "فَاطِرِ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:4",
+        "arabic": "ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ الْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ",
+        "bangla": "তারপর দৃষ্টি দু-বার ফিরাও—দৃষ্টি তোমার কাছে ক্লান্ত ও অপমানিত হয়ে ফিরে আসবে।",
+        "words": [
+          {
+            "word_id": "67:4:1",
+            "arabic_word": "ٱرْجِعِ",
+            "bangla_meaning": "ফিরাও",
+            "root": "ر-ج-ع",
+            "rootMeaning": "(ফিরে যাও/ফেরত)",
+            "derivationMethod": "فعل أمر",
+            "quranicDerivations": [
+              {
+                "arabic": "تُرْجَعُونَ",
+                "meaning": "তোমরা ফিরিয়ে নেয়া হবে",
+                "exampleArabic": "ثُمَّ إِلَيْهِ تُرْجَعُونَ",
+                "exampleBangla": "অতঃপর তাঁর কাছেই তোমরা ফিরে যাবে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:28",
+                    "surface": "تُرْجَعُونَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:4:2",
+            "arabic_word": "كَرَّتَيْنِ",
+            "bangla_meaning": "দুইবার",
+            "root": "ك-ر-ر",
+            "rootMeaning": "(পুনরাবৃত্তি)",
+            "derivationMethod": "اسم عدد",
+            "quranicDerivations": [
+              {
+                "arabic": "كَرَّة",
+                "meaning": "বার/পুনরায়",
+                "exampleArabic": "يَوْمَ تَرْجُفُ الرَّاجِفَةُ",
+                "exampleBangla": "যেদিন প্রবল কম্পন কাঁপাবে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "79:6",
+                    "surface": "رَّاجِفَةُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:4:3",
+            "arabic_word": "يَنقَلِبْ",
+            "bangla_meaning": "ফিরে আসবে",
+            "root": "ق-ل-ب",
+            "rootMeaning": "(উল্টানো/ফিরানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "قَلَّبُوا",
+                "meaning": "তারা উল্টেপাল্টে দেখে",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "9:127",
+                    "surface": "قُلُوبُهُمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:4:4",
+            "arabic_word": "الْبَصَرُ",
+            "bangla_meaning": "দৃষ্টি",
+            "root": "ب-ص-ر",
+            "rootMeaning": "(দেখা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "بَصِيرٌ",
+                "meaning": "সম্যক দ্রষ্টা",
+                "exampleArabic": "إِنَّهُ بِعِبَادِهِ خَبِيرٌ بَصِيرٌ",
+                "exampleBangla": "নিশ্চয় তিনি তাঁর বান্দাদের সম্পর্কে সবিশেষ অবহিত, দ্রষ্টা।",
+                "occurrences": [
+                  {
+                    "ayah_id": "42:27",
+                    "surface": "بَصِيرٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:4:5",
+            "arabic_word": "خَاسِئًا",
+            "bangla_meaning": "অপমানিত",
+            "root": "خ-س-أ",
+            "rootMeaning": "(তাড়ানো/অপমান)",
+            "derivationMethod": "اسم حال",
+            "quranicDerivations": [
+              {
+                "arabic": "خَاسِئِينَ",
+                "meaning": "অপমানিতরা",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:166",
+                    "surface": "خَاسِئِينَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:4:6",
+            "arabic_word": "حَسِيرٌ",
+            "bangla_meaning": "ক্লান্ত",
+            "root": "ح-س-ر",
+            "rootMeaning": "(ক্লান্তি/শূন্যতা)",
+            "derivationMethod": "اسم صفة",
+            "quranicDerivations": [
+              {
+                "arabic": "حَسِيرًا",
+                "meaning": "ক্লান্ত",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "38:8",
+                    "surface": "حَسِيرًا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:5",
+        "arabic": "وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ وَجَعَلْنَاهَا رُجُومًا لِّلشَّيَاطِينِ وَأَعْتَدْنَا لَهُمْ عَذَابَ السَّعِيرِ",
+        "bangla": "আমি নিকটতম আকাশকে প্রদীপসমূহ দিয়ে সুশোভিত করেছি এবং সেগুলোকে শয়তানদের জন্য নিক্ষেপবস্তু করেছি; এবং তাদের জন্য প্রজ্জ্বলিত আগুনের শাস্তি প্রস্তুত করেছি।",
+        "words": [
+          {
+            "word_id": "67:5:1",
+            "arabic_word": "زَيَّنَّا",
+            "bangla_meaning": "আমি শোভিত করেছি",
+            "root": "ز-ي-ن",
+            "rootMeaning": "(সজ্জা/শোভা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "زِينَة",
+                "meaning": "শোভা",
+                "exampleArabic": "إِنَّا جَعَلْنَا مَا عَلَى الْأَرْضِ زِينَةً لَّهَا",
+                "exampleBangla": "আমরা যা পৃথিবীতে আছে তাকে তার শোভা করেছি।",
+                "occurrences": [
+                  {
+                    "ayah_id": "18:7",
+                    "surface": "زِينَةً"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:2",
+            "arabic_word": "السَّمَاءَ",
+            "bangla_meaning": "আকাশ",
+            "root": "س-م-و",
+            "rootMeaning": "(আকাশ/উচ্চ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱلسَّمَاءِ",
+                "meaning": "আকাশ",
+                "exampleArabic": "وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ",
+                "exampleBangla": "তাঁর আরশ আসমান ও জমিনকে পরিবেষ্টন করে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:255",
+                    "surface": "ٱلسَّمَاءِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:3",
+            "arabic_word": "مَصَابِيحَ",
+            "bangla_meaning": "প্রদীপসমূহ",
+            "root": "ص-ب-ح",
+            "rootMeaning": "(প্রভাত/আলোক)",
+            "derivationMethod": "اسم جمع",
+            "quranicDerivations": [
+              {
+                "arabic": "مِصْبَاح",
+                "meaning": "প্রদীপ",
+                "exampleArabic": "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ",
+                "exampleBangla": "আল্লাহ আসমানসমূহ ও জমিনের নূর— তাঁর নূরের দৃষ্টান্ত, একটি কক্ষ যাতে একটি প্রদীপ...",
+                "occurrences": [
+                  {
+                    "ayah_id": "24:35",
+                    "surface": "مِصْبَاحٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:4",
+            "arabic_word": "جَعَلْنَاهَا",
+            "bangla_meaning": "আমরা বানিয়েছি",
+            "root": "ج-ع-ل",
+            "rootMeaning": "(করা/স্থাপন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "يَجْعَلْ",
+                "meaning": "তিনি করেন/স্থাপন করেন",
+                "exampleArabic": "وَمَن يَتَّقِ اللَّهَ يَجْعَلْ لَّهُ مَخْرَجًا",
+                "exampleBangla": "যে আল্লাহকে ভয় করে, তিনি তার জন্য পথ করে দেন।",
+                "occurrences": [
+                  {
+                    "ayah_id": "65:2",
+                    "surface": "يَجْعَلْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:5",
+            "arabic_word": "رُجُومًا",
+            "bangla_meaning": "নিক্ষেপবস্তু",
+            "root": "ر-ج-م",
+            "rootMeaning": "(নিক্ষেপ/প্রস্তরাঘাত)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "رَجْمًا",
+                "meaning": "নিক্ষেপ",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "18:22",
+                    "surface": "رَجْمًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:6",
+            "arabic_word": "الشَّيَاطِينِ",
+            "bangla_meaning": "শয়তানরা",
+            "root": "ش-ي-ط-ن",
+            "rootMeaning": "(শয়তান)",
+            "derivationMethod": "اسم جمع",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:5:7",
+            "arabic_word": "أَعْتَدْنَا",
+            "bangla_meaning": "আমরা প্রস্তুত করেছি",
+            "root": "ع-ت-د",
+            "rootMeaning": "(প্রস্তুত করা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "أُعِدَّتْ",
+                "meaning": "প্রস্তুত করা হয়েছে",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:131",
+                    "surface": "أُعِدَّتْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:5:8",
+            "arabic_word": "السَّعِيرِ",
+            "bangla_meaning": "প্রজ্জ্বলিত আগুন",
+            "root": "س-ع-ر",
+            "rootMeaning": "(জ্বালানো/তাপ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سَعِير",
+                "meaning": "প্রজ্জ্বলিত আগুন",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:6",
+                    "surface": "سَعِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:6",
+        "arabic": "وَلِلَّذِينَ كَفَرُوا بِرَبِّهِمْ عَذَابُ جَهَنَّمَ وَبِئْسَ الْمَصِيرُ",
+        "bangla": "যারা তাদের রবকে অস্বীকার করেছে, তাদের জন্য জাহান্নামের শাস্তি—এটি নিকৃষ্ট পরিণতি।",
+        "words": [
+          {
+            "word_id": "67:6:1",
+            "arabic_word": "الَّذِينَ",
+            "bangla_meaning": "যারা",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "اسم موصول",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:6:2",
+            "arabic_word": "كَفَرُوا",
+            "bangla_meaning": "অস্বীকার করল",
+            "root": "ك-ف-ر",
+            "rootMeaning": "(ঢাকা/অস্বীকার)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "كُفْر",
+                "meaning": "কুফর/অস্বীকার",
+                "exampleArabic": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+                "exampleBangla": "তোমরা কৃতজ্ঞ হলে অবশ্যই আমি বৃদ্ধি করব।",
+                "occurrences": [
+                  {
+                    "ayah_id": "14:7",
+                    "surface": "كُفَر"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:6:3",
+            "arabic_word": "رَبِّهِم",
+            "bangla_meaning": "তাদের পালনকর্তা",
+            "root": "ر-ب-ب",
+            "rootMeaning": "(পালন/লালন)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "رَبّ",
+                "meaning": "প্রভু/পালনকর্তা",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "1:2",
+                    "surface": "رَبِّ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:6:4",
+            "arabic_word": "جَهَنَّمَ",
+            "bangla_meaning": "জাহান্নাম",
+            "root": "ج-ه-ن-م",
+            "rootMeaning": "(জাহান্নাম)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:6:5",
+            "arabic_word": "مَصِيرُ",
+            "bangla_meaning": "পরিণতি",
+            "root": "ص-ي-ر",
+            "rootMeaning": "(ফিরে যাওয়া/পরিণতি)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "مَصِير",
+                "meaning": "পরিণতি",
+                "exampleArabic": "فَإِنَّ مَأْوَاهُ جَهَنَّمُ وَبِئْسَ الْمَصِيرُ",
+                "exampleBangla": "তার আশ্রয় জাহান্নাম—এটি নিকৃষ্ট পরিণতি।",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:162",
+                    "surface": "مَصِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:7",
+        "arabic": "إِذَا أُلْقُوا فِيهَا سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ",
+        "bangla": "যখন তারা এতে নিক্ষিপ্ত হবে, তখন তারা এর ভয়ংকর শব্দ শুনবে; আর তা প্রবলভাবে ফুটতে থাকবে।",
+        "words": [
+          {
+            "word_id": "67:7:1",
+            "arabic_word": "أُلْقُوا",
+            "bangla_meaning": "নিক্ষিপ্ত হলো",
+            "root": "ل-ق-ي",
+            "rootMeaning": "(ফেলা/মিলন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "أُلْقِيَ",
+                "meaning": "নিক্ষিপ্ত করা হলো",
+                "exampleArabic": "وَأَلْقَى الْأَلْوَاحَ",
+                "exampleBangla": "আর সে ফলকগুলো নিক্ষেপ করল।",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:150",
+                    "surface": "أُلْقِيَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:7:2",
+            "arabic_word": "سَمِعُوا",
+            "bangla_meaning": "তারা শুনল",
+            "root": "س-م-ع",
+            "rootMeaning": "(শোনা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "سَمِيعٌ",
+                "meaning": "সর্বশ্রোতা",
+                "exampleArabic": "إِنَّهُ سَمِيعٌ عَلِيمٌ",
+                "exampleBangla": "নিশ্চয় তিনি সর্বশ্রোতা, সর্বজ্ঞ।",
+                "occurrences": [
+                  {
+                    "ayah_id": "8:17",
+                    "surface": "سَمِيعٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:7:3",
+            "arabic_word": "شَهِيقًا",
+            "bangla_meaning": "ভয়ংকর শব্দ/হুঙ্কার",
+            "root": "ش-ه-ق",
+            "rootMeaning": "(গর্জন/শ্বাস)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "شَهِيق",
+                "meaning": "গর্জন",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "11:106",
+                    "surface": "شَهِيقٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:7:4",
+            "arabic_word": "تَفُورُ",
+            "bangla_meaning": "উথলে ওঠে",
+            "root": "ف-و-ر",
+            "rootMeaning": "(উথলানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "يَفُورُ",
+                "meaning": "উথলে ওঠে",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "22:19",
+                    "surface": "يَفُورُ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:8",
+        "arabic": "تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ كُلَّمَا أُلْقِيَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَا أَلَمْ يَأْتِكُمْ نَذِيرٌ",
+        "bangla": "ক্রোধে যেন ফেটে পড়ছে—যখনই তাতে কোনো দল নিক্ষিপ্ত হবে, এর প্রহরীরা জিজ্ঞেস করবে: ‘তোমাদের কাছে কি কোনো সতর্ককারী আসেনি?’",
+        "words": [
+          {
+            "word_id": "67:8:1",
+            "arabic_word": "تَكَادُ",
+            "bangla_meaning": "প্রায়",
+            "root": "ك-و-د",
+            "rootMeaning": "(প্রায়/কাছে)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "كَادَ",
+                "meaning": "প্রায়",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:71",
+                    "surface": "يَكَادُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:8:2",
+            "arabic_word": "تَمَيَّزُ",
+            "bangla_meaning": "ছিন্নভিন্ন হওয়া",
+            "root": "م-ي-ز",
+            "rootMeaning": "(পার্থক্য করা/আলাদা করা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "يَمِيزَ",
+                "meaning": "আলাদা করা",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:179",
+                    "surface": "لِيَمِيزَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:8:3",
+            "arabic_word": "غَيْظِ",
+            "bangla_meaning": "ক্রোধ",
+            "root": "غ-ي-ظ",
+            "rootMeaning": "(ক্রোধ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "غَيْظًا",
+                "meaning": "ক্রোধ",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "9:15",
+                    "surface": "غَيْظَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:8:4",
+            "arabic_word": "فَوْجٌ",
+            "bangla_meaning": "দল",
+            "root": "ف-و-ج",
+            "rootMeaning": "(দল/গোত্র)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "أَفْوَاجًا",
+                "meaning": "দলে দলে",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "110:2",
+                    "surface": "أَفْوَاجًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:8:5",
+            "arabic_word": "خَزَنَتُهَا",
+            "bangla_meaning": "এর প্রহরীরা",
+            "root": "خ-ز-ن",
+            "rootMeaning": "(রক্ষণাবেক্ষণ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "خَزَنَة",
+                "meaning": "প্রহরীরা",
+                "exampleArabic": "وَسِيقَ الَّذِينَ كَفَرُوا إِلَىٰ جَهَنَّمَ زُمَرًا ... قِيلَ ادْخُلُوا أَبْوَابَ جَهَنَّمَ",
+                "exampleBangla": "এবং বলা হবে: ‘জাহান্নামের দরজাগুলোতে প্রবেশ করো’।",
+                "occurrences": [
+                  {
+                    "ayah_id": "39:71",
+                    "surface": "خَزَنَتُهَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:8:6",
+            "arabic_word": "نَذِيرٌ",
+            "bangla_meaning": "সতর্ককারী",
+            "root": "ن-ذ-ر",
+            "rootMeaning": "(সতর্ক করা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "نَذِير",
+                "meaning": "সতর্ককারী",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:24",
+                    "surface": "نَذِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:9",
+        "arabic": "قَالُوا بَلَىٰ قَدْ جَاءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللَّهُ مِن شَيْءٍ إِنْ أَنتُمْ إِلَّا فِي ضَلَالٍ كَبِيرٍ",
+        "bangla": "তারা বলবে: ‘হ্যাঁ, সতর্ককারী এসেছিলেন, কিন্তু আমরা মিথ্যা বলেছি এবং বলেছি—আল্লাহ কিছুই অবতীর্ণ করেননি; তোমরা তো প্রবল ভ্রান্তিতে ছিলে।’",
+        "words": [
+          {
+            "word_id": "67:9:1",
+            "arabic_word": "قَالُوا",
+            "bangla_meaning": "তারা বলল",
+            "root": "ق-و-ل",
+            "rootMeaning": "(বলা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "قِيلَ",
+                "meaning": "বলা হলো",
+                "exampleArabic": "وَسِيقَ الَّذِينَ كَفَرُوا إِلَىٰ جَهَنَّمَ زُمَرًا ... قِيلَ ادْخُلُوا أَبْوَابَ جَهَنَّمَ",
+                "exampleBangla": "এবং বলা হবে: ‘জাহান্নামের দরজাগুলোতে প্রবেশ করো’।",
+                "occurrences": [
+                  {
+                    "ayah_id": "39:71",
+                    "surface": "قِيلَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:9:2",
+            "arabic_word": "جَاءَنَا",
+            "bangla_meaning": "আমাদের নিকট এসেছে",
+            "root": "ج-ي-ء",
+            "rootMeaning": "(আসা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "جَاءَ",
+                "meaning": "এসেছিল",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:183",
+                    "surface": "جَاءَنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:9:3",
+            "arabic_word": "كَذَّبْنَا",
+            "bangla_meaning": "আমরা মিথ্যা বলেছি",
+            "root": "ك-ذ-ب",
+            "rootMeaning": "(মিথ্যা করা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "كَذَّبُوا",
+                "meaning": "তারা মিথ্যা বলল",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "83:10",
+                    "surface": "مُّكَذِّبِينَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:9:4",
+            "arabic_word": "نَزَّلَ",
+            "bangla_meaning": "নাযিল করেছেন",
+            "root": "ن-ز-ل",
+            "rootMeaning": "(নামা/অবতীর্ণ করা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "تَنزِيل",
+                "meaning": "অবতরণ/নাযিল",
+                "exampleArabic": "وَإِنَّهُ لَتَنزِيلُ رَبِّ الْعَالَمِينَ",
+                "exampleBangla": "এটি বিশ্বজগতের রবের নাযিল।",
+                "occurrences": [
+                  {
+                    "ayah_id": "26:192",
+                    "surface": "تَنزِيلُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:9:5",
+            "arabic_word": "ضَلَالٍ",
+            "bangla_meaning": "ভ্রান্তি",
+            "root": "ض-ل-ل",
+            "rootMeaning": "(ভুল পথ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ضَلَّ",
+                "meaning": "ভুল পথে গেল",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:108",
+                    "surface": "ضَلُّوا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:10",
+        "arabic": "وَقَالُوا لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِي أَصْحَابِ السَّعِيرِ",
+        "bangla": "তারা বলবে: ‘যদি আমরা শুনতাম বা ভাবতাম, তবে প্রজ্জ্বলিত আগুনের সঙ্গী হতাম না।’",
+        "words": [
+          {
+            "word_id": "67:10:1",
+            "arabic_word": "قَالُوا",
+            "bangla_meaning": "তারা বলল",
+            "root": "ق-و-ل",
+            "rootMeaning": "(বলা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "قَالَ",
+                "meaning": "বলল",
+                "exampleArabic": "قَالُوا أَتَجْعَلُ فِيهَا",
+                "exampleBangla": "তারা বলল, ‘আপনি কি তাতে স্থাপন করবেন...’",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:30",
+                    "surface": "قَالُوا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:10:2",
+            "arabic_word": "لَوْ",
+            "bangla_meaning": "যদি",
+            "root": "",
+            "rootMeaning": "",
+            "derivationMethod": "حرف شرط",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:10:3",
+            "arabic_word": "كُنَّا",
+            "bangla_meaning": "আমরা ছিলাম",
+            "root": "ك-و-ن",
+            "rootMeaning": "(হওয়া/অবস্থা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "كَانَ",
+                "meaning": "ছিল",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:10",
+                    "surface": "كَانُوا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:10:4",
+            "arabic_word": "نَسْمَعُ",
+            "bangla_meaning": "আমরা শুনতাম",
+            "root": "س-م-ع",
+            "rootMeaning": "(শোনা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "سَمِعُوا",
+                "meaning": "তারা শুনল",
+                "exampleArabic": "سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ",
+                "exampleBangla": "তারা এর জন্য ভয়ংকর শব্দ শুনবে— আর তা উথলে ওঠে।",
+                "occurrences": [
+                  {
+                    "ayah_id": "67:7",
+                    "surface": "سَمِعُوا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:10:5",
+            "arabic_word": "نَعْقِلُ",
+            "bangla_meaning": "আমরা বুঝতাম",
+            "root": "ع-ق-ل",
+            "rootMeaning": "(বুদ্ধি/বোঝা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "تَعْقِلُونَ",
+                "meaning": "তোমরা কি বুঝ না",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:44",
+                    "surface": "تَعْقِلُونَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:10:6",
+            "arabic_word": "أَصْحَابِ",
+            "bangla_meaning": "সঙ্গী/বাসিন্দা",
+            "root": "ص-ح-ب",
+            "rootMeaning": "(সঙ্গ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "أَصْحَابُ النَّارِ",
+                "meaning": "আগ্নেয় সঙ্গী",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:39",
+                    "surface": "أَصْحَابُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:10:7",
+            "arabic_word": "السَّعِيرِ",
+            "bangla_meaning": "প্রজ্জ্বলিত আগুন",
+            "root": "س-ع-ر",
+            "rootMeaning": "(জ্বালানো/তাপ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سَعِير",
+                "meaning": "প্রজ্জ্বলিত আগুন",
+                "exampleArabic": "",
+                "exampleBangla": "",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:6",
+                    "surface": "سَعِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:11",
+        "arabic": "فَاعْتَرَفُوا بِذَنبِهِمْ فَسُحْقًا لِّأَصْحَابِ السَّعِيرِ",
+        "bangla": "তারা তাদের গুনাহ স্বীকার করবে; অভিশাপ জাহান্নামের সঙ্গীদের জন্য।",
+        "words": [
+          {
+            "word_id": "67:11:1",
+            "arabic_word": "فَاعْتَرَفُوا",
+            "bangla_meaning": "তারা স্বীকার করল",
+            "root": "ع-ر-ف",
+            "rootMeaning": "(চেনা/স্বীকার)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "اعْتَرَفْنَا",
+                "meaning": "আমরা স্বীকার করেছি",
+                "exampleArabic": "فَاعْتَرَفُوا بِذَنبِهِمْ",
+                "exampleBangla": "তারা তাদের পাপ স্বীকার করল",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:37",
+                    "surface": "اعْتَرَفْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:11:2",
+            "arabic_word": "بِذَنبِهِمْ",
+            "bangla_meaning": "তাদের গুনাহ",
+            "root": "ذ-ن-ب",
+            "rootMeaning": "(অপরাধ/গুনাহ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ذُنُوبِكُمْ",
+                "meaning": "তোমাদের গুনাহ",
+                "exampleArabic": "يَغْفِرْ لَكُم مِّن ذُنُوبِكُمْ",
+                "exampleBangla": "তোমাদের কিছু গুনাহ মাফ করবেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "14:10",
+                    "surface": "ذُنُوبِكُمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:11:3",
+            "arabic_word": "السَّعِيرِ",
+            "bangla_meaning": "জাহান্নামের আগুন",
+            "root": "س-ع-ر",
+            "rootMeaning": "(জ্বালানো/প্রজ্বলিত)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سَعِيرٌ",
+                "meaning": "প্রজ্বলিত আগুন",
+                "exampleArabic": "إِنَّمَا يَدْعُو حِزْبَهُ ... لِيَكُونُوا مِنْ أَصْحَابِ السَّعِيرِ",
+                "exampleBangla": "শয়তান চায় তোমাদেরকে আগুনের সঙ্গী করতে",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:6",
+                    "surface": "سَعِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:12",
+        "arabic": "إِنَّ الَّذِينَ يَخْشَوْنَ رَبَّهُم بِالْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ",
+        "bangla": "যারা তাদের রবকে অদৃশ্যে ভয় করে, তাদের জন্য ক্ষমা ও মহাপুরস্কার।",
+        "words": [
+          {
+            "word_id": "67:12:1",
+            "arabic_word": "يَخْشَوْنَ",
+            "bangla_meaning": "তারা ভয় করে",
+            "root": "خ-ش-ي",
+            "rootMeaning": "(ভয়/ভীত)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "خَشِيَ",
+                "meaning": "সে ভয় করল",
+                "exampleArabic": "فَلَا تَخْشَوْهُمْ وَاخْشَوْنِي",
+                "exampleBangla": "তোমরা তাদের ভয় করো না, আমাকে ভয় করো",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:150",
+                    "surface": "خَشِيَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:12:2",
+            "arabic_word": "مَّغْفِرَةٌ",
+            "bangla_meaning": "ক্ষমা",
+            "root": "غ-ف-ر",
+            "rootMeaning": "(ঢাকা/ক্ষমা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "غَفُور",
+                "meaning": "ক্ষমাশীল",
+                "exampleArabic": "إِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ",
+                "exampleBangla": "আল্লাহ ক্ষমাশীল, পরম দয়ালু",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:173",
+                    "surface": "غَفُور"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:12:3",
+            "arabic_word": "أَجْرٌ",
+            "bangla_meaning": "পুরস্কার",
+            "root": "أ-ج-ر",
+            "rootMeaning": "(বেতন/পুরস্কার)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "أَجْرًا",
+                "meaning": "পুরস্কার",
+                "exampleArabic": "وَنُؤْتِهَا أَجْرَهَا مَرَّتَيْنِ",
+                "exampleBangla": "আমরা তাকে দ্বিগুণ পুরস্কার দেব",
+                "occurrences": [
+                  {
+                    "ayah_id": "33:31",
+                    "surface": "أَجْرًا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:13",
+        "arabic": "وَأَسِرُّوا قَوْلَكُمْ أَوِ اجْهَرُوا بِهِ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ",
+        "bangla": "তোমরা তোমাদের কথা গোপন করো বা প্রকাশ করো—তিনি অন্তরের বিষয় জানেন।",
+        "words": [
+          {
+            "word_id": "67:13:1",
+            "arabic_word": "قَوْلَكُمْ",
+            "bangla_meaning": "তোমাদের কথা",
+            "root": "ق-و-ل",
+            "rootMeaning": "(বলা/কথা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "قِيلَ",
+                "meaning": "বলা হলো",
+                "exampleArabic": "قِيلَ ادْخُلُوا أَبْوَابَ جَهَنَّمَ",
+                "exampleBangla": "বলা হলো: জাহান্নামের দরজায় প্রবেশ করো",
+                "occurrences": [
+                  {
+                    "ayah_id": "39:71",
+                    "surface": "قِيلَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:13:2",
+            "arabic_word": "عَلِيمٌ",
+            "bangla_meaning": "সর্বজ্ঞ",
+            "root": "ع-ل-م",
+            "rootMeaning": "(জ্ঞান)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "عَلِيمٌ",
+                "meaning": "সর্বজ্ঞ",
+                "exampleArabic": "إِنَّكَ أَنتَ الْعَلِيمُ الْحَكِيمُ",
+                "exampleBangla": "তুমি সর্বজ্ঞ, সর্বজ্ঞানী",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:32",
+                    "surface": "عَلِيمٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:13:3",
+            "arabic_word": "الصُّدُورِ",
+            "bangla_meaning": "অন্তরসমূহ",
+            "root": "ص-د-ر",
+            "rootMeaning": "(বুক/অন্তর)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "صُدُورِ",
+                "meaning": "অন্তর",
+                "exampleArabic": "وَلِيَبْتَلِيَ مَا فِي صُدُورِكُمْ",
+                "exampleBangla": "তোমাদের অন্তরে যা আছে তা পরীক্ষা করবেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:154",
+                    "surface": "صُدُورِ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:14",
+        "arabic": "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ",
+        "bangla": "যিনি সৃষ্টি করেছেন, তিনি কি জানেন না? তিনি সূক্ষ্মদর্শী, সবজ্ঞ।",
+        "words": [
+          {
+            "word_id": "67:14:1",
+            "arabic_word": "يَعْلَمُ",
+            "bangla_meaning": "তিনি জানেন",
+            "root": "ع-ل-م",
+            "rootMeaning": "(জানা/জ্ঞান)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "عَلِمَ",
+                "meaning": "সে জানল",
+                "exampleArabic": "سُبْحَانَكَ لَا عِلْمَ لَنَا",
+                "exampleBangla": "তুমি সব জানো",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:32",
+                    "surface": "عَلِمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:14:2",
+            "arabic_word": "خَلَقَ",
+            "bangla_meaning": "সৃষ্টি করেছেন",
+            "root": "خ-ل-ق",
+            "rootMeaning": "(সৃষ্টি/গঠন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "خَلَقْنَا",
+                "meaning": "আমরা সৃষ্টি করেছি",
+                "exampleArabic": "وَلَقَدْ خَلَقْنَا الْإِنسَانَ",
+                "exampleBangla": "আমি মানুষ সৃষ্টি করেছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "23:12",
+                    "surface": "خَلَقْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:14:3",
+            "arabic_word": "اللَّطِيفُ",
+            "bangla_meaning": "সূক্ষ্মদর্শী",
+            "root": "ل-ط-ف",
+            "rootMeaning": "(সূক্ষ্ম/দয়ালু)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "لَّطِيف",
+                "meaning": "সূক্ষ্মদর্শী",
+                "exampleArabic": "إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ",
+                "exampleBangla": "আল্লাহ সূক্ষ্মদর্শী, সবজ্ঞ",
+                "occurrences": [
+                  {
+                    "ayah_id": "22:63",
+                    "surface": "لَّطِيف"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:14:4",
+            "arabic_word": "الْخَبِيرُ",
+            "bangla_meaning": "সবজ্ঞ",
+            "root": "خ-ب-ر",
+            "rootMeaning": "(জ্ঞানী/অবহিত)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "خَبِيرٌ",
+                "meaning": "অবহিত",
+                "exampleArabic": "وَهُوَ الْقَاهِرُ فَوْقَ عِبَادِهِ ... الْخَبِيرُ",
+                "exampleBangla": "তিনি সবকিছু অবহিত",
+                "occurrences": [
+                  {
+                    "ayah_id": "6:18",
+                    "surface": "خَبِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:15",
+        "arabic": "هُوَ الَّذِي جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا فَامْشُوا فِي مَنَاكِبِهَا وَكُلُوا مِن رِّزْقِهِ وَإِلَيْهِ النُّشُورُ",
+        "bangla": "তিনিই তোমাদের জন্য পৃথিবীকে অনুগত করেছেন; তাই এর বুকে চলাফেরা করো এবং তাঁর রিযিক খাও; এবং তাঁরই দিকে তোমরা পুনরুত্থিত হবে।",
+        "words": [
+          {
+            "word_id": "67:15:1",
+            "arabic_word": "جَعَلَ",
+            "bangla_meaning": "তিনি বানালেন",
+            "root": "ج-ع-ل",
+            "rootMeaning": "(করা/স্থাপন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "جَعَلْنَا",
+                "meaning": "আমরা বানিয়েছি",
+                "exampleArabic": "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ",
+                "exampleBangla": "আমরা পানি থেকে সব কিছু বানিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "21:30",
+                    "surface": "جَعَلْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:15:2",
+            "arabic_word": "الْأَرْضَ",
+            "bangla_meaning": "পৃথিবী",
+            "root": "أ-ر-ض",
+            "rootMeaning": "(পৃথিবী)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "الأَرْضَ",
+                "meaning": "পৃথিবী",
+                "exampleArabic": "خَلَقَ لَكُم مَّا فِي الأَرْضِ جَمِيعًا",
+                "exampleBangla": "তিনি তোমাদের জন্য পৃথিবীর সবকিছু সৃষ্টি করেছেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:29",
+                    "surface": "الأَرْضَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:15:3",
+            "arabic_word": "فَامْشُوا",
+            "bangla_meaning": "তাই হাঁটো",
+            "root": "م-ش-ي",
+            "rootMeaning": "(চলা)",
+            "derivationMethod": "فعل أمر",
+            "quranicDerivations": [
+              {
+                "arabic": "يَمْشُونَ",
+                "meaning": "তারা চলে",
+                "exampleArabic": "وَيَمْشُونَ فِي الأَسْوَاقِ",
+                "exampleBangla": "তারা বাজারে চলে",
+                "occurrences": [
+                  {
+                    "ayah_id": "25:7",
+                    "surface": "يَمْشُونَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:15:4",
+            "arabic_word": "مَنَاكِبِهَا",
+            "bangla_meaning": "তার বুক",
+            "root": "ن-ك-ب",
+            "rootMeaning": "(কাঁধ/পাহাড়ি ঢাল)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": []
+          },
+          {
+            "word_id": "67:15:5",
+            "arabic_word": "رِّزْقِهِ",
+            "bangla_meaning": "তার রিযিক",
+            "root": "ر-ز-ق",
+            "rootMeaning": "(রিযিক/জীবিকা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "رِزْقًا",
+                "meaning": "রিযিক",
+                "exampleArabic": "وَرَزَقْنَاهُمْ مِّنَ الطَّيِّبَاتِ",
+                "exampleBangla": "আমি তাদের উত্তম রিযিক দিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:3",
+                    "surface": "رَزَقْنَاهُمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:15:6",
+            "arabic_word": "النُّشُورُ",
+            "bangla_meaning": "পুনরুত্থান",
+            "root": "ن-ش-ر",
+            "rootMeaning": "(সমবেত/উত্থান)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "نُنْشِرُ",
+                "meaning": "আমি পুনর্জীবিত করব",
+                "exampleArabic": "كَيْفَ نُنشِرُهَا",
+                "exampleBangla": "আমি কীভাবে তা পুনর্জীবিত করব",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:259",
+                    "surface": "نُنْشِرُ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:16",
+        "arabic": "أَأَمِنتُم مَّن فِي السَّمَاءِ أَن يَخْسِفَ بِكُمُ الْأَرْضَ فَإِذَا هِيَ تَمُورُ",
+        "bangla": "তোমরা কি নিশ্চিন্ত যে আসমানে যিনি আছেন, তিনি পৃথিবীকে তোমাদের নিচে ধসিয়ে দেবেন না? তখন তা প্রবলভাবে কাঁপবে।",
+        "words": [
+          {
+            "word_id": "67:16:1",
+            "arabic_word": "يَخْسِفَ",
+            "bangla_meaning": "ধসিয়ে দেবে",
+            "root": "خ-س-ف",
+            "rootMeaning": "(ধসানো/ডুবানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "خَسَفْنَا",
+                "meaning": "আমি ধসিয়েছি",
+                "exampleArabic": "فَخَسَفْنَا بِهِ وَبِدَارِهِ الأَرْضَ",
+                "exampleBangla": "আমি তাকে ও তার বাড়িকে ধসিয়ে দিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "28:81",
+                    "surface": "خَسَفْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:16:2",
+            "arabic_word": "تَمُورُ",
+            "bangla_meaning": "কাঁপবে",
+            "root": "م-و-ر",
+            "rootMeaning": "(কম্পন/আন্দোলন)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "مَوْرًا",
+                "meaning": "আন্দোলন",
+                "exampleArabic": "يَوْمَ تَمُورُ السَّمَاءُ",
+                "exampleBangla": "সেদিন আসমান কাঁপবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "52:9",
+                    "surface": "مَوْرًا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:17",
+        "arabic": "أَمْ أَمِنتُم مَّن فِي السَّمَاءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ",
+        "bangla": "অথবা তোমরা কি নিশ্চিন্ত যে আসমানে যিনি আছেন, তিনি তোমাদের ওপর পাথরের ঝড় পাঠাবেন না? তখনই তোমরা জানবে আমার সতর্কবার্তা কেমন।",
+        "words": [
+          {
+            "word_id": "67:17:1",
+            "arabic_word": "يُرْسِلَ",
+            "bangla_meaning": "তিনি পাঠাবেন",
+            "root": "ر-س-ل",
+            "rootMeaning": "(পাঠানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "أَرْسَلْنَا",
+                "meaning": "আমরা পাঠিয়েছি",
+                "exampleArabic": "لَقَدْ أَرْسَلْنَا نُوحًا",
+                "exampleBangla": "আমি নূহকে পাঠিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:59",
+                    "surface": "أَرْسَلْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:17:2",
+            "arabic_word": "حَاصِبًا",
+            "bangla_meaning": "পাথরের ঝড়",
+            "root": "ح-ص-ب",
+            "rootMeaning": "(পাথর নিক্ষেপ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "حَاصِبًا",
+                "meaning": "পাথরের ঝড়",
+                "exampleArabic": "فَأَرْسَلْنَا عَلَيْهِمْ حَاصِبًا",
+                "exampleBangla": "আমি তাদের ওপর পাথরের ঝড় পাঠিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "29:40",
+                    "surface": "حَاصِبًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:17:3",
+            "arabic_word": "نَذِيرِ",
+            "bangla_meaning": "সতর্কবার্তা",
+            "root": "ن-ذ-ر",
+            "rootMeaning": "(সতর্ক করা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "নَذِيرٌ",
+                "meaning": "সতর্ককারী",
+                "exampleArabic": "إِن مِّنْ أُمَّةٍ إِلَّا خَلَا فِيهَا نَذِيرٌ",
+                "exampleBangla": "প্রত্যেক জাতিতে একজন সতর্ককারী ছিলেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:24",
+                    "surface": "نَذِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:18",
+        "arabic": "وَلَقَدْ كَذَّبَ الَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ",
+        "bangla": "তাদের পূর্ববর্তীরা মিথ্যা বলেছিল; আমার প্রতিশোধ কেমন ছিল!",
+        "words": [
+          {
+            "word_id": "67:18:1",
+            "arabic_word": "كَذَّبَ",
+            "bangla_meaning": "তারা মিথ্যা বলেছিল",
+            "root": "ك-ذ-ب",
+            "rootMeaning": "(মিথ্যা বলা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "كَذَّبُوا",
+                "meaning": "তারা অস্বীকার করল",
+                "exampleArabic": "وَيْলٌ يَوْمَئِذٍ لِّلْمُكَذِّبِينَ",
+                "exampleBangla": "সেদিন ধ্বংস মিথ্যাবাদীদের জন্য",
+                "occurrences": [
+                  {
+                    "ayah_id": "83:10",
+                    "surface": "كَذَّبُوا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:18:2",
+            "arabic_word": "نَكِيرِ",
+            "bangla_meaning": "আমার প্রতিশোধ",
+            "root": "ن-ك-ر",
+            "rootMeaning": "(অস্বীকার/প্রতিশোধ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "مُّنكَرٌ",
+                "meaning": "অগ্রহণযোগ্য",
+                "exampleArabic": "ذَٰلِكُمْ مُّنكَرٌ",
+                "exampleBangla": "এটা অগ্রহণযোগ্য",
+                "occurrences": [
+                  {
+                    "ayah_id": "22:30",
+                    "surface": "مُّنكَرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:19",
+        "arabic": "أَوَلَمْ يَرَوْا إِلَى الطَّيْرِ فَوْقَهُمْ صَافَّاتٍ وَيَقْبِضْنَ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ إِنَّهُ بِكُلِّ شَيْءٍ بَصِيرٌ",
+        "bangla": "তারা কি দেখে না তাদের উপরে পাখি—ডানা প্রসারিত ও গুটিয়ে চলে? তাদের ধরে রাখে কেবল রহমান; তিনি সবকিছু দেখেন।",
+        "words": [
+          {
+            "word_id": "67:19:1",
+            "arabic_word": "الطَّيْرِ",
+            "bangla_meaning": "পাখি",
+            "root": "ط-ي-ر",
+            "rootMeaning": "(পাখি/উড়া)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "طَيْرًا",
+                "meaning": "পাখি",
+                "exampleArabic": "وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ",
+                "exampleBangla": "তিনি তাদের ওপর ঝাঁকে ঝাঁকে পাখি পাঠিয়েছিলেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "105:3",
+                    "surface": "طَيْرًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:19:2",
+            "arabic_word": "صَافَّاتٍ",
+            "bangla_meaning": "ডানা প্রসারিত",
+            "root": "ص-ف-ف",
+            "rootMeaning": "(সারি/প্রসারিত)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "الصَّافَّاتِ",
+                "meaning": "সারি বদ্ধ",
+                "exampleArabic": "وَالصَّافَّاتِ صَفًّا",
+                "exampleBangla": "সারি বদ্ধভাবে দাঁড়ানো",
+                "occurrences": [
+                  {
+                    "ayah_id": "37:1",
+                    "surface": "الصَّافَّاتِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:19:3",
+            "arabic_word": "يَقْبِضْنَ",
+            "bangla_meaning": "তারা গুটায়",
+            "root": "ق-ب-ض",
+            "rootMeaning": "(ধরা/গুটানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "قَبْضَتُهُ",
+                "meaning": "তার মুঠি",
+                "exampleArabic": "وَالأَرْضُ جَمِيعًا قَبْضَتُهُ",
+                "exampleBangla": "পৃথিবী তাঁর মুঠিতে থাকবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "39:67",
+                    "surface": "قَبْضَتُهُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:19:4",
+            "arabic_word": "يُمْسِكُهُنَّ",
+            "bangla_meaning": "তিনি ধরে রাখেন",
+            "root": "م-س-ك",
+            "rootMeaning": "(ধরা/আটকানো)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "يُمْسِكُ",
+                "meaning": "তিনি ধরে রাখেন",
+                "exampleArabic": "إِنَّ اللَّهَ يُمْسِكُ السَّمَاوَاتِ وَالأَرْضَ",
+                "exampleBangla": "আল্লাহ আসমান ও জমিন ধরে রেখেছেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:41",
+                    "surface": "يُمْسِكُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:19:5",
+            "arabic_word": "বَصِيرٌ",
+            "bangla_meaning": "সবকিছু দেখেন",
+            "root": "ب-ص-ر",
+            "rootMeaning": "(দেখা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "بَصِيرٌ",
+                "meaning": "দ্রষ্টা",
+                "exampleArabic": "إِنَّهُ بِعِبَادِهِ خَبِيرٌ بَصِيرٌ",
+                "exampleBangla": "তিনি বান্দাদের ব্যাপারে দ্রষ্টা",
+                "occurrences": [
+                  {
+                    "ayah_id": "42:27",
+                    "surface": "بَصِيرٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:20",
+        "arabic": "أَمَّنْ هَٰذَا الَّذِي هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ إِنِ الْكَافِرُونَ إِلَّا فِي غُرُورٍ",
+        "bangla": "কে সে, যে তোমাদের সৈন্যদল হয়ে রহমান ছাড়া তোমাদেরকে সাহায্য করবে? কাফিররা তো বিভ্রমেই আছে।",
+        "words": [
+          {
+            "word_id": "67:20:1",
+            "arabic_word": "جُندٌ",
+            "bangla_meaning": "সৈন্যদল",
+            "root": "ج-ن-د",
+            "rootMeaning": "(সেনা/সৈন্য)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "جُندًا",
+                "meaning": "সেনাদল",
+                "exampleArabic": "وَكُلٌّ كَذَّبَ الرُّسُلَ فَحَقَّ وَعِيدِ",
+                "exampleBangla": "প্রত্যেকেই রাসূলদের অস্বীকার করেছিল",
+                "occurrences": [
+                  {
+                    "ayah_id": "54:9",
+                    "surface": "جُندًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:20:2",
+            "arabic_word": "يَنصُرُكُم",
+            "bangla_meaning": "তিনি সাহায্য করবেন",
+            "root": "ن-ص-ر",
+            "rootMeaning": "(সাহায্য)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "نَصَرَ",
+                "meaning": "তিনি সাহায্য করেছেন",
+                "exampleArabic": "وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ",
+                "exampleBangla": "আল্লাহ তোমাদের বদরে সাহায্য করেছেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:123",
+                    "surface": "نَصَرَكُم"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:20:3",
+            "arabic_word": "غُرُورٍ",
+            "bangla_meaning": "প্রবঞ্চনা",
+            "root": "غ-ر-ر",
+            "rootMeaning": "(প্রতারণা/ভ্রান্তি)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "غُرُورٌ",
+                "meaning": "প্রবঞ্চনা",
+                "exampleArabic": "غَرَّتْكُمُ الْحَيَاةُ الدُّنْيَا",
+                "exampleBangla": "দুনিয়ার জীবন তোমাদেরকে ধোঁকা দিয়েছে",
+                "occurrences": [
+                  {
+                    "ayah_id": "57:14",
+                    "surface": "غُرُورٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:21",
+        "arabic": "أَمَّنْ هَٰذَا الَّذِي يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُ بَل لَّجُّوا فِي عُتُوٍّ وَنُفُورٍ",
+        "bangla": "কে সে, যে তোমাদের রিযিক দেয়? যদি তিনি তাঁর রিযিক আটকে দেন—তবু তারা অবাধ্যতা ও বিমুখতায় লেগে থাকে।",
+        "words": [
+          {
+            "word_id": "67:21:1",
+            "arabic_word": "يَرْزُقُكُمْ",
+            "bangla_meaning": "তিনি তোমাদের রিযিক দেন",
+            "root": "ر-ز-ق",
+            "rootMeaning": "(রিযিক/জীবিকা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "رِزْق",
+                "meaning": "রিযিক",
+                "exampleArabic": "وَفِي السَّمَاءِ رِزْقُكُمْ",
+                "exampleBangla": "আসমানে তোমাদের রিযিক রয়েছে",
+                "occurrences": [
+                  {
+                    "ayah_id": "51:22",
+                    "surface": "رِزْقُكُمْ"
+                  }
+                ]
+              },
+              {
+                "arabic": "يَرْزُقُ",
+                "meaning": "রিযিক দেন",
+                "exampleArabic": "يَرْزُقُ مَن يَشَاءُ بِغَيْرِ حِسَابٍ",
+                "exampleBangla": "তিনি যাকে চান হিসাব ছাড়াই রিযিক দেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:37",
+                    "surface": "يَرْزُقُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:21:2",
+            "arabic_word": "أَمْسَكَ",
+            "bangla_meaning": "তিনি আটকে দেন",
+            "root": "م-س-ك",
+            "rootMeaning": "(ধরা/আটকানো)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "يُمْسِكُ",
+                "meaning": "তিনি ধরে রাখেন",
+                "exampleArabic": "إِنَّ اللَّهَ يُمْسِكُ السَّمَاوَاتِ وَالأَرْضَ",
+                "exampleBangla": "আল্লাহ আসমান ও জমিন ধরে রেখেছেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:41",
+                    "surface": "يُمْسِكُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:21:3",
+            "arabic_word": "عُتُوٍّ",
+            "bangla_meaning": "অবাধ্যতা",
+            "root": "ع-ت-و",
+            "rootMeaning": "(অমান্য/বেআদব)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "عَتَوْا",
+                "meaning": "তারা অবাধ্য হল",
+                "exampleArabic": "بَلِ الَّذِينَ لَا يَرْجُونَ لِقَاءَنَا اسْتَكْبَرُوا ... وَعَتَوْا",
+                "exampleBangla": "যারা সাক্ষাৎ আশা করে না—তারা অবাধ্যতা করল",
+                "occurrences": [
+                  {
+                    "ayah_id": "25:21",
+                    "surface": "عَتَوْا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:21:4",
+            "arabic_word": "نُفُورٍ",
+            "bangla_meaning": "বিমুখতা",
+            "root": "ن-ف-ر",
+            "rootMeaning": "(দূরে সরা/বিমুখ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "نَفَرًا",
+                "meaning": "দল/বিমুখ হওয়া",
+                "exampleArabic": "وَإِذْ صَرَفْنَا إِلَيْكَ نَفَرًا مِّنَ الْجِنِّ",
+                "exampleBangla": "আমি তোমার দিকে জিনদের একটি দল পাঠালাম",
+                "occurrences": [
+                  {
+                    "ayah_id": "46:29",
+                    "surface": "نَفَرًا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:22",
+        "arabic": "أَفَمَن يَمْشِي مُكِبًّا عَلَىٰ وَجْهِهِ أَهْدَىٰ أَمَّن يَمْشِي سَوِيًّا عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ",
+        "bangla": "যে উল্টো হয়ে মুখে ভর দিয়ে চলে—সে কি যথার্থ পথপ্রাপ্ত, নাকি যে সোজা হয়ে সরল পথে চলে?",
+        "words": [
+          {
+            "word_id": "67:22:1",
+            "arabic_word": "يَمْشِي",
+            "bangla_meaning": "সে চলে",
+            "root": "م-ش-ي",
+            "rootMeaning": "(চলা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "يَمْشُونَ",
+                "meaning": "তারা চলে",
+                "exampleArabic": "وَيَمْشُونَ فِي الأَسْوَاقِ",
+                "exampleBangla": "তারা বাজারে চলে",
+                "occurrences": [
+                  {
+                    "ayah_id": "25:7",
+                    "surface": "يَمْشُونَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:22:2",
+            "arabic_word": "مُكِبًّا",
+            "bangla_meaning": "মুখে ভর দিয়ে",
+            "root": "ك-ب-ب",
+            "rootMeaning": "(উল্টানো/পাত করা)",
+            "derivationMethod": "اسم حال",
+            "quranicDerivations": [
+              {
+                "arabic": "كُبَّتْ",
+                "meaning": "উল্টে ফেলা হলো",
+                "exampleArabic": "كُبَّتْ وُجُوهُهُمْ فِي النَّارِ",
+                "exampleBangla": "তাদের মুখ আগুনে উল্টে ফেলা হবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "27:90",
+                    "surface": "كُبَّتْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:22:3",
+            "arabic_word": "أَهْدَىٰ",
+            "bangla_meaning": "বেশি পথপ্রাপ্ত",
+            "root": "ه-د-ي",
+            "rootMeaning": "(পথ দেখানো)",
+            "derivationMethod": "اسم تفضيل",
+            "quranicDerivations": [
+              {
+                "arabic": "يَهْدِي",
+                "meaning": "তিনি পথ দেখান",
+                "exampleArabic": "فَبَعَثَ اللَّهُ النَّبِيِّينَ ... لِيَحْكُمَ",
+                "exampleBangla": "তিনি পথ দেখান",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:213",
+                    "surface": "يَهْدِي"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:22:4",
+            "arabic_word": "سَوِيًّا",
+            "bangla_meaning": "সোজাভাবে/সমতল",
+            "root": "س-و-ي",
+            "rootMeaning": "(সমান/সমতল)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سَوَّاكَ",
+                "meaning": "তিনি সুসম করলেন",
+                "exampleArabic": "الَّذِي خَلَقَكَ فَسَوَّاكَ",
+                "exampleBangla": "তিনি সৃষ্টি করে সুসম করলেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "82:7",
+                    "surface": "سَوَّاكَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:22:5",
+            "arabic_word": "صِرَاطٍ",
+            "bangla_meaning": "পথ",
+            "root": "ص-ر-ط",
+            "rootMeaning": "(পথ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱلصِّرَاطَ",
+                "meaning": "সরল পথ",
+                "exampleArabic": "اهدِنَا ٱلصِّرَاطَ ٱلمُسْتَقِيمَ",
+                "exampleBangla": "হিদায়ত দিন সরল পথে",
+                "occurrences": [
+                  {
+                    "ayah_id": "1:6",
+                    "surface": "ٱلصِّرَاطَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:22:6",
+            "arabic_word": "مُّسْتَقِيمٍ",
+            "bangla_meaning": "সোজা/সমতল",
+            "root": "ق-و-م",
+            "rootMeaning": "(স্থির/সোজা)",
+            "derivationMethod": "اسم صفة",
+            "quranicDerivations": [
+              {
+                "arabic": "مُّسْتَقِيمٍ",
+                "meaning": "সোজা",
+                "exampleArabic": "عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ",
+                "exampleBangla": "একটি সরল পথে",
+                "occurrences": [
+                  {
+                    "ayah_id": "36:4",
+                    "surface": "مُّسْتَقِيمٍ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:23",
+        "arabic": "قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ قَلِيلًا مَّا تَشْكُرُونَ",
+        "bangla": "বলুন, তিনিই তোমাদের সৃষ্টি করেছেন এবং দিয়েছেন শ্রবণ, দৃষ্টিশক্তি ও অন্তর—তোমরা খুব কম কৃতজ্ঞতা কর।",
+        "words": [
+          {
+            "word_id": "67:23:1",
+            "arabic_word": "أَنشَأَكُمْ",
+            "bangla_meaning": "তিনি উদ্ভব করলেন",
+            "root": "ن-ش-أ",
+            "rootMeaning": "(উদ্ভব/উত্থান)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "نُنْشِئَكُمْ",
+                "meaning": "আমি সৃষ্টি করব",
+                "exampleArabic": "وَنُنْشِئَكُمْ فِي مَا لَا تَعْلَمُونَ",
+                "exampleBangla": "আমি তোমাদের এমন রূপে সৃষ্টি করব যা তোমরা জান না",
+                "occurrences": [
+                  {
+                    "ayah_id": "56:61",
+                    "surface": "نُنْشِئَكُمْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:23:2",
+            "arabic_word": "جَعَلَ",
+            "bangla_meaning": "তিনি বানালেন",
+            "root": "ج-ع-ل",
+            "rootMeaning": "(করা/স্থাপন)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "جَعَلْنَا",
+                "meaning": "আমরা বানিয়েছি",
+                "exampleArabic": "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ",
+                "exampleBangla": "আমরা পানি থেকে সব কিছু বানিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "21:30",
+                    "surface": "جَعَلْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:23:3",
+            "arabic_word": "السَّمْعَ",
+            "bangla_meaning": "শ্রবণ",
+            "root": "س-م-ع",
+            "rootMeaning": "(শোনা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سَمِيعٌ",
+                "meaning": "সর্বশ্রোতা",
+                "exampleArabic": "إِنَّهُ سَمِيعٌ عَلِيمٌ",
+                "exampleBangla": "নিশ্চয় তিনি সর্বশ্রোতা, সর্বজ্ঞ",
+                "occurrences": [
+                  {
+                    "ayah_id": "8:17",
+                    "surface": "سَمِيعٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:23:4",
+            "arabic_word": "الأَبْصَارَ",
+            "bangla_meaning": "দৃষ্টিশক্তি",
+            "root": "ب-ص-ر",
+            "rootMeaning": "(দেখা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "بَصِيرٌ",
+                "meaning": "দ্রষ্টা",
+                "exampleArabic": "إِنَّهُ بِعِبَادِهِ خَبِيرٌ بَصِيرٌ",
+                "exampleBangla": "তিনি বান্দাদের ব্যাপারে দ্রষ্টা",
+                "occurrences": [
+                  {
+                    "ayah_id": "42:27",
+                    "surface": "بَصِيرٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:23:5",
+            "arabic_word": "الأَفْئِدَةَ",
+            "bangla_meaning": "অন্তরসমূহ",
+            "root": "ف-ؤ-د",
+            "rootMeaning": "(অন্তর/বুদ্ধি)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱلْفُؤَادُ",
+                "meaning": "অন্তর",
+                "exampleArabic": "مَا كَذَبَ ٱلْفُؤَادُ مَا رَأَى",
+                "exampleBangla": "অন্তর যা দেখেছে মিথ্যা বলেনি",
+                "occurrences": [
+                  {
+                    "ayah_id": "53:11",
+                    "surface": "ٱلْفُؤَادُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:23:6",
+            "arabic_word": "تَشْكُرُونَ",
+            "bangla_meaning": "তোমরা কৃতজ্ঞ হও",
+            "root": "ش-ك-ر",
+            "rootMeaning": "(কৃতজ্ঞতা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "ٱشْكُرُوا",
+                "meaning": "তোমরা কৃতজ্ঞ হও",
+                "exampleArabic": "فَكُلُوا مِمَّا رَزَقَكُمُ ٱللَّهُ ... وَٱشْكُرُوا نِعْمَتَ ٱللَّهِ",
+                "exampleBangla": "আল্লাহর নেয়ামতের জন্য কৃতজ্ঞ হও",
+                "occurrences": [
+                  {
+                    "ayah_id": "16:114",
+                    "surface": "ٱشْكُرُوا"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:24",
+        "arabic": "قُلْ هُوَ الَّذِي ذَرَأَكُمْ فِي الْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ",
+        "bangla": "বলুন, তিনিই তোমাদেরকে জমিনে ছড়িয়ে দিয়েছেন এবং তাঁরই দিকে তোমরা একত্রিত হবে।",
+        "words": [
+          {
+            "word_id": "67:24:1",
+            "arabic_word": "ذَرَأَكُمْ",
+            "bangla_meaning": "তিনি বিস্তার করলেন",
+            "root": "ذ-ر-أ",
+            "rootMeaning": "(ছড়ানো/উৎপন্ন করা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "ذَرَأَ",
+                "meaning": "তিনি উৎপন্ন করলেন",
+                "exampleArabic": "وَمِمَّا ذَرَأَ لَكُمْ",
+                "exampleBangla": "আর যা তিনি তোমাদের জন্য উৎপন্ন করেছেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "6:136",
+                    "surface": "ذَرَأَ"
+                  }
+                ]
+              },
+              {
+                "arabic": "ذَرَأْنَا",
+                "meaning": "আমরা সৃষ্টি করেছি",
+                "exampleArabic": "وَلَقَدْ ذَرَأْنَا لِجَهَنَّمَ",
+                "exampleBangla": "আমি তো জাহান্নামের জন্য সৃষ্টি করেছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "7:179",
+                    "surface": "ذَرَأْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:24:2",
+            "arabic_word": "الأَرْضِ",
+            "bangla_meaning": "পৃথিবী",
+            "root": "أ-ر-ض",
+            "rootMeaning": "(পৃথিবী)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "الأَرْضِ",
+                "meaning": "পৃথিবী",
+                "exampleArabic": "قُلْ سِيرُوا فِي الأَرْضِ",
+                "exampleBangla": "বল: পৃথিবীতে চলাফেরা কর",
+                "occurrences": [
+                  {
+                    "ayah_id": "29:20",
+                    "surface": "الأَرْضِ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:24:3",
+            "arabic_word": "تُحْشَرُونَ",
+            "bangla_meaning": "তোমরা একত্রিত হবে",
+            "root": "ح-ش-ر",
+            "rootMeaning": "(সমবেত/হাশর)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "نَحْشُرُهُمْ",
+                "meaning": "আমরা সমবেত করব",
+                "exampleArabic": "وَيَوْمَ نَحْشُرُهُمْ جَمِيعًا",
+                "exampleBangla": "যেদিন আমরা তাদের সবাইকে একত্র করব",
+                "occurrences": [
+                  {
+                    "ayah_id": "6:22",
+                    "surface": "نَحْشُرُهُمْ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:25",
+        "arabic": "وَيَقُولُونَ مَتَىٰ هَٰذَا الْوَعْدُ إِن كُنتُمْ صَادِقِينَ",
+        "bangla": "তারা বলে: ‘এই প্রতিশ্রুতি কখন, যদি তোমরা সত্যবাদী হও?’",
+        "words": [
+          {
+            "word_id": "67:25:1",
+            "arabic_word": "الْوَعْدُ",
+            "bangla_meaning": "প্রতিশ্রুতি",
+            "root": "و-ع-د",
+            "rootMeaning": "(ওয়াদা/প্রতিশ্রুতি)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "وَعْدَ",
+                "meaning": "প্রতিশ্রুতি",
+                "exampleArabic": "وَعْدَ اللَّهِ حَقٌّ",
+                "exampleBangla": "আল্লাহর প্রতিশ্রুতি সত্য",
+                "occurrences": [
+                  {
+                    "ayah_id": "10:4",
+                    "surface": "وَعْدَ"
+                  }
+                ]
+              },
+              {
+                "arabic": "مَوْعِد",
+                "meaning": "অঙ্গীকার/নির্ধারিত সময়",
+                "exampleArabic": "فَٱجْعَلْ بَيْنَنَا وَبَيْنَكَ مَوْعِدًا",
+                "exampleBangla": "আমাদের মধ্যে নির্ধারিত সময় ঠিক কর",
+                "occurrences": [
+                  {
+                    "ayah_id": "20:58",
+                    "surface": "مَوْعِد"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:25:2",
+            "arabic_word": "صَادِقِينَ",
+            "bangla_meaning": "সত্যবাদী",
+            "root": "ص-د-ق",
+            "rootMeaning": "(সত্য)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "صِدْق",
+                "meaning": "সত্যতা",
+                "exampleArabic": "هَٰذَا يَوْمُ يَنفَعُ الصَّادِقِينَ صِدْقُهُمْ",
+                "exampleBangla": "সেদিন সত্যবাদীদের সত্যতা উপকারে আসবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "5:119",
+                    "surface": "صِدْق"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:26",
+        "arabic": "قُلْ إِنَّمَا الْعِلْمُ عِندَ اللَّهِ وَإِنَّمَا أَنَا نَذِيرٌ مُّبِينٌ",
+        "bangla": "বলুন: জ্ঞান তো আল্লাহর কাছেই; আর আমি তো স্পষ্ট সতর্ককারী।",
+        "words": [
+          {
+            "word_id": "67:26:1",
+            "arabic_word": "الْعِلْمُ",
+            "bangla_meaning": "জ্ঞান",
+            "root": "ع-ل-م",
+            "rootMeaning": "(জ্ঞান)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "عِلْم",
+                "meaning": "জ্ঞান",
+                "exampleArabic": "هَلْ أَتَّبِعُكَ عَلَىٰ أَن تُعَلِّمَنِ مِمَّا عُلِّمْتَ رُشْدًا",
+                "exampleBangla": "আপনার শেখানো জ্ঞান থেকে আমায় শিখাবেন?",
+                "occurrences": [
+                  {
+                    "ayah_id": "18:66",
+                    "surface": "عِلْمًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:26:2",
+            "arabic_word": "نَذِيرٌ",
+            "bangla_meaning": "সতর্ককারী",
+            "root": "ن-ذ-ر",
+            "rootMeaning": "(সতর্ক করা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "نَذِيرٌ",
+                "meaning": "সতর্ককারী",
+                "exampleArabic": "إِن مِّنْ أُمَّةٍ إِلَّا خَلَا فِيهَا نَذِيرٌ",
+                "exampleBangla": "প্রত্যেক জাতিতে একজন সতর্ককারী ছিলেন",
+                "occurrences": [
+                  {
+                    "ayah_id": "35:24",
+                    "surface": "نَذِيرٌ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:26:3",
+            "arabic_word": "مُّبِينٌ",
+            "bangla_meaning": "সুস্পষ্ট",
+            "root": "ب-ي-ن",
+            "rootMeaning": "(স্বচ্ছ/সুস্পষ্ট)",
+            "derivationMethod": "اسم صفة",
+            "quranicDerivations": [
+              {
+                "arabic": "بَيِّنَات",
+                "meaning": "সুস্পষ্ট নিদর্শন",
+                "exampleArabic": "آتَيْنَا عِيسَى ابْنَ مَرْيَمَ الْبَيِّنَاتِ",
+                "exampleBangla": "আমরা ঈসা ইবনে মরিয়মকে সুস্পষ্ট নিদর্শন দিয়েছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:87",
+                    "surface": "بَيِّنَاتٍ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:27",
+        "arabic": "فَلَمَّا رَأَوْهُ زُلْفَةً سِيئَتْ وُجُوهُ الَّذِينَ كَفَرُوا وَقِيلَ هَٰذَا الَّذِي كُنتُم بِهِ تَدَّعُونَ",
+        "bangla": "যখন তারা তা নিকটে দেখতে পাবে, কাফিরদের মুখমণ্ডল কালো হয়ে যাবে, এবং বলা হবে: ‘এটাই তা, যাকে নিয়ে তোমরা ত্বরান্বিত করতে বলতে।’",
+        "words": [
+          {
+            "word_id": "67:27:1",
+            "arabic_word": "زُلْفَةً",
+            "bangla_meaning": "নৈকট্যে",
+            "root": "ز-ل-ف",
+            "rootMeaning": "(নিকট/ঘনিষ্ঠ)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "زُلْفَى",
+                "meaning": "নিকটতা",
+                "exampleArabic": "مَا أَمْوَالُكُمْ وَلَا أَوْلَادُكُم بِالَّتِي تُقَرِّبُكُمْ عِندَنَا زُلْفَى",
+                "exampleBangla": "সম্পদ-সন্তান তোমাদেরকে নৈকট্যে আনবে না",
+                "occurrences": [
+                  {
+                    "ayah_id": "34:37",
+                    "surface": "زُلْفَى"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:27:2",
+            "arabic_word": "سِيئَتْ وُجُوهُ",
+            "bangla_meaning": "মুখমণ্ডল কালো হলো",
+            "root": "س-و-أ",
+            "rootMeaning": "(মন্দ/কুৎসিত)",
+            "derivationMethod": "فعل+اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "سُوءَ",
+                "meaning": "মন্দ",
+                "exampleArabic": "وَمَن يَعْمَلْ سُوءًا يُجْزَ بِهِ",
+                "exampleBangla": "যে মন্দ কাজ করবে, তাকে তার প্রতিফল দেওয়া হবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "4:123",
+                    "surface": "سُوءَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:27:3",
+            "arabic_word": "قِيلَ",
+            "bangla_meaning": "বলা হলো",
+            "root": "ق-و-ل",
+            "rootMeaning": "(বলা)",
+            "derivationMethod": "فعل ماضٍ مبني للمجهول",
+            "quranicDerivations": [
+              {
+                "arabic": "قِيلَ",
+                "meaning": "বলা হলো",
+                "exampleArabic": "قِيلَ ادْخُلُوا أَبْوَابَ جَهَنَّمَ",
+                "exampleBangla": "বলা হলো: জাহান্নামের দরজায় প্রবেশ করো",
+                "occurrences": [
+                  {
+                    "ayah_id": "39:71",
+                    "surface": "قِيلَ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:27:4",
+            "arabic_word": "تَدَّعُونَ",
+            "bangla_meaning": "তোমরা তাড়াতাড়ি চাইতে",
+            "root": "د-ع-و",
+            "rootMeaning": "(ডাকা/দাবি করা)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "يَدَّعُونَ",
+                "meaning": "দাবি করে",
+                "exampleArabic": "وَلَا يَمْلِكُونَ الشَّفَاعَةَ إِلَّا مَنِ اتَّخَذَ عِندَ الرَّحْمَٰنِ عَهْدًا",
+                "exampleBangla": "তারা যা দাবি করে তা নয়",
+                "occurrences": [
+                  {
+                    "ayah_id": "19:84",
+                    "surface": "يَدَّعُونَ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:28",
+        "arabic": "قُلْ أَرَأَيْتُمْ إِنْ أَهْلَكَنِيَ اللَّهُ وَمَن مَّعِيَ أَوْ رَحِمَنَا فَمَن يُجِيرُ الْكَافِرِينَ مِنْ عَذَابٍ أَلِيمٍ",
+        "bangla": "বলুন: তোমরা কি ভেবেছ—আল্লাহ আমাকে ও আমার সঙ্গীদের ধ্বংস করলেও বা আমাদের প্রতি দয়া করলেও, কাফিরদেরকে যন্ত্রণাদায়ক আযাব থেকে কে রক্ষা করবে?",
+        "words": [
+          {
+            "word_id": "67:28:1",
+            "arabic_word": "أَهْلَكَنِيَ",
+            "bangla_meaning": "তিনি আমাকে ধ্বংস করলে",
+            "root": "ه-ل-ك",
+            "rootMeaning": "(ধ্বংস/নাশ)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "أَهْلَكْنَا",
+                "meaning": "আমি ধ্বংস করেছি",
+                "exampleArabic": "كَمْ أَهْلَكْنَا قَبْلَهُم مِّنَ الْقُرُونِ",
+                "exampleBangla": "এর আগে আমি কত জাতিকে ধ্বংস করেছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "36:31",
+                    "surface": "أَهْلَكْنَا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:28:2",
+            "arabic_word": "يُجِيرُ",
+            "bangla_meaning": "আশ্রয়/রক্ষা দেয়",
+            "root": "ج-و-ر/ج-ي-ر",
+            "rootMeaning": "(আশ্রয় দেওয়া)",
+            "derivationMethod": "فعل مضارع",
+            "quranicDerivations": [
+              {
+                "arabic": "مَن يُجِيرُ",
+                "meaning": "কে রক্ষা করবে",
+                "exampleArabic": "قُلْ مَن بِيَدِهِ مَلَكُوتُ كُلِّ شَيْءٍ ... وَهُوَ يُجِيرُ وَلَا يُجَارُ عَلَيْهِ",
+                "exampleBangla": "তিনি রক্ষা করেন; তাঁর বিরুদ্ধে রক্ষা দেওয়া যায় না",
+                "occurrences": [
+                  {
+                    "ayah_id": "23:88",
+                    "surface": "يُجِيرُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:28:3",
+            "arabic_word": "عَذَابٍ أَلِيمٍ",
+            "bangla_meaning": "যন্ত্রণাদায়ক শাস্তি",
+            "root": "ع-ذ-ب",
+            "rootMeaning": "(শাস্তি/যন্ত্রণা)",
+            "derivationMethod": "تركيب",
+            "quranicDerivations": [
+              {
+                "arabic": "عَذَابٌ أَلِيمٌ",
+                "meaning": "যন্ত্রণাদায়ক আযাব",
+                "exampleArabic": "وَلَهُمْ عَذَابٌ أَلِيمٌ",
+                "exampleBangla": "তাদের জন্য রয়েছে যন্ত্রণাদায়ক আযাব",
+                "occurrences": [
+                  {
+                    "ayah_id": "5:36",
+                    "surface": "عَذَابٌ أَلِيمٌ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:29",
+        "arabic": "قُلْ هُوَ الرَّحْمَٰنُ آمَنَّا بِهِ وَعَلَيْهِ تَوَكَّلْنَا فَسَتَعْلَمُونَ مَنْ هُوَ فِي ضَلَالٍ مُّبِينٍ",
+        "bangla": "বলুন: তিনি রহমান—আমরা তাঁর প্রতি ঈমান এনেছি এবং তাঁরই উপর ভরসা করেছি; তখন তোমরা জানতে পারবে কে সুস্পষ্ট ভ্রান্তিতে আছে।",
+        "words": [
+          {
+            "word_id": "67:29:1",
+            "arabic_word": "الرَّحْمَٰنُ",
+            "bangla_meaning": "পরম করুণাময়",
+            "root": "ر-ح-م",
+            "rootMeaning": "(দয়া/করুণা)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "الرَّحْمَٰن",
+                "meaning": "রাহমান",
+                "exampleArabic": "إِنِّي أَخَافُ أَن يَمَسَّكَ عَذَابٌ مِّنَ الرَّحْمَٰنِ",
+                "exampleBangla": "আমি ভয় করি রাহমানের কাছ থেকে আযাব গ্রাস করবে",
+                "occurrences": [
+                  {
+                    "ayah_id": "19:45",
+                    "surface": "الرَّحْمَٰنُ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:29:2",
+            "arabic_word": "آمَنَّا",
+            "bangla_meaning": "আমরা ঈমান এনেছি",
+            "root": "أ-م-ن",
+            "rootMeaning": "(বিশ্বাস/নিরাপত্তা)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "آمَنُوا",
+                "meaning": "তারা ঈমান এনেছে",
+                "exampleArabic": "إِنَّ الَّذِينَ آمَنُوا وَالَّذِينَ هَادُوا ...",
+                "exampleBangla": "যারা ঈমান এনেছে এবং যারা ইহুদি",
+                "occurrences": [
+                  {
+                    "ayah_id": "2:62",
+                    "surface": "آمَنُوا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:29:3",
+            "arabic_word": "تَوَكَّلْنَا",
+            "bangla_meaning": "আমরা ভরসা করেছি",
+            "root": "و-ك-ل",
+            "rootMeaning": "(ভরসা/নিয়োগ)",
+            "derivationMethod": "فعل ماضٍ",
+            "quranicDerivations": [
+              {
+                "arabic": "تَوَكَّلْ",
+                "meaning": "ভরসা কর",
+                "exampleArabic": "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
+                "exampleBangla": "সিদ্ধান্ত নিলে আল্লাহর উপর ভরসা কর",
+                "occurrences": [
+                  {
+                    "ayah_id": "3:159",
+                    "surface": "تَوَكَّلْ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:29:4",
+            "arabic_word": "ضَلَالٍ مُّبِينٍ",
+            "bangla_meaning": "সুস্পষ্ট ভ্রান্তি",
+            "root": "ض-ل-ل",
+            "rootMeaning": "(ভুলপথ)",
+            "derivationMethod": "تركيب",
+            "quranicDerivations": [
+              {
+                "arabic": "ضَلَالٍ مُّبِينٍ",
+                "meaning": "সুস্পষ্ট ভ্রান্তি",
+                "exampleArabic": "إِنِّي إِذًا لَّفِي ضَلَالٍ مُّبِينٍ",
+                "exampleBangla": "তাহলে আমি তো সুস্পষ্ট ভ্রান্তিতে পড়ব",
+                "occurrences": [
+                  {
+                    "ayah_id": "36:24",
+                    "surface": "ضَلَالٍ مُّبِينٍ"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ayah_id": "67:30",
+        "arabic": "قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَاءٍ مَّعِينٍ",
+        "bangla": "বলুন: তোমরা কি ভেবেছ—যদি তোমাদের পানি ভূগর্ভে তলিয়ে যায়, তবে কে তোমাদের কাছে সহজলভ্য পানি এনে দেবে?",
+        "words": [
+          {
+            "word_id": "67:30:1",
+            "arabic_word": "أَصْبَحَ مَاؤُكُمْ",
+            "bangla_meaning": "তোমাদের পানি সকালে/হয়ে গেল",
+            "root": "ص-ب-ح / م-و-ه",
+            "rootMeaning": "(হয়ে যাওয়া/পানি)",
+            "derivationMethod": "فعل+اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "مَاء",
+                "meaning": "পানি",
+                "exampleArabic": "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ",
+                "exampleBangla": "আমরা পানি থেকে সব জীবিত করেছি",
+                "occurrences": [
+                  {
+                    "ayah_id": "21:30",
+                    "surface": "مَاءٍ"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:30:2",
+            "arabic_word": "غَوْرًا",
+            "bangla_meaning": "তলিয়ে যাওয়া/ভূগর্ভে হারানো",
+            "root": "غ-و-ر",
+            "rootMeaning": "(গভীর হওয়া)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "غَائِر",
+                "meaning": "গভীর/ডুবে যাওয়া",
+                "exampleArabic": "وَلَا تَقْرَبُوا هَٰذِهِ الأَبْوَابَ ...",
+                "exampleBangla": "(আরবি ‘غائر’ চোখ সম্পর্কে)",
+                "occurrences": [
+                  {
+                    "ayah_id": "12:67",
+                    "surface": "غَائِرًا"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "word_id": "67:30:3",
+            "arabic_word": "مَّعِينٍ",
+            "bangla_meaning": "সহজলভ্য প্রবাহমান",
+            "root": "م-ع-ن",
+            "rootMeaning": "(প্রবহমান/চোখে পড়া)",
+            "derivationMethod": "اسم",
+            "quranicDerivations": [
+              {
+                "arabic": "مَاءٍ مَعِينٍ",
+                "meaning": "প্রবাহমান পানি",
+                "exampleArabic": "فِيهَا أَنْهَارٌ مِّن مَّاءٍ غَيْرِ آسِنٍ",
+                "exampleBangla": "তাতে রয়েছে অম্লান পানি—সহজলভ্য প্রবাহমান",
+                "occurrences": [
+                  {
+                    "ayah_id": "38:34",
+                    "surface": "مَعِينٍ"
                   }
                 ]
               }
