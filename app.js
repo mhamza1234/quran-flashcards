@@ -1,6 +1,6 @@
-/* Quran Word Cards — aligned front, simplified back
-   Front  = left-aligned big Arabic + top-aligned derivations (no "উদাহরণ (Ar)" label)
-   Back   = single centered column: (Arabic | Bangla) one-line rows
+/* Quran Word Cards — clean derivations, aligned examples, fixed footer
+   Front  = left-aligned big Arabic + top-aligned derivations (no "উদাহরণ (Ar)")
+   Back   = single centered column: (Arabic | Bangla) one-line rows, scrolling inside card
 */
 
 const state = { manifest:[], surah:null, words:[], order:[], idx:0, mode:'sequential' };
@@ -45,14 +45,14 @@ const els = {
 };
 
 // ---------- utils ----------
-const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.random()* (i+1) | 0; [a[i],a[j]]=[a[j],a[i]];} return a; };
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]];} return a; };
 const showError = m => { els.errorBanner.textContent=m; els.errorBanner.classList.remove('hidden'); setTimeout(()=>els.errorBanner.classList.add('hidden'),6000); };
 const flattenWords = s => { const out=[]; (s.ayats||[]).forEach((ayah,ai)=> (ayah.words||[]).forEach((word,wi)=> out.push({ayahIndex:ai,wordIndex:wi,ayah,word})) ); return out; };
 const makeOrder = () => { const idxs=[...Array(state.words.length).keys()]; state.order = (state.mode==='random')? shuffle(idxs): idxs; state.idx=0; };
 const renderPosition = () => { els.positionText.textContent = `${state.idx+1} / ${state.order.length}`; };
 const renderAyahStrip = a => { els.ayahArabic.textContent=a.arabic||''; els.ayahBangla.textContent=a.bangla||''; };
 
-// ---------- FRONT: derivations list (top-aligned column; no "উদাহরণ (Ar)" text) ----------
+// ---------- FRONT: derivations list ----------
 function renderDerivations(list, container){
   container.innerHTML='';
   if(!Array.isArray(list) || !list.length){
@@ -67,7 +67,7 @@ function renderDerivations(list, container){
       <div class="arabic ar-lg">${dv.arabic || ''}</div>
       <div class="meaning">${dv.meaning || ''}</div>
       <div class="ar-example">${dv.exampleArabic || ''}</div>
-      <div class="ex"><b>উদাহরণ (Bn):</b> ${exBn}</div>
+      <div class="ex ex-bn"><b>উদাহরণ (Bn):</b> ${exBn}</div>
       ${
         Array.isArray(dv.occurrences) && dv.occurrences.length
           ? `<div class="occ-wrap">${dv.occurrences.map(o=>`<span class="chip-sm" title="Click to copy">${o.ayah_id}</span>`).join('')}</div>`
