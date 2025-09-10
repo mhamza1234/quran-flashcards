@@ -3,43 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Quran Word Flashcards</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Qur’an Flashcards</title>
+  <link rel="stylesheet" href="styles.css?v=baseline1" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">Quran Word Cards</div>
+  <div class="topbar">
+    <div class="brand">Qur’an Flashcards</div>
     <div class="controls">
-      <label class="control">মোড:
-        <select id="modeSelect">
-          <option value="sequential">ক্রমিক</option>
-          <option value="random">র‌্যান্ডম</option>
-        </select>
-      </label>
-      <label class="control">সুরা:
+      <div class="control">
+        <label for="surahSelect">সুরা:</label>
         <select id="surahSelect">
-          <option value="" disabled selected>সুরা বাছাই করুন…</option>
+          <option value="" disabled selected>লোড হচ্ছে…</option>
         </select>
-      </label>
-      <input id="quickSearch" class="search" placeholder="যেমন 67:5:3 বা 67:5…" />
-      <button id="quickGo" class="btn small">যাও</button>
+      </div>
+      <div class="control">
+        <label for="modeSelect">মোড:</label>
+        <select id="modeSelect">
+          <option value="sequential" selected>Sequential</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+      <div class="control">
+        <input id="quickSearch" class="search" placeholder="67:ayah বা 67:ayah:word" />
+        <button id="quickGo" class="btn small">Go</button>
+      </div>
     </div>
-  </header>
-  <section class="ayah-strip">
-    <div class="ayah-ar" id="ayahArabic"></div>
-    <div class="ayah-bn" id="ayahBangla"></div>
-  </section>
-  <main class="card-wrap">
-    <article id="card" class="card">
-      <div id="front" class="face front">
+  </div>
+
+  <div id="errorBanner" class="error hidden"></div>
+
+  <div class="ayah-strip">
+    <div id="ayahArabic" class="ayah-ar">﴿ ﴾</div>
+    <div id="ayahBangla" class="ayah-bn">—</div>
+  </div>
+
+  <div class="card-wrap">
+    <div id="card" class="card">
+      <!-- FRONT -->
+      <div class="front face">
         <div class="left">
-          <div class="meta"><span id="wordId" class="chip"></span></div>
-          <div class="word-ar" id="frontArabicWord"></div>
-          <div class="word-bn" id="frontBanglaMeaning"></div>
+          <span id="wordId" class="chip">—</span>
+          <h1 id="frontArabicWord" class="word-ar">—</h1>
+          <div id="frontBanglaMeaning" class="word-bn">—</div>
           <div class="grid">
-            <div><span class="label">মূল:</span> <span id="frontRoot"></span></div>
-            <div><span class="label">অর্থ:</span> <span id="frontRootMeaning"></span></div>
-            <div><span class="label">ধরণ:</span> <span id="frontDerivationMethod"></span></div>
+            <div><span class="label">Root:</span> <span id="frontRoot"></span></div>
+            <div><span class="label">Root Meaning:</span> <span id="frontRootMeaning"></span></div>
+            <div><span class="label">Morphology:</span> <span id="frontDerivationMethod"></span></div>
           </div>
         </div>
         <div class="right">
@@ -47,30 +56,27 @@
           <div id="frontDerivList" class="deriv-list"></div>
         </div>
       </div>
-      <div id="back" class="face back">
-        <div class="back-top">
-          <div class="surah-pill"><span id="backSurahNameBn"></span></div>
-          <div class="back-word-pill"><span id="backArabicWord"></span></div>
-        </div>
-        <div class="back-center">
-          <div class="back-big" id="backArabicBig"></div>
-          <div class="back-bn" id="backBanglaMeaning"></div>
-        </div>
+
+      <!-- BACK -->
+      <div class="back face">
         <div class="back-deriv">
-          <div id="backDerivList" class="deriv-bubble"></div>
+          <div class="deriv-bubble">
+            <div id="backDerivList"></div>
+          </div>
         </div>
       </div>
-    </article>
-  </main>
-  <footer class="nav">
-    <button id="firstBtn" class="btn">শুরু</button>
-    <button id="prevBtn" class="btn">আগের</button>
-    <button id="flipBtn" class="btn accent">উল্টান</button>
-    <button id="nextBtn" class="btn">পরের</button>
-    <button id="lastBtn" class="btn">শেষ</button>
-    <div class="pos"><span id="positionText">0 / 0</span></div>
-  </footer>
-  <div id="errorBanner" class="error hidden"></div>
-  <script src="app.js"></script>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button id="firstBtn" class="btn">⏮︎ First</button>
+    <button id="prevBtn"  class="btn">◀︎ Prev</button>
+    <button id="flipBtn"  class="btn accent">⟲ Flip</button>
+    <button id="nextBtn"  class="btn">Next ▶︎</button>
+    <button id="lastBtn"  class="btn">Last ⏭︎</button>
+    <span id="positionText" class="pos">0 / 0</span>
+  </div>
+
+  <script defer src="app.js?v=baseline1"></script>
 </body>
 </html>
