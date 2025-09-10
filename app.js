@@ -1,4 +1,4 @@
-/* Quran Word Cards — stable build
+/* Quran Word Cards — baseline stable
    Front  = left-aligned big Arabic + info + derivations (no "উদাহরণ (Ar)")
    Back   = single centered column (Arabic | Bangla) one-line rows
 */
@@ -27,10 +27,6 @@ const els = {
   frontDerivList: document.getElementById('frontDerivList'),
 
   // BACK (we reuse backDerivList for the ayah grid)
-  backSurahNameBn: document.getElementById('backSurahNameBn'),
-  backArabicWord: document.getElementById('backArabicWord'),
-  backArabicBig: document.getElementById('backArabicBig'),
-  backBanglaMeaning: document.getElementById('backBanglaMeaning'),
   backDerivList: document.getElementById('backDerivList'),
 
   // nav
@@ -53,7 +49,7 @@ const renderPosition = () => { els.positionText.textContent = `${state.idx+1} / 
 const renderAyahStrip = a => { els.ayahArabic.textContent=a.arabic||''; els.ayahBangla.textContent=a.bangla||''; };
 const ensureFront = () => els.card.classList.remove('flipped');
 
-// ---------- FRONT: derivations list ----------
+// ---------- FRONT helpers ----------
 function renderDerivations(list, container){
   container.innerHTML='';
   if(!Array.isArray(list) || !list.length){
@@ -82,7 +78,7 @@ function renderDerivations(list, container){
   });
 }
 
-// ---------- BACK: single centered column (Arabic | Bangla) ----------
+// ---------- BACK helper ----------
 function renderAyahGrid(ayah, container){
   container.innerHTML='';
   const grid = document.createElement('div');
@@ -123,11 +119,7 @@ function renderCard(){
   els.frontDerivationMethod.textContent = word.derivationMethod || '';
   renderDerivations(word.quranicDerivations || [], els.frontDerivList);
 
-  // BACK (no repeated pills/labels; only grid)
-  els.backSurahNameBn.textContent = '';
-  els.backArabicWord.textContent = '';
-  els.backArabicBig.textContent = '';
-  els.backBanglaMeaning.textContent = '';
+  // BACK
   renderAyahGrid(ayah, els.backDerivList);
 
   renderPosition();
@@ -169,7 +161,7 @@ async function loadSurahByIndex(i){
     state.surah = s;
     state.words = flattenWords(s);
     makeOrder();
-    ensureFront();                  // <— always show front after load
+    ensureFront();                  // always start on front
     renderCard();
   }catch(e){ showError(e.message); }
 }
@@ -185,7 +177,7 @@ function handleQuickGo(){
   if(flatIdx>=0){
     const pos = state.order.indexOf(flatIdx);
     state.idx = (pos>=0? pos : flatIdx);
-    ensureFront();                  // <— reset to front before drawing
+    ensureFront();                  // reset to front before drawing
     renderCard();
   }
 }
