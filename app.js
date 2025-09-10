@@ -1,6 +1,6 @@
-/* Quran Word Cards — clean derivations, aligned examples, fixed footer
-   Front  = left-aligned big Arabic + top-aligned derivations (no "উদাহরণ (Ar)")
-   Back   = single centered column: (Arabic | Bangla) one-line rows, scrolling inside card
+/* Quran Word Cards — stable build
+   Front  = left-aligned big Arabic + info + derivations (no "উদাহরণ (Ar)")
+   Back   = single centered column (Arabic | Bangla) one-line rows
 */
 
 const state = { manifest:[], surah:null, words:[], order:[], idx:0, mode:'sequential' };
@@ -51,6 +51,7 @@ const flattenWords = s => { const out=[]; (s.ayats||[]).forEach((ayah,ai)=> (aya
 const makeOrder = () => { const idxs=[...Array(state.words.length).keys()]; state.order = (state.mode==='random')? shuffle(idxs): idxs; state.idx=0; };
 const renderPosition = () => { els.positionText.textContent = `${state.idx+1} / ${state.order.length}`; };
 const renderAyahStrip = a => { els.ayahArabic.textContent=a.arabic||''; els.ayahBangla.textContent=a.bangla||''; };
+const ensureFront = () => els.card.classList.remove('flipped');
 
 // ---------- FRONT: derivations list ----------
 function renderDerivations(list, container){
@@ -74,7 +75,6 @@ function renderDerivations(list, container){
           : ''
       }
     `;
-    // copy ayah id
     wrap.querySelectorAll('.chip-sm').forEach(ch=>{
       ch.addEventListener('click', ()=>{ navigator.clipboard?.writeText(ch.textContent); ch.classList.add('copied'); setTimeout(()=>ch.classList.remove('copied'),600); });
     });
@@ -82,7 +82,7 @@ function renderDerivations(list, container){
   });
 }
 
-// ---------- BACK: single centered column (Arabic | Bangla) one-line rows ----------
+// ---------- BACK: single centered column (Arabic | Bangla) ----------
 function renderAyahGrid(ayah, container){
   container.innerHTML='';
   const grid = document.createElement('div');
@@ -114,7 +114,7 @@ function renderCard(){
   // header strip
   renderAyahStrip(ayah);
 
-  // FRONT (left-aligned big Arabic + info + derivations)
+  // FRONT
   els.wordId.textContent = word.word_id || '';
   els.frontArabicWord.textContent = word.arabic_word || '';
   els.frontBanglaMeaning.textContent = word.bangla_meaning || '';
@@ -123,7 +123,7 @@ function renderCard(){
   els.frontDerivationMethod.textContent = word.derivationMethod || '';
   renderDerivations(word.quranicDerivations || [], els.frontDerivList);
 
-  // BACK (hide repeated labels; only one-column ayah grid)
+  // BACK (no repeated pills/labels; only grid)
   els.backSurahNameBn.textContent = '';
   els.backArabicWord.textContent = '';
   els.backArabicBig.textContent = '';
@@ -139,7 +139,6 @@ function goLast(){ state.idx=Math.max(0,state.order.length-1); ensureFront(); re
 function goNext(){ state.idx=(state.idx+1)%state.order.length; ensureFront(); renderCard(); }
 function goPrev(){ state.idx=(state.idx-1+state.order.length)%state.order.length; ensureFront(); renderCard(); }
 function flip(){ els.card.classList.toggle('flipped'); }
-function ensureFront(){ els.card.classList.remove('flipped'); }
 
 // ---------- loading ----------
 async function loadManifest(){
@@ -170,6 +169,7 @@ async function loadSurahByIndex(i){
     state.surah = s;
     state.words = flattenWords(s);
     makeOrder();
+    ensureFront();                  // <— always show front after load
     renderCard();
   }catch(e){ showError(e.message); }
 }
@@ -185,12 +185,13 @@ function handleQuickGo(){
   if(flatIdx>=0){
     const pos = state.order.indexOf(flatIdx);
     state.idx = (pos>=0? pos : flatIdx);
-    ensureFront(); renderCard();
+    ensureFront();                  // <— reset to front before drawing
+    renderCard();
   }
 }
 
 // ---------- events ----------
-els.modeSelect.addEventListener('change', ()=>{ state.mode=els.modeSelect.value; makeOrder(); renderCard(); });
+els.modeSelect.addEventListener('change', ()=>{ state.mode=els.modeSelect.value; makeOrder(); ensureFront(); renderCard(); });
 els.surahSelect.addEventListener('change', async ()=>{ const i=parseInt(els.surahSelect.value,10); await loadSurahByIndex(i); });
 els.quickGo.addEventListener('click', handleQuickGo);
 els.quickSearch.addEventListener('keydown', e=>{ if(e.key==='Enter') handleQuickGo(); });
@@ -206,7 +207,7 @@ window.addEventListener('keydown', e=>{
   if(e.key==='ArrowRight' || e.key===' ') goNext();
   else if(e.key==='ArrowLeft') goPrev();
   else if(e.key.toLowerCase()==='f') flip();
-  else if(e.key.toLowerCase()==='r'){ state.mode=(state.mode==='sequential')?'random':'sequential'; els.modeSelect.value=state.mode; makeOrder(); renderCard(); }
+  else if(e.key.toLowerCase()==='r'){ state.mode=(state.mode==='sequential')?'random':'sequential'; els.modeSelect.value=state.mode; makeOrder(); ensureFront(); renderCard(); }
 });
 
 // init
