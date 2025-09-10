@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quran Word Flashcards</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Quran Word Cards</div>
+    <div class="controls">
+      <label class="control">মোড:
+        <select id="modeSelect">
+          <option value="sequential">ক্রমিক</option>
+          <option value="random">র‌্যান্ডম</option>
+        </select>
+      </label>
+      <label class="control">সুরা:
+        <select id="surahSelect">
+          <option value="" disabled selected>সুরা বাছাই করুন…</option>
+        </select>
+      </label>
+      <input id="quickSearch" class="search" placeholder="যেমন 67:5:3 বা 67:5…" />
+      <button id="quickGo" class="btn small">যাও</button>
+    </div>
+  </header>
+  <section class="ayah-strip">
+    <div class="ayah-ar" id="ayahArabic"></div>
+    <div class="ayah-bn" id="ayahBangla"></div>
+  </section>
+  <main class="card-wrap">
+    <article id="card" class="card">
+      <div id="front" class="face front">
+        <div class="left">
+          <div class="meta"><span id="wordId" class="chip"></span></div>
+          <div class="word-ar" id="frontArabicWord"></div>
+          <div class="word-bn" id="frontBanglaMeaning"></div>
+          <div class="grid">
+            <div><span class="label">মূল:</span> <span id="frontRoot"></span></div>
+            <div><span class="label">অর্থ:</span> <span id="frontRootMeaning"></span></div>
+            <div><span class="label">ধরণ:</span> <span id="frontDerivationMethod"></span></div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="deriv-header">Quranic Derivations</div>
+          <div id="frontDerivList" class="deriv-list"></div>
+        </div>
+      </div>
+      <div id="back" class="face back">
+        <div class="back-top">
+          <div class="surah-pill"><span id="backSurahNameBn"></span></div>
+          <div class="back-word-pill"><span id="backArabicWord"></span></div>
+        </div>
+        <div class="back-center">
+          <div class="back-big" id="backArabicBig"></div>
+          <div class="back-bn" id="backBanglaMeaning"></div>
+        </div>
+        <div class="back-deriv">
+          <div id="backDerivList" class="deriv-bubble"></div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer class="nav">
+    <button id="firstBtn" class="btn">শুরু</button>
+    <button id="prevBtn" class="btn">আগের</button>
+    <button id="flipBtn" class="btn accent">উল্টান</button>
+    <button id="nextBtn" class="btn">পরের</button>
+    <button id="lastBtn" class="btn">শেষ</button>
+    <div class="pos"><span id="positionText">0 / 0</span></div>
+  </footer>
+  <div id="errorBanner" class="error hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
