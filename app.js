@@ -1,7 +1,7 @@
-/* Quran Flashcards — rollback to stable, simple version
+/* Quran Flashcards — stable build with robust manifest loader
    Front  = big Arabic (left), root/meaning/morphology + Derivations (no "উদাহরণ (Ar)")
    Back   = single centered column (Arabic | Bangla) word-by-word rows
-   Always reset to FRONT on load/jump.
+   Always reset to FRONT on load/jump/mode change.
 */
 
 const state = { manifest:[], surah:null, words:[], order:[], idx:0, mode:'sequential' };
@@ -133,24 +133,86 @@ function goNext(){ state.idx=(state.idx+1)%state.order.length; ensureFront(); re
 function goPrev(){ state.idx=(state.idx-1+state.order.length)%state.order.length; ensureFront(); renderCard(); }
 function flip(){ els.card.classList.toggle('flipped'); }
 
-// ---------- loading ----------
+// ---------- manifest loader (robust) ----------
 async function loadManifest(){
-  try{
-    const r = await fetch('data/manifest.json?ts='+Date.now());
-    if(!r.ok) throw new Error('manifest.json লোড করা যায়নি');
-    const man = await r.json();
-    if(!Array.isArray(man)) throw new Error('manifest.json অবশ্যই array হবে');
-    state.manifest = man;
-    els.surahSelect.innerHTML = '<option value="" disabled selected>সুরা বাছাই করুন…</option>';
-    man.forEach((m,i)=>{
-      const o=document.createElement('option');
-      o.value=String(i);
-      o.textContent=m.display_bn || m.display || m.filename;
-      els.surahSelect.appendChild(o);
-    });
-  }catch(e){ showError(e.message); }
+  // Try several likely paths in order
+  const paths = [
+    'data/manifest.json',
+    './data/manifest.json',
+    'manifest.json',
+    './manifest.json'
+  ];
+
+  const fetchJson = async (url) => {
+    try {
+      const r = await fetch(url + '?ts=' + Date.now());
+      if (!r.ok) throw new Error(`HTTP ${r.status} @ ${url}`);
+      return await r.json();
+    } catch (e) {
+      console.warn('[manifest] fetch failed:', url, e);
+      return { __error: String(e), __url: url };
+    }
+  };
+
+  let manifestRaw = null, usedPath = null;
+  for (const p of paths) {
+    const data = await fetchJson(p);
+    if (data && !data.__error) { manifestRaw = data; usedPath = p; break; }
+  }
+
+  if (!manifestRaw) {
+    showError('manifest.json লোড করা যায়নি — data/manifest.json কি রেপোতে আছে?');
+    els.surahSelect.innerHTML = '<option value="" disabled selected>manifest.json মিসিং</option>';
+    return;
+  }
+
+  // Accept common shapes
+  let list = [];
+  if (Array.isArray(manifestRaw)) {
+    list = manifestRaw;
+  } else if (manifestRaw.surahs && Array.isArray(manifestRaw.surahs)) {
+    list = manifestRaw.surahs;
+  } else {
+    const looksLikeItem =
+      manifestRaw && (manifestRaw.filename || manifestRaw.display || manifestRaw.display_bn || manifestRaw.surah_number);
+    if (looksLikeItem) list = [manifestRaw];
+  }
+
+  if (!Array.isArray(list) || list.length === 0) {
+    console.warn('[manifest] parsed but empty/invalid:', manifestRaw);
+    showError('manifest.json পাওয়া গেছে কিন্তু ফরম্যাট/কনটেন্ট সঠিক নয় (খালি?).');
+    els.surahSelect.innerHTML = '<option value="" disabled selected>কোনো সুরা পাওয়া যায়নি</option>';
+    return;
+  }
+
+  // Normalize and keep only entries with filename
+  state.manifest = list.map((m, i) => ({
+    id: String(m.id ?? m.surah_number ?? i+1),
+    surah_number: m.surah_number ?? Number(m.id ?? (i+1)),
+    name_ar: m.name_ar ?? '',
+    name_bn: m.name_bn ?? '',
+    display: m.display ?? m.display_bn ?? m.name_bn ?? m.filename ?? `Surah ${m.surah_number ?? (i+1)}`,
+    display_bn: m.display_bn ?? m.display ?? m.name_bn ?? '',
+    filename: m.filename ?? m.file ?? ''
+  })).filter(m => m.filename);
+
+  // Populate dropdown
+  els.surahSelect.innerHTML = '<option value="" disabled selected>সুরা বাছাই করুন…</option>';
+  state.manifest.forEach((m, i) => {
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = m.display_bn || m.display || m.filename;
+    els.surahSelect.appendChild(o);
+  });
+
+  if (!state.manifest.length) {
+    showError('manifest.json এ কোনো বৈধ item নেই (filename মিসিং?)');
+  } else {
+    console.log(`[manifest] loaded ${state.manifest.length} item(s) from ${usedPath}`);
+  }
 }
 
+// ---------- loading a surah ----------
 async function loadSurahByIndex(i){
   const m = state.manifest[i]; if(!m) return;
   try{
