@@ -1,207 +1,115 @@
-/* Quran Flashcards — stable build
-   Front  = big Arabic (left), root/meaning/morphology + Derivations (no "উদাহরণ (Ar)")
-   Back   = single centered column (Arabic | Bangla) word-by-word list
-   Always reset to FRONT on load/jump.
-*/
-
-const state = { manifest:[], surah:null, words:[], order:[], idx:0, mode:'sequential' };
-
-const els = {
-  // header controls
-  modeSelect: document.getElementById('modeSelect'),
-  surahSelect: document.getElementById('surahSelect'),
-  quickSearch: document.getElementById('quickSearch'),
-  quickGo: document.getElementById('quickGo'),
-
-  // card + strips
-  card: document.getElementById('card'),
-  ayahArabic: document.getElementById('ayahArabic'),
-  ayahBangla: document.getElementById('ayahBangla'),
-
-  // FRONT
-  wordId: document.getElementById('wordId'),
-  frontArabicWord: document.getElementById('frontArabicWord'),
-  frontBanglaMeaning: document.getElementById('frontBanglaMeaning'),
-  frontRoot: document.getElementById('frontRoot'),
-  frontRootMeaning: document.getElementById('frontRootMeaning'),
-  frontDerivationMethod: document.getElementById('frontDerivationMethod'),
-  frontDerivList: document.getElementById('frontDerivList'),
-
-  // BACK (ayah grid container)
-  backDerivList: document.getElementById('backDerivList'),
-
-  // nav
-  firstBtn: document.getElementById('firstBtn'),
-  prevBtn: document.getElementById('prevBtn'),
-  flipBtn: document.getElementById('flipBtn'),
-  nextBtn: document.getElementById('nextBtn'),
-  lastBtn: document.getElementById('lastBtn'),
-  positionText: document.getElementById('positionText'),
-
-  errorBanner: document.getElementById('errorBanner'),
-};
-
-// ---------- utils ----------
-const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]];} return a; };
-const showError = m => { if(!els.errorBanner) return; els.errorBanner.textContent=m; els.errorBanner.classList.remove('hidden'); setTimeout(()=>els.errorBanner.classList.add('hidden'),6000); };
-const flattenWords = s => { const out=[]; (s.ayats||[]).forEach((ayah,ai)=> (ayah.words||[]).forEach((word,wi)=> out.push({ayahIndex:ai,wordIndex:wi,ayah,word})) ); return out; };
-const makeOrder = () => { const idxs=[...Array(state.words.length).keys()]; state.order = (state.mode==='random')? shuffle(idxs): idxs; state.idx=0; };
-const renderPosition = () => { els.positionText.textContent = `${state.idx+1} / ${state.order.length}`; };
-const renderAyahStrip = a => { els.ayahArabic.textContent=a.arabic||''; els.ayahBangla.textContent=a.bangla||''; };
-const ensureFront = () => els.card.classList.remove('flipped');
-
-// ---------- FRONT: derivations list ----------
-function renderDerivations(list, container){
-  container.innerHTML='';
-  if(!Array.isArray(list) || !list.length){
-    const d=document.createElement('div'); d.className='deriv-item';
-    d.innerHTML='<div class="meaning">— কোনো ডেরিভেশন নেই —</div>';
-    container.appendChild(d); return;
-  }
-  list.forEach(dv=>{
-    const exBn = dv.exampleBangla ?? dv.exampleBn ?? dv.exampleBN ?? '';
-    const wrap=document.createElement('div'); wrap.className='deriv-item';
-    wrap.innerHTML = `
-      <div class="arabic ar-lg">${dv.arabic || ''}</div>
-      <div class="meaning">${dv.meaning || ''}</div>
-      <div class="ar-example">${dv.exampleArabic || ''}</div>
-      <div class="ex ex-bn"><b>উদাহরণ (Bn):</b> ${exBn}</div>
-      ${
-        Array.isArray(dv.occurrences) && dv.occurrences.length
-          ? `<div class="occ-wrap">${dv.occurrences.map(o=>`<span class="chip-sm" title="Click to copy">${o.ayah_id}</span>`).join('')}</div>`
-          : ''
-      }
-    `;
-    wrap.querySelectorAll('.chip-sm').forEach(ch=>{
-      ch.addEventListener('click', ()=>{ navigator.clipboard?.writeText(ch.textContent); ch.classList.add('copied'); setTimeout(()=>ch.classList.remove('copied'),600); });
-    });
-    container.appendChild(wrap);
-  });
+:root{
+  --bg:#0b1020; --panel:#0f1730; --panel2:#121a38; --ink:#e8eefc; --muted:#aab5d4;
+  --accent:#3aa0ff; --accent2:#7cc86a; --chip:#1d2a52; --border:#2a345a;
 }
 
-// ---------- BACK: single centered column (Arabic | Bangla) ----------
-function renderAyahGrid(ayah, container){
-  container.innerHTML='';
-  const grid = document.createElement('div');
-  grid.className = 'ayah-grid one-col';
-  (ayah.words || []).forEach(w=>{
-    const row=document.createElement('div'); row.className='pair';
-    row.innerHTML = `
-      <div class="pair-ar">${w.arabic_word || ''}</div>
-      <div class="pair-bn">${w.bangla_meaning || ''}</div>
-    `;
-    grid.appendChild(row);
-  });
-  container.appendChild(grid);
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink); background:linear-gradient(180deg,#091026,#0b1226 40%, #0a132a);
 }
 
-// ---------- render ----------
-function renderCard(){
-  if(!state.order.length){
-    els.positionText.textContent='0 / 0';
-    els.ayahArabic.textContent=els.ayahBangla.textContent='';
-    els.frontDerivList.innerHTML=els.backDerivList.innerHTML='';
-    els.frontArabicWord.textContent=els.frontBanglaMeaning.textContent='';
-    els.frontRoot.textContent=els.frontRootMeaning.textContent=els.frontDerivationMethod.textContent='';
-    return;
-  }
-  const cur = state.words[state.order[state.idx]];
-  const { ayah, word } = cur;
+/* top bar */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.75rem 1rem; border-bottom:1px solid var(--border); background:var(--panel);
+}
+.brand{font-weight:700;}
+.controls{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;}
+.control{display:flex; align-items:center; gap:.3rem; color:var(--muted);}
+select,.search{
+  background:var(--panel2); color:var(--ink); border:1px solid var(--border);
+  padding:.45rem .6rem; border-radius:.5rem; outline:none;
+}
+.search{min-width:18ch;}
+.btn{background:#1a2347; color:var(--ink); padding:.55rem .9rem; border:none; border-radius:.6rem; cursor:pointer; border:1px solid var(--border);}
+.btn.small{padding:.4rem .7rem; font-size:.9rem;}
+.btn:hover{background:#1b2a54;}
+.btn.accent{background:var(--accent); color:#071227; border-color:transparent;}
+.btn.accent:hover{filter:brightness(1.05);}
 
-  // header strip
-  renderAyahStrip(ayah);
+/* ayah header strip */
+.ayah-strip{
+  display:grid; grid-template-columns:1fr 1fr; gap:.75rem;
+  padding:.8rem 1rem; border-bottom:1px solid var(--border); background:#0c1430;
+}
+.ayah-ar{font-size:1.28rem; text-align:center; direction:rtl; line-height:1.9;}
+.ayah-bn{font-size:1.04rem; color:var(--muted);}
 
-  // FRONT
-  els.wordId.textContent = word.word_id || '';
-  els.frontArabicWord.textContent = word.arabic_word || '';
-  els.frontBanglaMeaning.textContent = word.bangla_meaning || '';
-  els.frontRoot.textContent = word.root || '';
-  els.frontRootMeaning.textContent = word.rootMeaning || '';
-  els.frontDerivationMethod.textContent = word.derivationMethod || '';
-  renderDerivations(word.quranicDerivations || [], els.frontDerivList);
+/* card */
+.card-wrap{display:grid; place-items:center; padding:1rem;}
+.card{position:relative; width:min(1200px,96vw); height:64vh; perspective:1000px;}
+.face{
+  position:absolute; inset:0; padding:1rem; border:1px solid var(--border); border-radius:14px;
+  background:radial-gradient(1200px 450px at 70% -50%, #172250, #0f1836 60%, #0b1226);
+  display:grid; grid-template-columns:1.1fr .9fr; gap:1rem; backface-visibility:hidden; transition:transform .5s ease-in-out;
+  overflow:hidden; /* scroll within columns */
+}
+.card.flipped .front{transform:rotateY(180deg);}
+.card.flipped .back{transform:rotateY(360deg);}
 
-  // BACK
-  renderAyahGrid(ayah, els.backDerivList);
+/* FRONT */
+.front .left{
+  display:grid; grid-template-columns:auto; gap:1rem;
+  justify-items:start; overflow:auto;
+}
+.chip{background:var(--chip); color:var(--ink); padding:.25rem .5rem; border-radius:6px; font-size:.9rem; width:max-content;}
+.word-ar{
+  font-size:2.9rem; direction:rtl; text-align:left; line-height:1.3;
+  margin:0; padding-left:.2rem;
+}
+.word-bn{font-size:1.15rem; color:var(--muted);}
+.grid{display:grid; gap:.45rem; grid-template-columns:1fr;}
+.label{color:#9bb2ff;}
+.left .grid div{font-size:1.08rem;}
 
-  renderPosition();
+.right{
+  border-left:1px dashed var(--border); padding-left:1rem;
+  display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start;
+  overflow:auto;
+}
+.deriv-header{font-weight:800; margin-bottom:.5rem; color:#a4d1ff;}
+.deriv-list{display:flex; flex-direction:column; gap:.7rem;}
+.deriv-item{padding:.75rem .85rem; background:#0e1a3c; border:1px solid var(--border); border-radius:12px;}
+.deriv-item .arabic{direction:rtl; text-align:right; font-size:1.55rem; line-height:1.4; margin-bottom:.2rem;}
+.deriv-item .meaning{color:var(--accent2); font-weight:700; margin:.28rem 0 .35rem;}
+/* Arabic example = left-aligned for visual balance (keeps RTL shaping) */
+.ar-example{direction:rtl; text-align:left; font-size:1.6rem; line-height:1.7; margin-top:.25rem; color:#e6eeff;}
+.ex-bn{ text-align:left; }
+.occ-wrap{ margin-top:.35rem; display:flex; flex-wrap:wrap; }
+.chip-sm{
+  display:inline-block; margin:.20rem .3rem 0 0; padding:.22rem .5rem;
+  border:1px solid var(--border); border-radius:.5rem; background:#0f2147; color:#cfe0ff; font-size:.9rem;
+  cursor:pointer; user-select:none;
+}
+.chip-sm.copied{ background:#1e7a46; color:#ebfff3; border-color:transparent; }
+
+/* BACK — single centered column list */
+.back{grid-template-columns:1fr;}
+.back-deriv{display:grid; place-items:center; height:100%; overflow:auto;}
+.deriv-bubble{
+  width:min(980px,94%); padding:1rem; background:#0d1838; border:1px solid var(--border); border-radius:18px;
+  display:flex; flex-direction:column; gap:1rem; max-height:100%; overflow:auto;
 }
 
-// ---------- navigation ----------
-function goFirst(){ state.idx=0; ensureFront(); renderCard(); }
-function goLast(){ state.idx=Math.max(0,state.order.length-1); ensureFront(); renderCard(); }
-function goNext(){ state.idx=(state.idx+1)%state.order.length; ensureFront(); renderCard(); }
-function goPrev(){ state.idx=(state.idx-1+state.order.length)%state.order.length; ensureFront(); renderCard(); }
-function flip(){ els.card.classList.toggle('flipped'); }
-
-// ---------- loading ----------
-async function loadManifest(){
-  try{
-    const r = await fetch('data/manifest.json?ts='+Date.now());
-    if(!r.ok) throw new Error('manifest.json লোড করা যায়নি');
-    const man = await r.json();
-    if(!Array.isArray(man)) throw new Error('manifest.json অবশ্যই array হবে');
-    state.manifest = man;
-    els.surahSelect.innerHTML = '<option value="" disabled selected>সুরা বাছাই করুন…</option>';
-    man.forEach((m,i)=>{
-      const o=document.createElement('option');
-      o.value=String(i);
-      o.textContent=m.display_bn || m.display || m.filename;
-      els.surahSelect.appendChild(o);
-    });
-  }catch(e){ showError(e.message); }
+/* Ayah rows: Arabic | Bangla (one line, centered) */
+.ayah-grid{ display:flex; flex-direction:column; gap:.85rem; align-items:center; }
+.pair{
+  width:min(900px,92%);
+  display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:.6rem;
+  background:#0e1a3c; border:1px solid var(--border); border-radius:12px; padding:.6rem .8rem;
 }
+.pair-ar{direction:rtl; text-align:center; font-size:1.7rem; line-height:1.45;}
+.pair-bn{text-align:center; font-size:1.12rem; color:#d8e1ff;}
 
-async function loadSurahByIndex(i){
-  const m = state.manifest[i]; if(!m) return;
-  try{
-    const r = await fetch('data/'+m.filename+'?ts='+Date.now());
-    if(!r.ok) throw new Error('Surah JSON লোড করা যায়নি: '+m.filename);
-    const arr = await r.json();
-    const s = Array.isArray(arr)? arr[0] : arr;
-    if(!s || !Array.isArray(s.ayats)) throw new Error('ভুল surah schema: '+m.filename);
-    state.surah = s;
-    state.words = flattenWords(s);
-    makeOrder();
-    ensureFront();                  // always start on front
-    renderCard();
-  }catch(e){ showError(e.message); }
+/* nav */
+.nav{
+  display:flex; gap:.6rem; align-items:center; justify-content:center;
+  padding:.8rem; border-top:1px solid var(--border); background:var(--panel);
 }
+.pos{margin-left:1rem; color:#aab5d4;}
 
-// quick jump: 67:ayah or 67:ayah:word
-function handleQuickGo(){
-  const v = els.quickSearch.value.trim(); if(!v) return;
-  const [, ay, wd] = v.split(':'); const targetAy=ay; const targetW = wd || null;
-  const flatIdx = state.words.findIndex(x=>{
-    const [s,a,w] = (x.word.word_id||'').split(':');
-    return (!targetW ? a===targetAy : (a===targetAy && w===targetW));
-  });
-  if(flatIdx>=0){
-    const pos = state.order.indexOf(flatIdx);
-    state.idx = (pos>=0? pos : flatIdx);
-    ensureFront();                  // reset to front before drawing
-    renderCard();
-  }
-}
-
-// ---------- events ----------
-els.modeSelect.addEventListener('change', ()=>{ state.mode=els.modeSelect.value; makeOrder(); ensureFront(); renderCard(); });
-els.surahSelect.addEventListener('change', async ()=>{ const i=parseInt(els.surahSelect.value,10); await loadSurahByIndex(i); });
-els.quickGo.addEventListener('click', handleQuickGo);
-els.quickSearch.addEventListener('keydown', e=>{ if(e.key==='Enter') handleQuickGo(); });
-
-els.firstBtn.addEventListener('click', goFirst);
-els.prevBtn.addEventListener('click', goPrev);
-els.flipBtn.addEventListener('click', flip);
-els.nextBtn.addEventListener('click', goNext);
-els.lastBtn.addEventListener('click', goLast);
-
-window.addEventListener('keydown', e=>{
-  if(e.target===els.quickSearch) return;
-  if(e.key==='ArrowRight' || e.key===' ') goNext();
-  else if(e.key==='ArrowLeft') goPrev();
-  else if(e.key.toLowerCase()==='f') flip();
-  else if(e.key.toLowerCase()==='r'){ state.mode=(state.mode==='sequential')?'random':'sequential'; els.modeSelect.value=state.mode; makeOrder(); ensureFront(); renderCard(); }
-});
-
-// init
-(async function init(){ await loadManifest(); })();
+/* errors */
+.error{position:fixed; left:0; right:0; bottom:0; transform:translateY(-100%); background:#c0392b; color:#fff; padding:.6rem .9rem; text-align:center; z-index:60;}
+.hidden{display:none;}
