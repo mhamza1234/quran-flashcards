@@ -1,65 +1,128 @@
-// ----------- State -----------
+console.log("Quran Flashcards FULL build v=full5");
+
+// ---------------- State ----------------
 let manifest = [];
-let data = null;            // current dataset JSON
-let wordsFlat = [];         // flat list of all word entries (for sequential/random)
-let index = 0;              // current flat index
+let data = null;
+let wordsFlat = [];    // [{ a, w, ai, wi, isMajor }]
+let index = 0;
 let mode = "sequential";
 
-// DOM refs
-const surahSelect = document.getElementById('surahSelect');
-const modeSelect  = document.getElementById('modeSelect');
-const jumpInput   = document.getElementById('jumpInput');
-const goBtn       = document.getElementById('goBtn');
+// ---------------- DOM ----------------
+const $ = id => document.getElementById(id);
 
-const crumb    = document.getElementById('crumb');
-const firstBtn = document.getElementById('firstBtn');
-const prevBtn  = document.getElementById('prevBtn');
-const flipBtn  = document.getElementById('flipBtn');
-const nextBtn  = document.getElementById('nextBtn');
-const lastBtn  = document.getElementById('lastBtn');
+const surahSelect = $('surahSelect');
+const modeSelect  = $('modeSelect');
+const jumpInput   = $('jumpInput');
+const goBtn       = $('goBtn');
 
-const frontFace = document.getElementById('frontFace');
-const backFace  = document.getElementById('backFace');
+const crumb = $('crumb');
+const firstBtn = $('firstBtn');
+const prevBtn  = $('prevBtn');
+const flipBtn  = $('flipBtn');
+const nextBtn  = $('nextBtn');
+const lastBtn  = $('lastBtn');
 
-const wordArabic = document.getElementById('wordArabic');
-const wordBangla = document.getElementById('wordBangla');
+const frontFace = $('frontFace');
+const backFace  = $('backFace');
 
-const audioBtn   = document.getElementById('audioBtn');
-const audioEl    = document.getElementById('ayahAudio');
-const audioStatus= document.getElementById('audioStatus');
+const wordArabic = $('wordArabic');
+const wordBangla = $('wordBangla');
 
-const tajSummary = document.getElementById('tajSummary');
-const tajList    = document.getElementById('tajList');
-const tajExample = document.getElementById('tajExample');
-const exArabic   = document.getElementById('exArabic');
-const exBangla   = document.getElementById('exBangla');
+const audioBtn    = $('audioBtn');
+const audioStatus = $('audioStatus');
+const audioEl     = $('ayahAudio');
 
-const backCrumb  = document.getElementById('backCrumb');
-const backArabic = document.getElementById('backArabic');
-const backBangla = document.getElementById('backBangla');
+const tajSummary = $('tajSummary');
+const tajList    = $('tajList');
+const tajExample = $('tajExample');
+const exArabic   = $('exArabic');
+const exBangla   = $('exBangla');
 
-const tabRoots = document.getElementById('tabRoots');
-const tabWbw   = document.getElementById('tabWbw');
-const rootsPane= document.getElementById('rootsPane');
-const wbwPane  = document.getElementById('wbwPane');
-const wbwScope = document.getElementById('wbwScope');
+const backCrumb  = $('backCrumb');
+const backArabic = $('backArabic');
+const backBangla = $('backBangla');
 
-const rootTxt  = document.getElementById('rootTxt');
-const rootMeaningTxt = document.getElementById('rootMeaningTxt');
-const morphTxt = document.getElementById('morphTxt');
-const derivList = document.getElementById('derivList');
-const derivEmpty= document.getElementById('derivEmpty');
+const tabRoots = $('tabRoots');
+const tabWbw   = $('tabWbw');
+const rootsPane= $('rootsPane');
+const wbwPane  = $('wbwPane');
+const wbwScope = $('wbwScope');
 
-const wbwList  = document.getElementById('wbwList');
+const rootTxt  = $('rootTxt');
+const rootMeaningTxt = $('rootMeaningTxt');
+const morphTxt = $('morphTxt');
+const derivList = $('derivList');
+const derivEmpty= $('derivEmpty');
+const wbwList   = $('wbwList');
 
-// ----------- Init -----------
+// --------------- Utils ---------------
+function showBanner(msg){
+  let el = $('errorBanner');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'errorBanner';
+    el.style.cssText = 'background:#3b1e1e;color:#ffd7d7;border:1px solid #6b2b2b;border-left:6px solid #c44545;margin:10px auto;width:min(1000px,94vw);border-radius:10px;padding:10px 12px;font-size:14px;';
+    document.body.prepend(el);
+  }
+  el.textContent = msg;
+}
+
+const val = (obj, ...keys) => {
+  for(const k of keys){ if(obj && obj[k] != null && obj[k] !== '') return obj[k]; }
+  return '';
+};
+
+// Normalize one entry into a common {a,w} shape
+function normalizeEntry(src, isMajor, ai=0, wi=0){
+  if(isMajor){
+    // src is a card
+    const a = {
+      ayah_id: src.ayah_id || src.ayahId || '67:1',
+      arabic: src.ayahArabic || '',
+      bangla: src.ayahBangla || ''
+    };
+    const w = {
+      word_id: src.word_id || src.wordId || `${a.ayah_id}:${wi+1}`,
+      arabic_word: val(src, 'arabic_word','arabic','word','form'),
+      bangla_meaning: val(src, 'bangla_meaning','bangla','meaning_bn','meaning'),
+      root: val(src, 'root'),
+      rootMeaning: val(src, 'rootMeaning','root_meaning'),
+      derivationMethod: val(src, 'derivationMethod','morphology','morph'),
+      tajweed: src.tajweed || null,
+      exampleArabic: src.exampleArabic || '',
+      exampleBangla: src.exampleBangla || '',
+      quranicDerivations: src.quranicDerivations || [],
+      audio: src.audio || null
+    };
+    return { a, w, ai, wi, isMajor:true };
+  }else{
+    // src is {a,w}
+    const a = src.a;
+    const w0 = src.w;
+    const w = {
+      word_id: w0.word_id || `${a.ayah_id}:${wi+1}`,
+      arabic_word: val(w0, 'arabic_word','arabic'),
+      bangla_meaning: val(w0, 'bangla_meaning','bangla'),
+      root: w0.root || '',
+      rootMeaning: val(w0,'rootMeaning','root_meaning'),
+      derivationMethod: val(w0,'derivationMethod','morphology'),
+      tajweed: w0.tajweed || null,
+      exampleArabic: w0.exampleArabic || '',
+      exampleBangla: w0.exampleBangla || '',
+      quranicDerivations: w0.quranicDerivations || [],
+      audio: w0.audio || null
+    };
+    return { a, w, ai:src.ai, wi:src.wi, isMajor:false };
+  }
+}
+
+// --------------- Init ---------------
 init();
 
 async function init(){
   await loadManifest();
   await loadDatasetFromSelect();
 
-  // controls
   modeSelect.addEventListener('change', ()=> mode = modeSelect.value);
   goBtn.addEventListener('click', onGo);
   firstBtn.addEventListener('click', ()=> { index = 0; render(); });
@@ -73,7 +136,7 @@ async function init(){
   tabWbw  .addEventListener('click', ()=> switchTab('wbw'));
   wbwScope.addEventListener('change', ()=> renderBack());
 
-  document.addEventListener('keydown', (e)=>{
+  document.addEventListener('keydown', e=>{
     if(e.code==='Space'){ e.preventDefault(); toggleAudio(); }
     if(e.key==='ArrowRight') next();
     if(e.key==='ArrowLeft')  prev();
@@ -84,182 +147,162 @@ async function init(){
 }
 
 async function loadManifest(){
-  const resp = await fetch('data/manifest.json', { cache: 'no-store' });
-  manifest = await resp.json();
-  surahSelect.innerHTML = manifest.map(m => `<option value="${m.filename}">${m.display || m.name_bn || m.name_ar}</option>`).join('');
-  surahSelect.addEventListener('change', loadDatasetFromSelect);
+  try{
+    const resp = await fetch('data/manifest.json',{cache:'no-store'});
+    if(!resp.ok) throw new Error(`manifest ${resp.status}`);
+    manifest = await resp.json();
+    surahSelect.innerHTML = manifest.map(m=>`<option value="${m.filename}">${m.display || m.name_bn || m.name_ar}</option>`).join('');
+    surahSelect.addEventListener('change', loadDatasetFromSelect);
+  }catch(e){
+    console.error(e);
+    showBanner('Failed to load data/manifest.json');
+  }
 }
 
 async function loadDatasetFromSelect(){
-  const file = surahSelect.value || (manifest[0] && manifest[0].filename);
-  if(!file) return;
-  const resp = await fetch(`data/${file}`, { cache: 'no-store' });
-  data = await resp.json();
+  try{
+    const file = surahSelect.value || (manifest[0] && manifest[0].filename);
+    if(!file) throw new Error('No filename');
+    const url = `data/${file}`;
+    const resp = await fetch(url,{cache:'no-store'});
+    if(!resp.ok) throw new Error(`${url} ${resp.status}`);
+    data = await resp.json();
 
-  // build flat word list [ {ayah, word, ayahIndex, wordIndex} ... ]
-  wordsFlat = [];
-  (data.ayats || []).forEach((a, ai)=>{
-    (a.words || []).forEach((w, wi)=>{
-      wordsFlat.push({ a, w, ai, wi });
-    });
-  });
-  index = 0;
-  render();
-}
+    wordsFlat = [];
 
-function onGo(){
-  const val = (jumpInput.value || '').trim();
-  // Accept 67:5 or 67:5:3
-  const m = val.match(/^(\d+):(\d+)(?::(\d+))?$/);
-  if(!m){ return; }
-  const ay = `${m[1]}:${m[2]}`;
-  const wantWord = m[3] ? parseInt(m[3],10) : null;
+    if (Array.isArray(data.cards)) {
+      // Major deck schema
+      data.cards.forEach((c, i)=>{
+        wordsFlat.push(normalizeEntry(c, true, 0, i));
+      });
+    } else {
+      // Full deck schema
+      (data.ayats || []).forEach((a, ai)=>{
+        (a.words || []).forEach((w, wi)=>{
+          wordsFlat.push(normalizeEntry({a,w,ai,wi}, false));
+        });
+      });
+    }
 
-  // find first index that matches ayah (and word if provided)
-  const idx = wordsFlat.findIndex(x=>{
-    const [s,a] = x.a.ayah_id.split(':').map(Number);
-    const [ss,aa] = ay.split(':').map(Number);
-    if(s!==ss || a!==aa) return false;
-    if(wantWord==null) return true;
-    const wi = parseInt(x.w.word_id.split(':')[2],10);
-    return wi===wantWord;
-  });
-  if(idx>=0){ index = idx; render(); }
-}
-
-function prev(){
-  if(mode==='random'){
-    index = Math.floor(Math.random()*wordsFlat.length);
-  }else{
-    index = Math.max(0, index-1);
+    if(!wordsFlat.length){
+      showBanner('Loaded deck but found 0 words. Check your JSON keys.');
+    }
+    index = 0;
+    render();
+  }catch(e){
+    console.error(e);
+    showBanner('Failed to load selected deck. Check path & JSON.');
   }
+}
+
+// --------------- Navigation ---------------
+function prev(){
+  if(!wordsFlat.length) return;
+  if(mode==='random') index = Math.floor(Math.random()*wordsFlat.length);
+  else index = Math.max(0,index-1);
   render();
 }
 function next(){
-  if(mode==='random'){
-    index = Math.floor(Math.random()*wordsFlat.length);
-  }else{
-    index = Math.min(wordsFlat.length-1, index+1);
-  }
+  if(!wordsFlat.length) return;
+  if(mode==='random') index = Math.floor(Math.random()*wordsFlat.length);
+  else index = Math.min(wordsFlat.length-1,index+1);
   render();
 }
-
 function flip(){
-  const f = frontFace.style.display !== 'none';
-  frontFace.style.display = f ? 'none' : 'block';
-  backFace .style.display = f ? 'block' : 'none';
-  if(!f) stopAudio();
-  if(!f) renderBack(); // when flipping to back, (re)render its content
+  const showingFront = (frontFace.style.display !== 'none');
+  if (showingFront){
+    frontFace.style.display = 'none';
+    backFace .style.display = 'block';
+    renderBack();
+  }else{
+    backFace .style.display = 'none';
+    frontFace.style.display = 'block';
+    stopAudio();
+  }
 }
 
+// --------------- Audio ---------------
 function toggleAudio(){
-  const { w } = wordsFlat[index];
-  if(!w.audio || !w.audio.ayahAudioUrl){
-    audioStatus.textContent = 'No audio';
-    return;
-  }
-  if(audioEl.src !== w.audio.ayahAudioUrl){
-    audioEl.src = w.audio.ayahAudioUrl;
-  }
+  const cur = wordsFlat[index]; if(!cur) return;
+  const url = cur.w?.audio?.ayahAudioUrl || cur.w?.audio?.url || '';
+  if(!url){ audioStatus.textContent='No audio'; return; }
+  if(audioEl.src !== url){ audioEl.src = url; }
   if(audioEl.paused){
-    audioEl.play().then(()=>{
-      audioStatus.textContent = 'Playing… (Space to pause)';
-    }).catch(()=>{ audioStatus.textContent = 'Audio blocked (user gesture needed)'; });
+    audioEl.play().then(()=> audioStatus.textContent='Playing… (Space to pause)')
+                  .catch(()=> audioStatus.textContent='Audio blocked');
   }else{
-    audioEl.pause();
-    audioStatus.textContent = 'Paused';
+    audioEl.pause(); audioStatus.textContent='Paused';
   }
 }
 function stopAudio(){ try{ audioEl.pause(); audioStatus.textContent='Ready'; }catch(e){} }
 
-// ----------- Rendering -----------
+// --------------- Render ---------------
 function render(){
-  const { a, w, ai, wi } = wordsFlat[index] || {};
-
-  if(!w){
+  const cur = wordsFlat[index];
+  if(!cur){
     crumb.textContent = '—';
     wordArabic.textContent = '—';
     wordBangla.textContent = '—';
     tajSummary.innerHTML = '';
     tajList.innerHTML = '<div class="taj-line muted">No data.</div>';
     tajExample.style.display='none';
-    backCrumb.textContent='—'; backArabic.textContent='—'; backBangla.textContent='—';
-    posText();
     return;
   }
+  const { a, w, wi } = cur;
 
-  // crumb & counters
-  crumb.textContent = `${a.ayah_id}:${wi+1} — ${index+1} / ${wordsFlat.length}`;
-  function posText(){}
+  // Front visible by default
+  frontFace.style.display = 'block';
+  backFace .style.display = 'none';
 
-  // FRONT
+  crumb.textContent = `${a.ayah_id || '—'}:${(wi!=null?wi+1:'1')} — ${index+1} / ${wordsFlat.length}`;
   wordArabic.textContent = w.arabic_word || '—';
   wordBangla .textContent = w.bangla_meaning || '—';
 
-  // Tajwīd summary chips
+  // Tajwīd chips + lines
   tajSummary.innerHTML = '';
-  const chips = [];
-  if(w.tajweed && Array.isArray(w.tajweed.rules)){
-    w.tajweed.rules.forEach(r=>{
-      const chip = document.createElement('span');
-      chip.className = 'chip';
-      chip.innerHTML = `<b>${r.rule}</b>${r.subtype?` — ${r.subtype}`:''}`;
-      chips.push(chip);
-    });
-  }
-  if(chips.length){ chips.forEach(c=>tajSummary.appendChild(c)); }
-
-  // Tajwīd lines (detailed)
   tajList.innerHTML = '';
-  if(w.tajweed && Array.isArray(w.tajweed.rules) && w.tajweed.rules.length){
-    w.tajweed.rules.forEach(r=>{
+  const rules = (w.tajweed && Array.isArray(w.tajweed.rules)) ? w.tajweed.rules : [];
+  if(rules.length){
+    rules.forEach(r=>{
+      const chip = document.createElement('span');
+      chip.className='chip';
+      chip.innerHTML = `<b>${r.rule}</b>${r.subtype?` — ${r.subtype}`:''}`;
+      tajSummary.appendChild(chip);
+
       const line = document.createElement('div');
-      line.className = 'taj-line';
-      const key = `<span class="taj-key">${r.rule}${r.subtype?` — ${r.subtype}`:''}</span>`;
-      const ar  = r.trigger ? ` <span class="taj-ar">${r.trigger}</span>` : '';
-      const note= r.note ? ` — ${r.note}` : '';
-      line.innerHTML = key + ar + note;
+      line.className='taj-line';
+      line.innerHTML = `<span class="taj-key">${r.rule}${r.subtype?` — ${r.subtype}`:''}</span>${r.trigger?` <span class="taj-ar">${r.trigger}</span>`:''}${r.note?` — ${r.note}`:''}`;
       tajList.appendChild(line);
     });
   }else{
-    const line = document.createElement('div');
-    line.className = 'taj-line muted';
-    line.textContent = 'No recorded rules for this word.';
-    tajList.appendChild(line);
+    tajList.innerHTML = '<div class="taj-line muted">No data.</div>';
   }
 
-  // Example block (if provided)
   if(w.exampleArabic || w.exampleBangla){
     exArabic.textContent = w.exampleArabic || '';
     exBangla.textContent = w.exampleBangla || '';
-    tajExample.style.display = 'block';
+    tajExample.style.display='block';
   }else{
-    tajExample.style.display = 'none';
+    tajExample.style.display='none';
   }
 
-  // ensure front visible by default
-  frontFace.style.display = 'block';
-  backFace .style.display = 'none';
-  audioEl.src = ''; // reset audio source (avoid autoplay when switching words)
-  audioStatus.textContent = 'Ready';
+  audioEl.src=''; audioStatus.textContent='Ready';
 }
 
 function renderBack(){
-  const { a, w, ai, wi } = wordsFlat[index];
+  const cur = wordsFlat[index]; if(!cur) return;
+  const { a, w, wi } = cur;
 
-  backCrumb.textContent  = `${a.ayah_id}:${wi+1}`;
+  backCrumb.textContent  = `${a.ayah_id || '—'}:${(wi!=null?wi+1:'1')}`;
   backArabic.textContent = w.arabic_word || '—';
   backBangla.textContent = w.bangla_meaning || '—';
 
   const onRoots = tabRoots.classList.contains('active');
-
   if(onRoots){
-    // Fill details
-    rootTxt.textContent = w.root || '—';
+    rootTxt.textContent        = w.root || '—';
     rootMeaningTxt.textContent = w.rootMeaning || '—';
-    morphTxt.textContent = w.derivationMethod || '—';
+    morphTxt.textContent       = w.derivationMethod || '—';
 
-    // Derivations cards
     derivList.innerHTML = '';
     const derivs = Array.isArray(w.quranicDerivations) ? w.quranicDerivations : [];
     if(!derivs.length){ derivEmpty.style.display='block'; }
@@ -268,7 +311,7 @@ function renderBack(){
       derivs.forEach(d=>{
         const refs = (d.occurrences||[]).map(o=>o.ayah_id).join(', ');
         const card = document.createElement('div');
-        card.className = 'deriv-card';
+        card.className='deriv-card';
         card.innerHTML = `
           <div class="deriv-ar" dir="rtl">${d.arabic || ''}</div>
           <div>
@@ -282,32 +325,28 @@ function renderBack(){
     // Word-by-Word
     const whole = wbwScope.checked;
     wbwList.innerHTML = '';
-
     if(whole){
-      // Entire surah (all ayats)
-      (data.ayats||[]).forEach(ay=>{
+      (data.ayats || []).forEach(ay=>{
         const hdr = document.createElement('div');
-        hdr.className = 'detail-row';
+        hdr.className='detail-row';
         hdr.innerHTML = `<b>${ay.ayah_id}</b>`;
         wbwList.appendChild(hdr);
-
         (ay.words||[]).forEach(x=>{
           const row = document.createElement('div');
-          row.className = 'wbw-row';
+          row.className='wbw-row';
           row.innerHTML = `
-            <div class="wbw-ar" dir="rtl">${x.arabic_word}</div>
-            <div class="wbw-bn">${x.bangla_meaning}</div>`;
+            <div class="wbw-ar" dir="rtl">${x.arabic_word || x.arabic || ''}</div>
+            <div class="wbw-bn">${x.bangla_meaning || x.bangla || ''}</div>`;
           wbwList.appendChild(row);
         });
       });
     }else{
-      // Current ayah only
-      (a.words||[]).forEach(x=>{
+      (a.words || []).forEach(x=>{
         const row = document.createElement('div');
-        row.className = 'wbw-row';
+        row.className='wbw-row';
         row.innerHTML = `
-          <div class="wbw-ar" dir="rtl">${x.arabic_word}</div>
-          <div class="wbw-bn">${x.bangla_meaning}</div>`;
+          <div class="wbw-ar" dir="rtl">${x.arabic_word || x.arabic || ''}</div>
+          <div class="wbw-bn">${x.bangla_meaning || x.bangla || ''}</div>`;
         wbwList.appendChild(row);
       });
     }
@@ -318,13 +357,30 @@ function switchTab(name){
   if(name==='roots'){
     tabRoots.classList.add('active');
     tabWbw.classList.remove('active');
-    rootsPane.style.display = 'block';
-    wbwPane.style.display   = 'none';
+    rootsPane.style.display='block';
+    wbwPane.style.display='none';
   }else{
     tabWbw.classList.add('active');
     tabRoots.classList.remove('active');
-    rootsPane.style.display = 'none';
-    wbwPane.style.display   = 'block';
+    rootsPane.style.display='none';
+    wbwPane.style.display='block';
   }
   renderBack();
+}
+
+function onGo(){
+  const v = (jumpInput.value||'').trim();
+  const m = v.match(/^(\d+):(\d+)(?::(\d+))?$/);
+  if(!m || !wordsFlat.length) return;
+  const wantAy = `${m[1]}:${m[2]}`;
+  const wantW  = m[3] ? parseInt(m[3],10) : null;
+
+  const found = wordsFlat.findIndex(x=>{
+    const ay = x.a.ayah_id;
+    if(ay !== wantAy) return false;
+    if(wantW==null) return true;
+    const wi = parseInt((x.w.word_id||'0:0:0').split(':')[2],10);
+    return wi===wantW;
+  });
+  if(found>=0){ index = found; render(); }
 }
