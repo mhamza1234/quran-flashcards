@@ -5,20 +5,31 @@
     "name_ar": "سورة الملك",
     "name_bn": "সূরা আল-মুলক (৬৭)",
     "display": "Al-Mulk (67) — Full",
-    "filename": "mulk_1_30_detailed.json"
-  },
-  {
-    "id": "67-major",
-    "surah_number": 67,
-    "name_bn": "সূরা আল-মুলক (৬৭) — Major Words",
-    "display": "Al-Mulk (67) — Major Words",
-    "filename": "mulk_1_30_major.json"
+    "filename": "mulk_1_30_detailed.json",
+
+    "layout": "full-centered-wbw",
+    "defaultFace": "front",
+    "features": {
+      "rightPanel": false,
+      "tabsOnBack": false,
+      "tajweed": false,
+      "audio": false
+    }
   },
   {
     "id": "67-major-audio",
     "surah_number": 67,
     "name_bn": "সূরা আল-মুলক (৬৭) — Major Words + Audio",
     "display": "Al-Mulk (67) — Major Words + Audio",
-    "filename": "mulk_1_30_major_audio.json"
+    "filename": "mulk_1_30_major_audio.json",
+
+    "layout": "tajweed-audio-with-tabs",
+    "defaultFace": "front",
+    "features": {
+      "rightPanel": false,
+      "tabsOnBack": true,
+      "tajweed": true,
+      "audio": true
+    }
   }
 ]
