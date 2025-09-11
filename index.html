@@ -1,139 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qur’an Flashcards</title>
-  <link rel="stylesheet" href="styles.css?v=full1" />
+  <link rel="stylesheet" href="styles.css?v=ui6" />
 </head>
-<body>
-
-  <!-- Top Navigation Bar (sticky) -->
-  <header class="header-bar">
+<body class="layout-full">
+  <!-- Top bar -->
+  <div class="topbar">
     <div class="brand">Qur’an Flashcards</div>
-    <div class="spacer"></div>
+    <div class="controls">
+      <label class="ctl">
+        <span>সুরা:</span>
+        <select id="surahSelect"></select>
+      </label>
+      <label class="ctl">
+        <span>মোড:</span>
+        <select id="modeSelect">
+          <option value="sequential" selected>Sequential</option>
+          <option value="random">Random</option>
+        </select>
+      </label>
+      <label class="ctl">
+        <span>যেমন:</span>
+        <input id="quickSearch" class="search" placeholder="67:5 বা 67:5:3" />
+      </label>
+      <button id="quickGo" class="btn gold small">Go</button>
+    </div>
+  </div>
 
-    <label class="ctl">
-      <span>সুরা:</span>
-      <select id="surahSelect" class="select"></select>
-    </label>
+  <div id="errorBanner" class="error hidden"></div>
 
-    <label class="ctl">
-      <span>মোড:</span>
-      <select id="modeSelect" class="select">
-        <option value="sequential">Sequential</option>
-        <option value="random">Random</option>
-      </select>
-    </label>
+  <!-- Ayah strip -->
+  <div class="ayah-strip">
+    <div id="ayahArabic" class="ayah-ar" dir="rtl">﴿ ﴾</div>
+    <div id="ayahBangla" class="ayah-bn">—</div>
+  </div>
 
-    <label class="ctl">
-      <span>যেমন:</span>
-      <input id="jumpInput" class="select" placeholder="67:5 বা 67:5:3" />
-    </label>
-
-    <button id="goBtn" class="go">Go</button>
-  </header>
-
-  <!-- Main 2-column layout -->
-  <main class="main">
-    <!-- Center Flashcard -->
-    <section class="flashcard" aria-live="polite">
-
-      <div class="card-header">
-        <div id="crumb" class="crumb">—</div>
-        <div class="nav">
-          <button class="btn" id="firstBtn">« First</button>
-          <button class="btn" id="prevBtn">‹ Prev</button>
-          <button class="btn gold" id="flipBtn">Flip</button>
-          <button class="btn" id="nextBtn">Next ›</button>
-          <button class="btn" id="lastBtn">Last »</button>
-        </div>
-      </div>
-
+  <!-- Card -->
+  <div class="card-wrap">
+    <div id="card" class="card">
       <!-- FRONT -->
-      <div id="frontFace" class="card-body face" style="display:block;">
-        <div class="face-inner">
-          <div class="word-ar" id="wordArabic" dir="rtl">—</div>
-          <div class="word-bn" id="wordBangla">—</div>
+      <div class="face front">
+        <div class="center-block">
+          <div class="chip" id="wordId">—</div>
 
-          <div class="audio-row">
-            <button class="audio-btn" id="audioBtn" title="Play/Pause">🔊</button>
-            <div id="audioStatus" class="audio-status muted">Ready</div>
+          <h1 id="frontArabicWord" class="word-ar" dir="rtl">—</h1>
+          <div id="frontBanglaMeaning" class="word-bn">—</div>
+
+          <div class="meta-line">
+            <span id="frontRoot" class="meta-piece"></span>
+            <span id="frontRootMeaning" class="meta-piece"></span>
+            <span id="frontDerivationMethod" class="meta-piece"></span>
           </div>
 
-          <div class="sep"></div>
+          <!-- Audio (only shown for audio decks) -->
+          <button id="audioBtn" class="audio-fab hidden" title="Play/Pause">🔊</button>
 
-          <!-- Tajwīd -->
-          <div class="block-title">Tajwīd Rules</div>
-          <div id="tajSummary" class="taj-summary"></div>
-          <div id="tajList" class="taj-list"></div>
-
-          <div id="tajExample" class="taj-example" style="display:none;">
-            <div class="ex-title">Example</div>
-            <div class="ex-line">
-              <span class="ex-ar" dir="rtl" id="exArabic"></span>
-              <span class="ex-bn" id="exBangla"></span>
+          <!-- Tajwīd (only shown for tajweed decks) -->
+          <div id="tajBlock" class="taj-block hidden">
+            <div class="block-title">Tajwid Rules</div>
+            <div id="tajSummary" class="muted"></div>
+            <div id="tajList"></div>
+            <div id="tajExample" class="taj-example hidden">
+              <div class="ex-line">
+                <span id="exArabic" dir="rtl"></span>
+                <span id="exBangla"></span>
+              </div>
             </div>
           </div>
-
-          <div class="hint">Flip for Root Details & Quranic Derivations • Press F to flip</div>
         </div>
       </div>
 
       <!-- BACK -->
-      <div id="backFace" class="card-body face" style="display:none;">
-        <div class="face-inner">
-
-          <div class="back-top">
-            <div>
-              <div class="sub-id" id="backCrumb">—</div>
-              <div class="back-ar" dir="rtl" id="backArabic">—</div>
-              <div class="back-bn" id="backBangla">—</div>
-            </div>
-          </div>
-
-          <div class="tabs">
-            <button class="tab active" id="tabRoots">Roots & Related Words</button>
-            <button class="tab" id="tabWbw">Word-by-Word</button>
-          </div>
-
-          <!-- Tab: Roots & Related -->
-          <div id="rootsPane" class="tabpane" style="display:block;">
-            <div class="details">
-              <div class="detail-row"><b>Root:</b> <span id="rootTxt">—</span></div>
-              <div class="detail-row"><b>Root Meaning:</b> <span id="rootMeaningTxt">—</span></div>
-              <div class="detail-row"><b>Morphology:</b> <span id="morphTxt">—</span></div>
-            </div>
-
-            <div class="sep"></div>
-
-            <div class="block-title">Quranic Derivations</div>
-            <div id="derivEmpty" class="muted" style="display:none;">No related forms found.</div>
-            <div class="deriv-list" id="derivList"></div>
-          </div>
-
-          <!-- Tab: Word-by-Word -->
-          <div id="wbwPane" class="tabpane" style="display:none;">
-            <div class="wbw-toolbar">
-              <label><input id="wbwScope" type="checkbox"> Whole Surah</label>
-            </div>
-            <div id="wbwList" class="wbw-list"></div>
-          </div>
-
+      <div class="face back">
+        <div id="backHost" class="back-host">
+          <!-- For FULL layout we render WBW list here. -->
+          <!-- For AUDIO layout we render tabs + panels here. -->
         </div>
       </div>
+    </div>
+  </div>
 
-    </section>
-
-    <!-- Right panel placeholder -->
-    <aside class="info-panel muted">
-      <div class="panel-empty">
-        Back of card contains Roots & Derivations and Word-by-Word.
-      </div>
-    </aside>
-  </main>
+  <!-- Pager -->
+  <div class="nav">
+    <button id="firstBtn" class="btn">⏮︎ First</button>
+    <button id="prevBtn"  class="btn">◀︎ Prev</button>
+    <button id="flipBtn"  class="btn gold">⟲ Flip</button>
+    <button id="nextBtn"  class="btn">Next ▶︎</button>
+    <button id="lastBtn"  class="btn">Last ⏭︎</button>
+    <span id="positionText" class="pos">0 / 0</span>
+  </div>
 
   <audio id="ayahAudio" preload="none"></audio>
-  <script src="app.js?v=full1"></script>
+  <script defer src="app.js?v=ui6"></script>
 </body>
 </html>
