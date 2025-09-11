@@ -1,277 +1,383 @@
-/* ===============================
-   Quran Flashcards — UI strict
-   =============================== */
+/* =========================
+   Quran Flashcards (v3)
+   ========================= */
 
+/* State */
 let manifest = [];
-let deck = null;
-let wordsFlat = [];
+let deck = null;            // raw deck JSON
+let layout = "full";        // "full" | "audio"
+let wordsFlat = [];         // [{ a, w, ai, wi }]
 let idx = 0;
 let mode = "sequential";
-let features = { audio:false, tajweed:false };
-let currentLayout = "full-centered-wbw";
 
-const $  = id => document.getElementById(id);
-const el = sel => document.querySelector(sel);
+/* DOM helpers */
+const $ = (id) => document.getElementById(id);
 
-const selSurah = $('surahSelect');
-const selMode  = $('modeSelect');
-const quick    = $('quickSearch');
-const quickGo  = $('quickGo');
+/* Controls / common */
+const selSurah   = $('surahSelect');
+const selMode    = $('modeSelect');
+const jumpInput  = $('jumpInput');
+const goBtn      = $('goBtn');
+const errorBanner= $('errorBanner');
+const posText    = $('positionText');
 
-const errorBanner = $('errorBanner');
-
+/* Ayah header */
 const ayahArabic = $('ayahArabic');
 const ayahBangla = $('ayahBangla');
 
-const wordId      = $('wordId');
-const frontArabic = $('frontArabicWord');
-const frontBangla = $('frontBanglaMeaning');
-const frontRoot   = $('frontRoot');
-const frontRootM  = $('frontRootMeaning');
-const frontDerivM = $('frontDerivationMethod');
-
-const audioBtn = $('audioBtn');
-const tajBlock = $('tajBlock');
+/* FRONT */
+const frontFace  = $('frontFace');
+const crumb      = $('crumb');
+const frontArabic= $('frontArabicWord');
+const frontBangla= $('frontBanglaMeaning');
+const chipRoot   = $('chipRoot');
+const chipRootM  = $('chipRootMeaning');
+const chipMorph  = $('chipMorph');
+const audioBtn   = $('audioBtn');
+const tajBlock   = $('tajBlock');
 const tajSummary = $('tajSummary');
-const tajList = $('tajList');
+const tajList    = $('tajList');
 const tajExample = $('tajExample');
-const exAr = $('exArabic');
-const exBn = $('exBangla');
+const exArabic   = $('exArabic');
+const exBangla   = $('exBangla');
+const frontHint  = $('frontHint');
+const ayahAudio  = $('ayahAudio');
 
-const backHost = $('backHost');
+/* BACK */
+const backFace   = $('backFace');
+const backTabs   = $('backTabs');
+const tabDeriv   = $('tabDeriv');
+const tabWbw     = $('tabWbw');
 
-const card = $('card');
-const posText = $('positionText');
+const rootsPane  = $('rootsPane');
+const rootDetails= $('rootDetails');
+const rootTxt    = $('rootTxt');
+const rootMeaningTxt = $('rootMeaningTxt');
+const morphTxt   = $('morphTxt');
+const derivTitle = $('derivTitle');
+const derivEmpty = $('derivEmpty');
+const derivList  = $('derivList');
 
-const btnFirst = $('firstBtn');
-const btnPrev  = $('prevBtn');
-const btnFlip  = $('flipBtn');
-const btnNext  = $('nextBtn');
-const btnLast  = $('lastBtn');
+const wbwPane    = $('wbwPane');
+const wbwToolbar = $('wbwToolbar');
+const wbwScope   = $('wbwScope');
+const wbwList    = $('wbwList');
 
+/* Nav buttons */
+const firstBtn   = $('firstBtn');
+const prevBtn    = $('prevBtn');
+const flipBtn    = $('flipBtn');
+const nextBtn    = $('nextBtn');
+const lastBtn    = $('lastBtn');
+
+/* Init */
 init();
 
 async function init(){
   try{
     await loadManifest();
+    hookEvents();
     await loadSelectedDeck();
-  }catch(e){ showError(e.message||String(e)); }
+  }catch(err){
+    showError(err?.message || String(err));
+  }
+}
 
-  selMode.addEventListener('change', ()=> mode=selMode.value );
+function hookEvents(){
+  selMode.addEventListener('change', ()=> { mode = selMode.value; });
+
   selSurah.addEventListener('change', loadSelectedDeck);
-  quickGo.addEventListener('click', onQuickGo);
-  quick.addEventListener('keydown', e=>{ if(e.key==='Enter') onQuickGo(); });
+  goBtn.addEventListener('click', onQuickGo);
 
-  btnFirst.addEventListener('click', ()=>{ idx=0; render(); });
-  btnLast .addEventListener('click', ()=>{ idx=Math.max(0,wordsFlat.length-1); render(); });
-  btnPrev .addEventListener('click', prev);
-  btnNext .addEventListener('click', next);
-  btnFlip .addEventListener('click', ()=> card.classList.toggle('show-back'));
+  firstBtn.addEventListener('click', ()=> { idx = 0; render(); });
+  lastBtn .addEventListener('click', ()=> { idx = Math.max(0, wordsFlat.length-1); render(); });
+  prevBtn .addEventListener('click', prev);
+  nextBtn .addEventListener('click', next);
+  flipBtn .addEventListener('click', flip);
 
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight') next();
-    if(e.key==='ArrowLeft') prev();
-    if(e.key.toLowerCase()==='f') card.classList.toggle('show-back');
+  tabDeriv?.addEventListener('click', ()=>{
+    tabDeriv.classList.add('active'); tabWbw.classList.remove('active');
+    rootsPane.style.display='block'; wbwPane.style.display='none';
   });
+  tabWbw?.addEventListener('click', ()=>{
+    tabWbw.classList.add('active'); tabDeriv.classList.remove('active');
+    rootsPane.style.display='none'; wbwPane.style.display='block';
+    buildWbwList({wholeSurah: wbwScope?.checked ?? false, ayahIdx: currentAyahIndex()});
+  });
+  wbwScope?.addEventListener('change', ()=>{
+    buildWbwList({wholeSurah: wbwScope.checked, ayahIdx: currentAyahIndex()});
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft')  prev();
+    if(e.key.toLowerCase()==='f') flip();
+  });
+
+  audioBtn.addEventListener('click', toggleAudio);
 }
 
 async function loadManifest(){
   clearError();
-  const res = await fetch('data/manifest.json', {cache:'no-store'});
-  if(!res.ok) throw new Error('Could not load manifest.json');
+  const res = await fetch('data/manifest.json?v=3', {cache:"no-store"});
+  if(!res.ok) throw new Error(`Cannot load data/manifest.json (${res.status})`);
   manifest = await res.json();
+
   selSurah.innerHTML = manifest.map(m =>
-    `<option value="${m.filename}">${m.display || m.name_bn || m.name_ar || m.id}</option>`
+    `<option value="${m.filename}" data-layout="${m.layout || 'full'}">${m.display || m.name_bn || m.id}</option>`
   ).join('');
 }
 
 async function loadSelectedDeck(){
   clearError();
-  const filename = selSurah.value || (manifest[0] && manifest[0].filename);
-  const man = (manifest||[]).find(m=>m.filename===filename) || {};
-  applyLayout(man.layout, man.features, man.defaultFace);
+  const opt = selSurah.selectedOptions[0];
+  const filename = opt?.value || manifest?.[0]?.filename;
+  layout = opt?.dataset?.layout || manifest?.[0]?.layout || 'full';
 
-  const res = await fetch(`data/${filename}`, {cache:'no-store'});
+  const res = await fetch(`data/${filename}?v=3`, {cache:"no-store"});
   if(!res.ok){
-    wordsFlat=[]; deck=null; idx=0; hardClear();
     showError(`Failed to load ${filename} (${res.status}).`);
+    deck = null; wordsFlat = []; idx=0; render();
     return;
   }
   deck = await res.json();
-  const ui = deck.ui || {};
-  applyLayout(ui.layout || man.layout, Object.assign({}, man.features||{}, ui.features||{}), ui.defaultFace || man.defaultFace);
-
-  // flatten
-  wordsFlat=[];
-  (deck.ayats||[]).forEach((a,ai)=>{
-    (a.words||[]).forEach((w,wi)=> wordsFlat.push({a,w,ai,wi}));
+  // flatten words
+  wordsFlat = [];
+  (deck.ayats || []).forEach((a, ai)=>{
+    (a.words || []).forEach((w, wi)=>{
+      wordsFlat.push({ a, w, ai, wi });
+    });
   });
-  idx=0;
+  idx = 0;
   render();
 }
 
-function applyLayout(layout, feats={}, defaultFace){
-  currentLayout = layout || 'full-centered-wbw';
-  features = Object.assign({audio:false,tajweed:false}, feats);
-
-  document.body.classList.remove('layout-full','layout-audio');
-  if(currentLayout==='tajweed-audio-with-tabs') document.body.classList.add('layout-audio');
-  else document.body.classList.add('layout-full');
-
-  if(typeof defaultFace==='string'){
-    card.classList.toggle('show-back', defaultFace==='back');
-  }
-}
-
-/* Nav helpers */
+/* Navigation */
 function prev(){
   if(!wordsFlat.length) return;
-  if(mode==='random') idx=Math.floor(Math.random()*wordsFlat.length);
-  else idx=Math.max(0,idx-1);
+  if(mode==='random'){ idx = Math.floor(Math.random()*wordsFlat.length); }
+  else idx = Math.max(0, idx-1);
   render();
 }
 function next(){
   if(!wordsFlat.length) return;
-  if(mode==='random') idx=Math.floor(Math.random()*wordsFlat.length);
-  else idx=Math.min(wordsFlat.length-1,idx+1);
+  if(mode==='random'){ idx = Math.floor(Math.random()*wordsFlat.length); }
+  else idx = Math.min(wordsFlat.length-1, idx+1);
   render();
 }
-
-function onQuickGo(){
-  const v=(quick.value||'').trim();
-  const m=v.match(/^(\d+)[:.](\d+)(?:[:.](\d+))?$/);
-  if(!m||!wordsFlat.length) return;
-  const s=+m[1], a=+m[2], w=m[3]?+m[3]:null;
-  const i=wordsFlat.findIndex(x=>{
-    const [ss,aa]=(x.a.ayah_id||'').split(':').map(Number);
-    if(ss!==s||aa!==a) return false;
-    if(w==null) return true;
-    const wi=+(String(x.w.word_id||'0:0:0').split(':')[2]||0);
-    return wi===w;
-  });
-  if(i>=0){ idx=i; render(); }
+function flip(){
+  if(frontFace.style.display==='none'){
+    frontFace.style.display='block';
+    backFace.style.display='none';
+  }else{
+    frontFace.style.display='none';
+    backFace.style.display='block';
+    renderBack(); // ensure back is populated fresh
+  }
+}
+function currentAyahIndex(){
+  const cur = wordsFlat[idx];
+  return cur ? cur.ai : 0;
 }
 
-/* RENDER */
-function render(){
-  if(!wordsFlat.length){ hardClear(); return; }
+/* Quick jump */
+function onQuickGo(){
+  const v = (jumpInput.value || '').trim();
+  const m = v.match(/^(\d+):(\d+)(?::(\d+))?$/);
+  if(!m || !wordsFlat.length) return;
+  const s = +m[1], a = +m[2], w = m[3] ? +m[3] : null;
 
-  const {a,w,wi}=wordsFlat[idx];
+  const found = wordsFlat.findIndex(x=>{
+    const [ss,aa] = x.a.ayah_id.split(':').map(Number);
+    if(ss!==s || aa!==a) return false;
+    if(w==null) return true;
+    const wi = +(x.w.word_id?.split(':')[2] || 0);
+    return wi===w;
+  });
+  if(found>=0){ idx = found; render(); }
+}
+
+/* Render */
+function render(){
+  // guards
+  if(!wordsFlat.length){
+    ayahArabic.textContent = '﴿ ﴾';
+    ayahBangla.textContent = '—';
+    crumb.textContent = '—';
+    frontArabic.textContent = '—'; frontBangla.textContent='—';
+    chipRoot.textContent=chipRootM.textContent=chipMorph.textContent='';
+    tajBlock.classList.add('hidden');
+    audioBtn.classList.add('hidden');
+    posText.textContent = '0 / 0';
+    return;
+  }
+
+  const {a, w, ai, wi} = wordsFlat[idx];
+
+  // header
   ayahArabic.textContent = a.arabic || '﴿ ﴾';
   ayahBangla.textContent = a.bangla || '—';
-  posText.textContent = `${idx+1} / ${wordsFlat.length}`;
 
-  // front (both layouts share same top; tajweed/audio hidden by CSS for full)
-  wordId.textContent = `${a.ayah_id}:${(wi||0)+1}`;
+  // front main
+  crumb.textContent = `${a.ayah_id} — ${idx+1} / ${wordsFlat.length}`;
   frontArabic.textContent = w.arabic_word || '—';
   frontBangla.textContent = w.bangla_meaning || '—';
-  frontRoot.textContent   = w.root || '';
-  frontRootM.textContent  = w.rootMeaning || '';
-  frontDerivM.textContent = w.derivationMethod || '';
 
-  // Audio/Tajwid visibility
-  if(currentLayout==='tajweed-audio-with-tabs'){
-    if(features.audio) audioBtn.classList.remove('hidden'); else audioBtn.classList.add('hidden');
-    if(features.tajweed && w.tajweed && (w.tajweed.summary || (w.tajweed.rules||[]).length)){
+  // labeled chips
+  chipRoot.innerHTML  = `<span class="k">Root:</span> <span class="v ar" dir="rtl">${w.root || '—'}</span>`;
+  chipRootM.innerHTML = `<span class="k">Root Meaning:</span> <span class="v">${w.rootMeaning || '—'}</span>`;
+  chipMorph.innerHTML = `<span class="k">Morphology:</span> <span class="v">${w.derivationMethod || '—'}</span>`;
+
+  // layout-specific front
+  if(layout==='audio'){
+    // audio
+    const audioUrl = w.audio || a.audio_ayah || deck.audio_ayah || '';
+    if(audioUrl){
+      audioBtn.classList.remove('hidden');
+      ayahAudio.src = audioUrl;
+    }else{
+      audioBtn.classList.add('hidden');
+      ayahAudio.removeAttribute('src');
+    }
+
+    // tajweed (only when present)
+    const tj = w.tajweed || {};
+    const hasTaj = (tj.summary || '') || (Array.isArray(tj.rules) && tj.rules.length);
+    if(hasTaj){
       tajBlock.classList.remove('hidden');
-      tajSummary.textContent = w.tajweed.summary || '';
-      tajList.innerHTML = (w.tajweed.rules||[]).map(r=>`<div class="taj-row"><b>${r.title||''}</b> — ${r.text||''}</div>`).join('');
-      if(w.tajweed.example && (w.tajweed.example.ar || w.tajweed.example.bn)){
+      tajSummary.textContent = tj.summary || '';
+      tajList.innerHTML = (tj.rules || []).map(r=>`<div class="rule">${r}</div>`).join('');
+      if(tj.exampleArabic || tj.exampleBangla){
         tajExample.classList.remove('hidden');
-        exAr.textContent = w.tajweed.example.ar || '';
-        exBn.textContent = w.tajweed.example.bn || '';
+        exArabic.textContent = tj.exampleArabic || '';
+        exBangla.textContent = tj.exampleBangla || '';
       }else{
         tajExample.classList.add('hidden');
-        exAr.textContent = exBn.textContent = '';
       }
     }else{
       tajBlock.classList.add('hidden');
-      tajSummary.textContent=''; tajList.innerHTML=''; tajExample.classList.add('hidden');
+      tajList.innerHTML=''; tajSummary.textContent='';
+      tajExample.classList.add('hidden');
     }
+
+    frontHint.textContent = 'Flip for Derived Words or Word-by-Word • Press F to flip';
   }else{
+    // full layout -> never show audio/taj
     audioBtn.classList.add('hidden');
     tajBlock.classList.add('hidden');
-    tajSummary.textContent=''; tajList.innerHTML=''; tajExample.classList.add('hidden');
+    frontHint.textContent = 'Flip for Word-by-Word • Press F to flip';
   }
 
-  // back
-  if(currentLayout==='tajweed-audio-with-tabs'){
-    renderBackTabs(a, w);
+  // ensure we’re on front on render
+  frontFace.style.display='block';
+  backFace.style.display='none';
+
+  posText.textContent = `${idx+1} / ${wordsFlat.length}`;
+}
+
+function renderBack(){
+  if(!wordsFlat.length) return;
+  const {a, w, ai} = wordsFlat[idx];
+
+  // Layout behavior
+  if(layout==='audio'){
+    // Tabs visible
+    backTabs.classList.remove('hidden');
+    wbwToolbar.classList.remove('hidden');
+
+    // Start on Derived Words
+    tabDeriv.classList.add('active'); tabWbw.classList.remove('active');
+    rootsPane.style.display='block'; wbwPane.style.display='none';
+
+    // Fill root details
+    rootDetails.classList.remove('hidden');
+    rootTxt.textContent = w.root || '—';
+    rootMeaningTxt.textContent = w.rootMeaning || '—';
+    morphTxt.textContent = w.derivationMethod || '—';
+
+    // Derived words
+    fillDerived(w);
+
   }else{
-    renderBackWbw(a);
+    // full layout -> no tabs, only WBW
+    backTabs.classList.add('hidden');
+    rootsPane.style.display='none';
+    wbwPane.style.display='block';
+    wbwToolbar.classList.add('hidden'); // no whole-surah toggle in full mode back
+    buildWbwList({wholeSurah:false, ayahIdx: ai});
   }
 }
 
-function renderBackWbw(a){
-  backHost.innerHTML = (a.words||[]).map(w=>`
-    <div class="wbw-row">
-      <div class="d-ar big" dir="rtl">${w.arabic_word||''}</div>
-      <div class="d-bn">${w.bangla_meaning||''}</div>
-    </div>
-  `).join('') || `<div class="muted" style="text-align:center">—</div>`;
-}
+/* Derived helper */
+function fillDerived(w){
+  derivList.innerHTML='';
 
-function renderBackTabs(a,w){
-  backHost.innerHTML = `
-    <div class="tabbar">
-      <button id="tabDerived" class="btn gold">Derived Words</button>
-      <button id="tabWbw" class="btn">Word-by-Word</button>
-    </div>
-    <div id="tabBody"></div>
-  `;
-  const body = $('tabBody');
-  const btnA = $('tabDerived'), btnB = $('tabWbw');
+  const derivs = Array.isArray(w.quranicDerivations) ? w.quranicDerivations : [];
+  const filtered = derivs.filter(d => (d.arabic||'').trim() !== (w.arabic_word||'').trim());
 
-  const showDerived = ()=>{ btnA.classList.add('gold'); btnB.classList.remove('gold'); body.innerHTML = buildDerived(a,w); };
-  const showWbw     = ()=>{ btnB.classList.add('gold'); btnA.classList.remove('gold'); body.innerHTML = buildWbw(a); };
+  if(!filtered.length){
+    derivTitle.classList.add('hidden');
+    derivEmpty.classList.remove('hidden');
+    return;
+  }
+  derivTitle.classList.remove('hidden');
+  derivEmpty.classList.add('hidden');
 
-  btnA.onclick = showDerived;
-  btnB.onclick = showWbw;
-  showDerived();
-}
-
-function buildWbw(a){
-  return (a.words||[]).map(w=>`
-    <div class="wbw-row">
-      <div class="d-ar big" dir="rtl">${w.arabic_word||''}</div>
-      <div class="d-bn">${w.bangla_meaning||''}</div>
-    </div>
-  `).join('');
-}
-
-function stripTashkeel(s=''){ return s.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g,''); }
-
-function buildDerived(a,w){
-  const main = stripTashkeel(w.arabic_word||'');
-  const list = (Array.isArray(w.quranicDerivations)?w.quranicDerivations:[])
-    .filter(d => stripTashkeel(d.arabic||'') !== main);
-
-  if(!list.length) return `<div class="muted" style="text-align:center">No related forms.</div>`;
-
-  return list.map(d=>{
-    const morph = d.derivationMethod ? `<span class="badge-morph">(${d.derivationMethod})</span>` : '';
-    const ex = (d.exampleArabic||d.exampleBangla)
-      ? `<div class="ex-line"><span dir="rtl">${d.exampleArabic||''}</span><span>${d.exampleBangla||''}</span></div>` : '';
-    const occ = (d.occurrences||[]).map(o=>o.ayah_id).join(', ');
-    return `
-      <div class="deriv-row">
-        <div class="d-ar big" dir="rtl">${d.arabic||''}${morph}</div>
-        <div class="d-bn">${d.meaning||''}</div>
-        ${occ?`<div class="d-meta">${occ}</div>`:''}
-        ${ex}
+  filtered.forEach(d=>{
+    const morph = d.derivationMethod ? ` <span class="muted">(${d.derivationMethod})</span>` : '';
+    const occs = (d.occurrences||[]).map(o=>o.ayah_id).join(', ');
+    const mean = d.meaning || '';
+    const row = document.createElement('div');
+    row.className='deriv-row';
+    row.innerHTML = `
+      <div class="d-ar big" dir="rtl">${d.arabic||''}${morph}</div>
+      <div class="d-text">
+        <div class="d-bn">${mean}</div>
+        ${occs ? `<div class="d-meta">${occs}</div>` : ``}
       </div>
     `;
-  }).join('');
+    derivList.appendChild(row);
+  });
 }
 
-function hardClear(){
-  ayahArabic.textContent='﴿ ﴾';
-  ayahBangla.textContent='—';
-  [frontArabic,frontBangla,frontRoot,frontRootM,frontDerivM].forEach(n=>n.textContent='');
-  wordId.textContent='—';
-  backHost.innerHTML='';
-  posText.textContent='0 / 0';
+/* WBW helper */
+function buildWbwList({wholeSurah=false, ayahIdx=0}){
+  wbwList.innerHTML='';
+  const words = [];
+  if(wholeSurah){
+    (deck.ayats||[]).forEach(a => (a.words||[]).forEach(w => words.push({a,w})));
+  }else{
+    const a = deck.ayats?.[ayahIdx];
+    (a?.words||[]).forEach(w => words.push({a,w}));
+  }
+  if(!words.length){
+    wbwList.innerHTML = `<div class="muted">No words.</div>`;
+    return;
+  }
+  words.forEach(({w})=>{
+    const row = document.createElement('div');
+    row.className = 'wbw-item';
+    row.innerHTML = `
+      <div class="wbw-ar" dir="rtl">${w.arabic_word || ''}</div>
+      <div class="wbw-bn">${w.bangla_meaning || ''}</div>
+    `;
+    wbwList.appendChild(row);
+  });
 }
 
-function showError(msg){ errorBanner.textContent=msg; errorBanner.classList.remove('hidden'); }
-function clearError(){ errorBanner.textContent=''; errorBanner.classList.add('hidden'); }
+/* Audio */
+function toggleAudio(){
+  if(!ayahAudio?.src) return;
+  if(ayahAudio.paused) ayahAudio.play();
+  else ayahAudio.pause();
+}
+
+/* Errors */
+function showError(msg){
+  errorBanner.textContent = msg;
+  errorBanner.classList.remove('hidden');
+}
+function clearError(){
+  errorBanner.textContent = '';
+  errorBanner.classList.add('hidden');
+}
