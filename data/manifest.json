@@ -10,8 +10,15 @@
   {
     "id": "67-major",
     "surah_number": 67,
-    "name_bn": "আল-মুলক (৬৭) — Major Words",
+    "name_bn": "সূরা আল-মুলক (৬৭) — Major Words",
     "display": "Al-Mulk (67) — Major Words",
     "filename": "mulk_1_30_major.json"
+  },
+  {
+    "id": "67-major-audio",
+    "surah_number": 67,
+    "name_bn": "সূরা আল-মুলক (৬৭) — Major Words + Audio",
+    "display": "Al-Mulk (67) — Major Words + Audio",
+    "filename": "mulk_1_30_major_audio.json"
   }
 ]
