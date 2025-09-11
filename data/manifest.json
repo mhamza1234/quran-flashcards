@@ -1,10 +1,17 @@
 [
   {
-    "id": "67",
+    "id": "67-full",
     "surah_number": 67,
     "name_ar": "سورة الملك",
     "name_bn": "সূরা আল-মুলক (৬৭)",
     "display": "Al-Mulk (67) — Full",
     "filename": "mulk_1_30_detailed.json"
+  },
+  {
+    "id": "67-major",
+    "surah_number": 67,
+    "name_bn": "আল-মুলক (৬৭) — Major Words",
+    "display": "Al-Mulk (67) — Major Words",
+    "filename": "mulk_1_30_major.json"
   }
 ]
