@@ -1,317 +1,306 @@
-/* Quran Flashcards — ultra-defensive manifest loader + stable UI
-   Front  = big Arabic (left), root/meaning/morphology + Derivations
-   Back   = single centered column (Arabic | Bangla)
-*/
+// ----------- State -----------
+let manifest = [];
+let data = null;            // current dataset JSON
+let wordsFlat = [];         // flat list of all word entries (for sequential/random)
+let index = 0;              // current flat index
+let mode = "sequential";
 
-const state = { manifest: [], surah: null, words: [], order: [], idx: 0, mode: 'sequential' };
+// DOM refs
+const surahSelect = document.getElementById('surahSelect');
+const modeSelect  = document.getElementById('modeSelect');
+const jumpInput   = document.getElementById('jumpInput');
+const goBtn       = document.getElementById('goBtn');
 
-const els = {
-  modeSelect: document.getElementById('modeSelect'),
-  surahSelect: document.getElementById('surahSelect'),
-  quickSearch: document.getElementById('quickSearch'),
-  quickGo: document.getElementById('quickGo'),
+const crumb    = document.getElementById('crumb');
+const firstBtn = document.getElementById('firstBtn');
+const prevBtn  = document.getElementById('prevBtn');
+const flipBtn  = document.getElementById('flipBtn');
+const nextBtn  = document.getElementById('nextBtn');
+const lastBtn  = document.getElementById('lastBtn');
 
-  card: document.getElementById('card'),
-  ayahArabic: document.getElementById('ayahArabic'),
-  ayahBangla: document.getElementById('ayahBangla'),
+const frontFace = document.getElementById('frontFace');
+const backFace  = document.getElementById('backFace');
 
-  wordId: document.getElementById('wordId'),
-  frontArabicWord: document.getElementById('frontArabicWord'),
-  frontBanglaMeaning: document.getElementById('frontBanglaMeaning'),
-  frontRoot: document.getElementById('frontRoot'),
-  frontRootMeaning: document.getElementById('frontRootMeaning'),
-  frontDerivationMethod: document.getElementById('frontDerivationMethod'),
-  frontDerivList: document.getElementById('frontDerivList'),
+const wordArabic = document.getElementById('wordArabic');
+const wordBangla = document.getElementById('wordBangla');
 
-  backDerivList: document.getElementById('backDerivList'),
+const audioBtn   = document.getElementById('audioBtn');
+const audioEl    = document.getElementById('ayahAudio');
 
-  firstBtn: document.getElementById('firstBtn'),
-  prevBtn: document.getElementById('prevBtn'),
-  flipBtn: document.getElementById('flipBtn'),
-  nextBtn: document.getElementById('nextBtn'),
-  lastBtn: document.getElementById('lastBtn'),
-  positionText: document.getElementById('positionText'),
+const tajSummary = document.getElementById('tajSummary');
+const tajList    = document.getElementById('tajList');
+const tajExample = document.getElementById('tajExample');
+const exArabic   = document.getElementById('exArabic');
+const exBangla   = document.getElementById('exBangla');
 
-  errorBanner: document.getElementById('errorBanner'),
-};
+const backCrumb  = document.getElementById('backCrumb');
+const backArabic = document.getElementById('backArabic');
+const backBangla = document.getElementById('backBangla');
 
-/* ---- global error catcher (so silent errors don’t hide the problem) ---- */
-window.addEventListener('error', (e) => {
-  console.error('[global error]', e.message, e.filename, e.lineno, e.colno, e.error);
-  showError('স্ক্রিপ্ট ত্রুটি: ' + e.message);
-});
-window.addEventListener('unhandledrejection', (e) => {
-  console.error('[promise rejection]', e.reason);
-  showError('ডেটা লোডিং ত্রুটি — বিস্তারিত কনসোলে দেখুন');
-});
+const tabRoots = document.getElementById('tabRoots');
+const tabWbw   = document.getElementById('tabWbw');
+const rootsPane= document.getElementById('rootsPane');
+const wbwPane  = document.getElementById('wbwPane');
+const wbwScope = document.getElementById('wbwScope');
 
-/* ---- utils ---- */
-const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]];} return a; };
-const showError = m => { if(!els.errorBanner) return; els.errorBanner.innerHTML=m; els.errorBanner.classList.remove('hidden'); };
-const clearError = () => els.errorBanner && els.errorBanner.classList.add('hidden');
-const flattenWords = s => { const out=[]; (s.ayats||[]).forEach((ayah,ai)=> (ayah.words||[]).forEach((word,wi)=> out.push({ayahIndex:ai,wordIndex:wi,ayah,word})) ); return out; };
-const makeOrder = () => { const idxs=[...Array(state.words.length).keys()]; state.order = (state.mode==='random')? shuffle(idxs): idxs; state.idx=0; };
-const renderPosition = () => { els.positionText.textContent = `${state.idx+1} / ${state.order.length}`; };
-const renderAyahStrip = a => { els.ayahArabic.textContent=a.arabic||''; els.ayahBangla.textContent=a.bangla||''; };
-const ensureFront = () => els.card.classList.remove('flipped');
+const rootTxt  = document.getElementById('rootTxt');
+const rootMeaningTxt = document.getElementById('rootMeaningTxt');
+const morphTxt = document.getElementById('morphTxt');
+const derivList = document.getElementById('derivList');
+const derivEmpty= document.getElementById('derivEmpty');
 
-/* ---- FRONT derivations ---- */
-function renderDerivations(list, container){
-  container.innerHTML='';
-  if(!Array.isArray(list) || !list.length){
-    const d=document.createElement('div'); d.className='deriv-item';
-    d.innerHTML='<div class="meaning">— কোনো ডেরিভেশন নেই —</div>';
-    container.appendChild(d); return;
-  }
-  list.forEach(dv=>{
-    const exBn = dv.exampleBangla ?? dv.exampleBn ?? dv.exampleBN ?? '';
-    const wrap=document.createElement('div'); wrap.className='deriv-item';
-    wrap.innerHTML = `
-      <div class="arabic ar-lg">${dv.arabic || ''}</div>
-      <div class="meaning">${dv.meaning || ''}</div>
-      <div class="ar-example">${dv.exampleArabic || ''}</div>
-      <div class="ex ex-bn"><b>উদাহরণ (Bn):</b> ${exBn}</div>
-      ${
-        Array.isArray(dv.occurrences) && dv.occurrences.length
-          ? `<div class="occ-wrap">${dv.occurrences.map(o=>`<span class="chip-sm" title="Click to copy">${o.ayah_id}</span>`).join('')}</div>`
-          : ''
-      }
-    `;
-    wrap.querySelectorAll('.chip-sm').forEach(ch=>{
-      ch.addEventListener('click', ()=>{ navigator.clipboard?.writeText(ch.textContent); ch.classList.add('copied'); setTimeout(()=>ch.classList.remove('copied'),600); });
+const wbwList  = document.getElementById('wbwList');
+
+// ----------- Init -----------
+init();
+
+async function init(){
+  await loadManifest();
+  await loadDatasetFromSelect();
+
+  // controls
+  modeSelect.addEventListener('change', ()=> mode = modeSelect.value);
+  goBtn.addEventListener('click', onGo);
+  firstBtn.addEventListener('click', ()=> { index = 0; render(); });
+  lastBtn .addEventListener('click', ()=> { index = wordsFlat.length-1; render(); });
+  prevBtn .addEventListener('click', prev);
+  nextBtn .addEventListener('click', next);
+  flipBtn .addEventListener('click', flip);
+  audioBtn.addEventListener('click', toggleAudio);
+
+  tabRoots.addEventListener('click', ()=> switchTab('roots'));
+  tabWbw  .addEventListener('click', ()=> switchTab('wbw'));
+  wbwScope.addEventListener('change', ()=> renderBack());
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.code==='Space'){ e.preventDefault(); toggleAudio(); }
+    if(e.key==='ArrowRight') next();
+    if(e.key==='ArrowLeft')  prev();
+    if(e.key.toLowerCase()==='f') flip();
+  });
+
+  render();
+}
+
+async function loadManifest(){
+  const resp = await fetch('data/manifest.json');
+  manifest = await resp.json();
+  surahSelect.innerHTML = manifest.map(m => `<option value="${m.filename}">${m.display || m.name_bn || m.name_ar}</option>`).join('');
+  surahSelect.addEventListener('change', loadDatasetFromSelect);
+}
+
+async function loadDatasetFromSelect(){
+  const file = surahSelect.value || (manifest[0] && manifest[0].filename);
+  if(!file) return;
+  const resp = await fetch(`data/${file}`);
+  data = await resp.json();
+
+  // build flat word list [ {ayah, word, ayahIndex, wordIndex} ... ]
+  wordsFlat = [];
+  data.ayats.forEach((a, ai)=>{
+    a.words.forEach((w, wi)=>{
+      wordsFlat.push({ a, w, ai, wi });
     });
-    container.appendChild(wrap);
   });
+  index = 0;
+  render();
 }
 
-/* ---- BACK grid (single centered column) ---- */
-function renderAyahGrid(ayah, container){
-  container.innerHTML='';
-  const grid = document.createElement('div');
-  grid.className = 'ayah-grid one-col';
-  (ayah.words || []).forEach(w=>{
-    const row=document.createElement('div'); row.className='pair';
-    row.innerHTML = `
-      <div class="pair-ar">${w.arabic_word || ''}</div>
-      <div class="pair-bn">${w.bangla_meaning || ''}</div>
-    `;
-    grid.appendChild(row);
+function onGo(){
+  const val = (jumpInput.value || '').trim();
+  // Accept 67:5 or 67:5:3
+  const m = val.match(/^(\d+):(\d+)(?::(\d+))?$/);
+  if(!m){ return; }
+  const ay = `${m[1]}:${m[2]}`;
+  const wantWord = m[3] ? parseInt(m[3],10) : null;
+
+  // find first index that matches ayah (and word if provided)
+  const idx = wordsFlat.findIndex(x=>{
+    const [s,a] = x.a.ayah_id.split(':').map(Number);
+    const [ss,aa] = ay.split(':').map(Number);
+    if(s!==ss || a!==aa) return false;
+    if(wantWord==null) return true;
+    const wi = parseInt(x.w.word_id.split(':')[2],10);
+    return wi===wantWord;
   });
-  container.appendChild(grid);
+  if(idx>=0){ index = idx; render(); }
 }
 
-/* ---- render card ---- */
-function renderCard(){
-  if(!state.order.length){
-    els.positionText.textContent='0 / 0';
-    els.ayahArabic.textContent=els.ayahBangla.textContent='';
-    els.frontDerivList.innerHTML=els.backDerivList.innerHTML='';
-    els.frontArabicWord.textContent=els.frontBanglaMeaning.textContent='';
-    els.frontRoot.textContent=els.frontRootMeaning.textContent=els.frontDerivationMethod.textContent='';
-    return;
+function prev(){
+  if(mode==='random'){
+    index = Math.floor(Math.random()*wordsFlat.length);
+  }else{
+    index = Math.max(0, index-1);
   }
-  const cur = state.words[state.order[state.idx]];
-  const { ayah, word } = cur;
+  render();
+}
+function next(){
+  if(mode==='random'){
+    index = Math.floor(Math.random()*wordsFlat.length);
+  }else{
+    index = Math.min(wordsFlat.length-1, index+1);
+  }
+  render();
+}
 
-  clearError();
-  renderAyahStrip(ayah);
+function flip(){
+  const f = frontFace.style.display !== 'none';
+  frontFace.style.display = f ? 'none' : 'block';
+  backFace .style.display = f ? 'block' : 'none';
+  if(!f) stopAudio();
+  if(!f) renderBack(); // when flipping to back, (re)render its content
+}
+
+function toggleAudio(){
+  const { a, w } = wordsFlat[index];
+  if(!w.audio || !w.audio.ayahAudioUrl) return;
+  if(audioEl.src !== w.audio.ayahAudioUrl){
+    audioEl.src = w.audio.ayahAudioUrl;
+  }
+  if(audioEl.paused){ audioEl.play(); } else { audioEl.pause(); }
+}
+function stopAudio(){ try{ audioEl.pause(); }catch(e){} }
+
+// ----------- Rendering -----------
+function render(){
+  const { a, w, ai, wi } = wordsFlat[index];
+
+  // crumb & counters
+  crumb.textContent = `${a.ayah_id}:${wi+1} — ${index+1} / ${wordsFlat.length}`;
 
   // FRONT
-  els.wordId.textContent = word.word_id || '';
-  els.frontArabicWord.textContent = word.arabic_word || '';
-  els.frontBanglaMeaning.textContent = word.bangla_meaning || '';
-  els.frontRoot.textContent = word.root || '';
-  els.frontRootMeaning.textContent = word.rootMeaning || '';
-  els.frontDerivationMethod.textContent = word.derivationMethod || '';
-  renderDerivations(word.quranicDerivations || [], els.frontDerivList);
+  wordArabic.textContent = w.arabic_word || '—';
+  wordBangla .textContent = w.bangla_meaning || '—';
 
-  // BACK
-  renderAyahGrid(ayah, els.backDerivList);
+  // Tajwīd summary chips
+  tajSummary.innerHTML = '';
+  const chips = [];
+  if(w.tajweed && Array.isArray(w.tajweed.rules)){
+    w.tajweed.rules.forEach(r=>{
+      const chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.innerHTML = `<b>${r.rule}</b>${r.subtype?` — ${r.subtype}`:''}`;
+      chips.push(chip);
+    });
+  }
+  if(chips.length){ chips.forEach(c=>tajSummary.appendChild(c)); }
 
-  renderPosition();
+  // Tajwīd lines (detailed)
+  tajList.innerHTML = '';
+  if(w.tajweed && Array.isArray(w.tajweed.rules) && w.tajweed.rules.length){
+    w.tajweed.rules.forEach(r=>{
+      const line = document.createElement('div');
+      line.className = 'taj-line';
+      const key = `<span class="taj-key">${r.rule}${r.subtype?` — ${r.subtype}`:''}</span>`;
+      const ar  = r.trigger ? ` <span class="taj-ar">${r.trigger}</span>` : '';
+      const note= r.note ? ` — ${r.note}` : '';
+      line.innerHTML = key + ar + note;
+      tajList.appendChild(line);
+    });
+  }else{
+    const line = document.createElement('div');
+    line.className = 'taj-line muted';
+    line.textContent = 'No recorded rules for this word.';
+    tajList.appendChild(line);
+  }
+
+  // Example block (if provided in JSON)
+  if(w.exampleArabic || w.exampleBangla){
+    exArabic.textContent = w.exampleArabic || '';
+    exBangla.textContent = w.exampleBangla || '';
+    tajExample.style.display = 'block';
+  }else{
+    tajExample.style.display = 'none';
+  }
+
+  // ensure front visible by default
+  frontFace.style.display = 'block';
+  backFace .style.display = 'none';
+  audioEl.src = ''; // reset audio source
 }
 
-/* ---- nav ---- */
-function goFirst(){ state.idx=0; ensureFront(); renderCard(); }
-function goLast(){ state.idx=Math.max(0,state.order.length-1); ensureFront(); renderCard(); }
-function goNext(){ state.idx=(state.idx+1)%state.order.length; ensureFront(); renderCard(); }
-function goPrev(){ state.idx=(state.idx-1+state.order.length)%state.order.length; ensureFront(); renderCard(); }
-function flip(){ els.card.classList.toggle('flipped'); }
+// Back render (roots + derivations tab OR word-by-word tab)
+function renderBack(){
+  const { a, w, ai, wi } = wordsFlat[index];
 
-/* =========================================================================
-   MANIFEST LOADER — tries absolute + relative paths that match GitHub Pages
-   ========================================================================= */
-async function loadManifest(){
-  // Compute base paths from the current URL, e.g. /quran-flashcards/
-  const path = location.pathname;              // /quran-flashcards/ or /quran-flashcards/index.html
-  const repoBase = path.endsWith('/') ? path : path.slice(0, path.lastIndexOf('/') + 1);
-  const candidates = [
-    // absolute (best for GH Pages on a subpath)
-    `${location.origin}${repoBase}data/manifest.json`,
-    `${location.origin}/quran-flashcards/data/manifest.json`, // explicit repo name (your case)
-    // relative fallbacks
-    `data/manifest.json`,
-    `./data/manifest.json`,
-    `manifest.json`,
-    `./manifest.json`
-  ];
+  backCrumb.textContent  = `${a.ayah_id}:${wi+1}`;
+  backArabic.textContent = w.arabic_word || '—';
+  backBangla.textContent = w.bangla_meaning || '—';
 
-  const tryFetch = async (url) => {
-    try {
-      const r = await fetch(url + (url.includes('?') ? '&' : '?') + 'ts=' + Date.now());
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      // guard against HTML error pages disguised as JSON
-      const text = await r.text();
-      try {
-        return { ok:true, json: JSON.parse(text), url };
-      } catch {
-        throw new Error('Invalid JSON (maybe served HTML/404 page)');
-      }
-    } catch (err) {
-      return { ok:false, err: String(err), url };
+  const onRoots = tabRoots.classList.contains('active');
+
+  if(onRoots){
+    // Fill details
+    rootTxt.textContent = w.root || '—';
+    rootMeaningTxt.textContent = w.rootMeaning || '—';
+    morphTxt.textContent = w.derivationMethod || '—';
+
+    // Derivations table
+    derivList.innerHTML = '';
+    const derivs = Array.isArray(w.quranicDerivations) ? w.quranicDerivations : [];
+    if(!derivs.length){ derivEmpty.style.display='block'; }
+    else{
+      derivEmpty.style.display='none';
+      derivs.forEach(d=>{
+        const refs = (d.occurrences||[]).map(o=>o.ayah_id).join(', ');
+        const card = document.createElement('div');
+        card.className = 'deriv-card';
+        card.innerHTML = `
+          <div class="deriv-ar" dir="rtl">${d.arabic || ''}</div>
+          <div>
+            <div class="deriv-bn">${d.meaning || ''}</div>
+            <div class="deriv-meta">${refs}</div>
+          </div>`;
+        derivList.appendChild(card);
+      });
     }
-  };
+  }else{
+    // Word-by-Word
+    const whole = wbwScope.checked;
+    wbwList.innerHTML = '';
 
-  let picked = null, lastErrs = [];
-  for (const url of candidates) {
-    const res = await tryFetch(url);
-    if (res.ok) { picked = res; break; }
-    lastErrs.push(res);
-  }
+    if(whole){
+      // Entire surah (all ayats)
+      data.ayats.forEach(ay=>{
+        const hdr = document.createElement('div');
+        hdr.className = 'detail-row';
+        hdr.innerHTML = `<b>${ay.ayah_id}</b>`;
+        wbwList.appendChild(hdr);
 
-  if (!picked) {
-    const msg = [
-      'manifest.json লোড করা যায়নি। আমি যে URLগুলো চেষ্টা করেছি:',
-      ...lastErrs.map(e=> `• <code>${e.url}</code> → ${e.err}`)
-    ].join('<br>');
-    els.surahSelect.innerHTML = '<option value="" disabled selected>manifest.json মিসিং/পাওয়া যায়নি</option>';
-    showError(msg);
-    return;
-  }
-
-  // Accept common shapes: array, {surahs:[...]}, or single item
-  let list = [];
-  const raw = picked.json;
-  if (Array.isArray(raw)) list = raw;
-  else if (raw && Array.isArray(raw.surahs)) list = raw.surahs;
-  else if (raw && (raw.filename || raw.display || raw.display_bn || raw.surah_number)) list = [raw];
-
-  if (!Array.isArray(list) || list.length === 0) {
-    els.surahSelect.innerHTML = '<option value="" disabled selected>manifest.json খালি/ভুল</option>';
-    showError(`manifest.json পাওয়া গেছে (<code>${picked.url}</code>) কিন্তু কনটেন্ট খালি বা ফরম্যাট ভুল।`);
-    return;
-  }
-
-  state.manifest = list.map((m,i)=>({
-    id: String(m.id ?? m.surah_number ?? i+1),
-    surah_number: m.surah_number ?? Number(m.id ?? (i+1)),
-    name_ar: m.name_ar ?? '',
-    name_bn: m.name_bn ?? '',
-    display: m.display ?? m.display_bn ?? m.name_bn ?? m.filename ?? `Surah ${m.surah_number ?? (i+1)}`,
-    display_bn: m.display_bn ?? m.display ?? m.name_bn ?? '',
-    filename: m.filename ?? m.file ?? ''
-  })).filter(m => m.filename);
-
-  // Populate dropdown
-  els.surahSelect.innerHTML = '<option value="" disabled selected>সুরা বাছাই করুন…</option>';
-  state.manifest.forEach((m,i)=>{
-    const o = document.createElement('option');
-    o.value = String(i);
-    o.textContent = m.display_bn || m.display || m.filename;
-    els.surahSelect.appendChild(o);
-  });
-
-  if (!state.manifest.length) {
-    showError(`manifest.json পাওয়া গেছে (<code>${picked.url}</code>) কিন্তু কোনো আইটেমে <code>filename</code> নেই।`);
-  } else {
-    clearError();
+        ay.words.forEach(x=>{
+          const row = document.createElement('div');
+          row.className = 'wbw-row';
+          row.innerHTML = `
+            <div class="wbw-ar" dir="rtl">${x.arabic_word}</div>
+            <div class="wbw-bn">${x.bangla_meaning}</div>`;
+          wbwList.appendChild(row);
+        });
+      });
+    }else{
+      // Current ayah only
+      a.words.forEach(x=>{
+        const row = document.createElement('div');
+        row.className = 'wbw-row';
+        row.innerHTML = `
+          <div class="wbw-ar" dir="rtl">${x.arabic_word}</div>
+          <div class="wbw-bn">${x.bangla_meaning}</div>`;
+        wbwList.appendChild(row);
+      });
+    }
   }
 }
 
-/* ---- load surah ---- */
-async function loadSurahByIndex(i){
-  const m = state.manifest[i]; if(!m) return;
-  const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.slice(0, location.pathname.lastIndexOf('/') + 1);
-  const absUrl = `${location.origin}${base}data/${m.filename}`;
-  const relUrls = [
-    absUrl,
-    `${location.origin}/quran-flashcards/data/${m.filename}`, // explicit repo name
-    `data/${m.filename}`,
-    `./data/${m.filename}`
-  ];
-
-  const tryOne = async (url) => {
-    try {
-      const r = await fetch(url + (url.includes('?') ? '&' : '?') + 'ts=' + Date.now());
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const text = await r.text();
-      try { return { ok:true, json: JSON.parse(text), url }; }
-      catch { throw new Error('Invalid JSON'); }
-    } catch (e) { return { ok:false, err:String(e), url }; }
-  };
-
-  let got=null, errs=[];
-  for (const u of relUrls){
-    const res = await tryOne(u);
-    if(res.ok){ got=res; break; }
-    errs.push(res);
+function switchTab(name){
+  if(name==='roots'){
+    tabRoots.classList.add('active');
+    tabWbw.classList.remove('active');
+    rootsPane.style.display = 'block';
+    wbwPane.style.display   = 'none';
+  }else{
+    tabWbw.classList.add('active');
+    tabRoots.classList.remove('active');
+    rootsPane.style.display = 'none';
+    wbwPane.style.display   = 'block';
   }
-  if(!got){
-    showError([
-      `Surah JSON লোড করা গেল না: <b>${m.filename}</b>`,
-      ...errs.map(e=>`• <code>${e.url}</code> → ${e.err}`)
-    ].join('<br>'));
-    return;
-  }
-
-  const arr = got.json;
-  const s = Array.isArray(arr)? arr[0] : arr;
-  if(!s || !Array.isArray(s.ayats)){
-    showError(`ভুল surah schema: <code>${got.url}</code> — এর মধ্যে "ayats" array নেই।`);
-    return;
-  }
-  state.surah = s;
-  state.words = flattenWords(s);
-  makeOrder();
-  ensureFront(); renderCard();
+  renderBack();
 }
-
-/* ---- quick jump ---- */
-function handleQuickGo(){
-  const v = els.quickSearch.value.trim(); if(!v) return;
-  const [, ay, wd] = v.split(':'); const targetAy=ay; const targetW = wd || null;
-  const flatIdx = state.words.findIndex(x=>{
-    const [s,a,w] = (x.word.word_id||'').split(':');
-    return (!targetW ? a===targetAy : (a===targetAy && w===targetW));
-  });
-  if(flatIdx>=0){
-    const pos = state.order.indexOf(flatIdx);
-    state.idx = (pos>=0? pos : flatIdx);
-    ensureFront(); renderCard();
-  }
-}
-
-/* ---- events ---- */
-els.modeSelect.addEventListener('change', ()=>{ state.mode=els.modeSelect.value; makeOrder(); ensureFront(); renderCard(); });
-els.surahSelect.addEventListener('change', async ()=>{ const i=parseInt(els.surahSelect.value,10); await loadSurahByIndex(i); });
-els.quickGo.addEventListener('click', handleQuickGo);
-els.quickSearch.addEventListener('keydown', e=>{ if(e.key==='Enter') handleQuickGo(); });
-
-els.firstBtn.addEventListener('click', goFirst);
-els.prevBtn.addEventListener('click', goPrev);
-els.flipBtn.addEventListener('click', flip);
-els.nextBtn.addEventListener('click', goNext);
-els.lastBtn.addEventListener('click', goLast);
-
-window.addEventListener('keydown', e=>{
-  if(e.target===els.quickSearch) return;
-  if(e.key==='ArrowRight' || e.key===' ') goNext();
-  else if(e.key==='ArrowLeft') goPrev();
-  else if(e.key.toLowerCase()==='f') flip();
-  else if(e.key.toLowerCase()==='r'){ state.mode=(state.mode==='sequential')?'random':'sequential'; els.modeSelect.value=state.mode; makeOrder(); ensureFront(); renderCard(); }
-});
-
-/* ---- init ---- */
-(async function init(){
-  await loadManifest();
-})();
