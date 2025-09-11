@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Quran Flashcards</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Qur’an Flashcards</title>
+  <link rel="stylesheet" href="styles.css?v=full1" />
 </head>
 <body>
 
   <!-- Top Navigation Bar (sticky) -->
   <header class="header-bar">
-    <div class="brand">Quran Flashcards</div>
+    <div class="brand">Qur’an Flashcards</div>
     <div class="spacer"></div>
 
     <label class="ctl">
@@ -28,7 +28,7 @@
 
     <label class="ctl">
       <span>যেমন:</span>
-      <input id="jumpInput" class="select" placeholder="67:5:3 বা 67:5…" />
+      <input id="jumpInput" class="select" placeholder="67:5 বা 67:5:3" />
     </label>
 
     <button id="goBtn" class="go">Go</button>
@@ -56,11 +56,14 @@
           <div class="word-ar" id="wordArabic" dir="rtl">—</div>
           <div class="word-bn" id="wordBangla">—</div>
 
-          <button class="audio-fab" id="audioBtn" title="Play/Pause">🔊</button>
+          <div class="audio-row">
+            <button class="audio-btn" id="audioBtn" title="Play/Pause">🔊</button>
+            <div id="audioStatus" class="audio-status muted">Ready</div>
+          </div>
 
           <div class="sep"></div>
 
-          <!-- Tajwīd: richer block -->
+          <!-- Tajwīd -->
           <div class="block-title">Tajwīd Rules</div>
           <div id="tajSummary" class="taj-summary"></div>
           <div id="tajList" class="taj-list"></div>
@@ -73,7 +76,7 @@
             </div>
           </div>
 
-          <div class="hint">Flip for Root Details & Derived Words</div>
+          <div class="hint">Flip for Root Details & Quranic Derivations • Press F to flip</div>
         </div>
       </div>
 
@@ -122,15 +125,15 @@
 
     </section>
 
-    <!-- Right panel (placeholder for future drawer) -->
-    <aside class="info-panel muted" id="infoPanel">
+    <!-- Right panel placeholder -->
+    <aside class="info-panel muted">
       <div class="panel-empty">
-        Back of card now contains Roots & Derivations and Word-by-Word.
+        Back of card contains Roots & Derivations and Word-by-Word.
       </div>
     </aside>
   </main>
 
   <audio id="ayahAudio" preload="none"></audio>
-  <script src="app.js"></script>
+  <script src="app.js?v=full1"></script>
 </body>
 </html>
