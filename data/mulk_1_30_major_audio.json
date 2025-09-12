@@ -1,74 +1,87 @@
 {
-  "surah": 67,
-  "name_ar": "سورة الملك",
-  "name_bn": "সূরা আল-মুলক",
-  "ayats": [
-    {
-      "ayah_id": "67:1",
-      "arabic": "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
-      "bangla": "বরকতময় তিনি—যাঁর হাতে সব কর্তৃত্ব; তিনি সবকিছুর উপর সর্বশক্তিমান।",
-      "words": [
+    "surah": 67,
+    "name_ar": "سورة الملك",
+    "name_bn": "আল-মুলক",
+    "verses": [
         {
-          "word_id": "67:1:1",
-          "arabic_word": "تَبَارَكَ",
-          "bangla_meaning": "বরকতময়",
-          "root": "ب-ر-ك",
-          "derivationMethod": "فعل ماضٍ",
-          "audio": "https://everyayah.com/data/Yasser_Ad-Dussary_64kbps/067001.mp3",
-          "tajweed": "Rule: prolong Alif (ا) for 2 counts (Natural Madd).",
-          "quranicDerivations": [
-            {
-              "arabic": "مُبَارَكٌ",
-              "meaning": "বরকতময়",
-              "derivationMethod": "اسم",
-              "occurrences": [{ "ayah_id": "6:92", "surface": "مُبَارَكٌ" }]
-            },
-            {
-              "arabic": "بَرَكَاتٌ",
-              "meaning": "বরকতসমূহ",
-              "derivationMethod": "جمع",
-              "occurrences": [{ "ayah_id": "11:73", "surface": "بَرَكَاتُهُ" }]
-            }
-          ]
-        },
-        {
-          "word_id": "67:1:2",
-          "arabic_word": "الَّذِي",
-          "bangla_meaning": "যিনি",
-          "derivationMethod": "اسم موصول"
+            "ayah_id": "67:1",
+            "arabic": "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+            "bangla": "বরকতময় তিনি—যাঁর হাতে সব কর্তৃত্ব; তিনি সবকিছুর উপর সর্বশক্তিমান।",
+            "words": [
+                {
+                    "ar": "تَبَارَكَ",
+                    "bn": "বরকতময়",
+                    "tr": "tabāraka",
+                    "root": "ب-ر-ك",
+                    "pattern": "تَفَاعَلَ",
+                    "derived": [
+                        {
+                            "ar": "مُبَارَك",
+                            "bn": "বরকতময়",
+                            "tr": "mubārak",
+                            "pattern": "مُفَاعَل"
+                        },
+                        {
+                            "ar": "بَرَكَات",
+                            "bn": "বরকতসমূহ",
+                            "tr": "barakāt",
+                            "pattern": "فَعَلات"
+                        }
+                    ]
+                },
+                {
+                    "ar": "الَّذِي",
+                    "bn": "যিনি",
+                    "tr": "al-laḏī",
+                    "root": "",
+                    "pattern": "اسم موصول",
+                    "derived": []
+                },
+                {
+                    "ar": "بِيَدِهِ",
+                    "bn": "তাঁর হাতে",
+                    "tr": "bi-yadihi",
+                    "root": "ي-د",
+                    "pattern": "جار+مضاف",
+                    "derived": []
+                },
+                {
+                    "ar": "الْمُلْكُ",
+                    "bn": "সার্বভৌমত্ব",
+                    "tr": "al-mulk",
+                    "root": "م-ل-ك",
+                    "pattern": "فُعْل",
+                    "derived": [
+                        {
+                            "ar": "مَلِك",
+                            "bn": "বাদশাহ",
+                            "tr": "malik",
+                            "pattern": "فَعِل"
+                        },
+                        {
+                            "ar": "مَالِك",
+                            "bn": "মালিক",
+                            "tr": "mālik",
+                            "pattern": "فَاعِل"
+                        }
+                    ]
+                },
+                {
+                    "ar": "قَدِيرٌ",
+                    "bn": "মহাশক্তিমান",
+                    "tr": "qadīr",
+                    "root": "ق-د-ر",
+                    "pattern": "فَعِيل",
+                    "derived": [
+                        {
+                            "ar": "قُدْرَة",
+                            "bn": "ক্ষমতা",
+                            "tr": "qudrah",
+                            "pattern": "فُعْلَة"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-    },
-    {
-      "ayah_id": "67:2",
-      "arabic": "الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا",
-      "bangla": "তিনি যিনি মৃত্যু ও জীবন সৃষ্টি করেছেন, যাতে তিনি পরীক্ষা করেন কে ভাল কাজ করে।",
-      "words": [
-        {
-          "word_id": "67:2:1",
-          "arabic_word": "خَلَقَ",
-          "bangla_meaning": "সৃষ্টি করেছেন",
-          "root": "خ-ل-ق",
-          "derivationMethod": "فعل ماضٍ",
-          "audio": "https://everyayah.com/data/Yasser_Ad-Dussary_64kbps/067002.mp3",
-          "tajweed": "Qalqalah on ق (Qaf) due to sukoon.",
-          "quranicDerivations": [
-            {
-              "arabic": "خَلْق",
-              "meaning": "সৃষ্টি",
-              "derivationMethod": "مصدر",
-              "occurrences": [{ "ayah_id": "23:14", "surface": "خَلْقًا" }]
-            }
-          ]
-        },
-        {
-          "word_id": "67:2:2",
-          "arabic_word": "الْمَوْتَ",
-          "bangla_meaning": "মৃত্যু",
-          "root": "م-و-ت",
-          "derivationMethod": "اسم"
-        }
-      ]
-    }
-  ]
+    ]
 }
